@@ -23,7 +23,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.exshipper.handlers.ViewsUpdateHandler;
+import com.exshipper.listeners.ProgressBarUpdateListener;
 import com.exshipper.listeners.ViewsUpdateListener;
 
 import android.os.AsyncTask;
@@ -49,18 +49,21 @@ public class ExShipperBarcodeReaderActivity extends Activity {
 	JSONObject suda_tracking_number_obj = null;
 	JSONArray suda_tracking_number_list = null;
 	
-	//
-	ViewsUpdateHandler view_update_handler = null;
-	
-	//
 	LongRunningIO getCustomEnrtyNumberTask =null;
+	
+	private void initInnerVariables(){
+		
+	}
+	//end of inner variables & init function
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_exshipper_barcode_reader);
-		// initialize view
-		initViewComponents();
+		
+		initXMLViewComponents(); // initialize XML view
+		
+		initInnerVariables(); //initialize some of inner variables
 	}
 
 	@Override
@@ -167,11 +170,48 @@ public class ExShipperBarcodeReaderActivity extends Activity {
 	
 	//self-defined listeners
 	ViewsUpdateListener view_update = new ViewsUpdateListener() {
+
+		@Override
+		public void updateView(String p_result) {
+			// TODO Auto-generated method stub
+			
+		}
 	};
 	
+	ProgressBarUpdateListener progress_bar_update = new ProgressBarUpdateListener() {
+		
+		@Override
+		public void updateView(String p_result) {
+			// TODO Auto-generated method stub
+			progressBar.setVisibility(View.INVISIBLE);
+			if(p_result != null){
+			txtCustomNumber.setText(p_result);
+			}
+		}
+		
+		@Override
+		public void setupProgressBar() {
+			// TODO Auto-generated method stub
+			progressBar = (ProgressBar) findViewById(R.id.progress_bar_get_customer_entry_number);
+			progressBar.setVisibility(View.VISIBLE);
+		}
+		
+		@Override
+		public boolean isProgressCountable() {
+			// TODO Auto-generated method stub
+			return false;
+		}
+
+		@Override
+		public void updateProgressBar(int p_progress) {
+			// TODO Auto-generated method stub
+			progressBar.setProgress(p_progress);
+		}
+
+	};
 	//end of self-defined listeners
 
-	/* view components */
+	/* XML view components */
 	Button btnGetCustomNumber = null;
 	TextView txtCustomNumber = null;
 	Button btnScan = null;
@@ -181,8 +221,9 @@ public class ExShipperBarcodeReaderActivity extends Activity {
 	Button btnSubmitSUDATrackingNumbers = null;
 	
 	ProgressBar progressBar = null;
-
-	private void initViewComponents() {
+	
+	//init function
+	private void initXMLViewComponents() {
 		btnGetCustomNumber = (Button) findViewById(R.id.btn_get_custom_number);
 		btnGetCustomNumber.setOnClickListener(getCustomEntryNumber);
 		txtCustomNumber = (TextView) findViewById(R.id.txt_custom_number);
@@ -196,6 +237,7 @@ public class ExShipperBarcodeReaderActivity extends Activity {
 		btnSubmitSUDATrackingNumbers = (Button) findViewById(R.id.btn_submit_suda_tracking_number);
 		btnSubmitSUDATrackingNumbers.setOnClickListener(submitSUDATrackingNumbers);
 	}
+	/* end of XML view components init function*/
 
 	//RESTful service
 	private class LongRunningIO extends AsyncTask<Void, Integer, String> {		

@@ -1,0 +1,5 @@
+package com.exshipper.listeners;
+
+public interface ProgressBarUpdateListener extends ViewsUpdateListener{
+
+}

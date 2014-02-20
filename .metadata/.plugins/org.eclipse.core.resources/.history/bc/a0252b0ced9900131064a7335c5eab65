@@ -1,0 +1,7 @@
+package com.exshipper.listeners;
+
+public interface ProgressBarUpdateListener extends ViewsUpdateListener{
+	void setupProgressBar();
+	void hideProgressBar();
+	boolean isCountable();
+}

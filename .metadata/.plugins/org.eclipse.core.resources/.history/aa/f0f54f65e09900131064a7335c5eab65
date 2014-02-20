@@ -1,0 +1,8 @@
+package com.exshipper.handlers;
+
+import com.exshipper.listeners.ViewsUpdateListener;
+
+public class ViewsUpdateHandler {
+	void addViewUpdateListener(ViewsUpdateListener p_view) {
+	}
+}

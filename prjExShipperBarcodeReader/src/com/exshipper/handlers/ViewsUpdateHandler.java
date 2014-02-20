@@ -1,8 +1,22 @@
 package com.exshipper.handlers;
 
-import android.view.View;
+import com.exshipper.listeners.ViewsUpdateListener;
 
 public class ViewsUpdateHandler {
-	void addViewListener(View p_view) {
+	private ViewsUpdateListener viewUpdateListener=null;
+	void addViewUpdateListener(ViewsUpdateListener p_view) {
+		viewUpdateListener = p_view;
 	}
+	
+	public boolean execute(){
+		updateView();
+		return false;
+	}
+	
+	private boolean updateView(){
+		String result = "NA";
+		viewUpdateListener.updateView(result);
+		return false;
+	}
+	
 }

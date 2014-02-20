@@ -3,3 +3,8 @@
 1392850655323	Rename package 'com.exshipper.functionhandlers'
 1392857315820	Rename type 'ViewUpdateListener'
 1392857390343	Delete element
+1392868192440	Rename method 'initViewComponents'
+1392868479873	Rename type 'AsynTaskHandler'
+1392868902851	Rename field 'progressBarUpdate'
+1392872548966	Rename type 'AsyncTaskHandler'
+1392872914207	Rename method 'isCountable'

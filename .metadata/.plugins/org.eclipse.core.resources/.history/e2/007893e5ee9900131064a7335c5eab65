@@ -23,6 +23,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.exshipper.listeners.ProgressBarUpdateListener;
+import com.exshipper.listeners.ViewsUpdateListener;
+
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Activity;
@@ -34,6 +37,7 @@ import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -45,13 +49,21 @@ public class ExShipperBarcodeReaderActivity extends Activity {
 	JSONObject suda_tracking_number_obj = null;
 	JSONArray suda_tracking_number_list = null;
 	
+	LongRunningIO getCustomEnrtyNumberTask =null;
+	
+	private void initInnerVariables(){
+		
+	}
+	//end of inner variables & init function
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_exshipper_barcode_reader);
-
-		// initialize view
-		initViewComponents();
+		
+		initXMLViewComponents(); // initialize XML view
+		
+		initInnerVariables(); //initialize some of inner variables
 	}
 
 	@Override
@@ -60,6 +72,16 @@ public class ExShipperBarcodeReaderActivity extends Activity {
 		getMenuInflater().inflate(R.menu.ex_shipper_barcode_reader, menu);
 		return true;
 	}
+	
+	@Override
+	protected void onDestroy() {
+		if(getCustomEnrtyNumberTask!=null && getCustomEnrtyNumberTask.getStatus()!=AsyncTask.Status.FINISHED){
+			getCustomEnrtyNumberTask.cancel(true);
+			getCustomEnrtyNumberTask=null;
+		}
+		super.onDestroy();
+	}
+
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode,
 			Intent p_intent) {
@@ -117,10 +139,11 @@ public class ExShipperBarcodeReaderActivity extends Activity {
 		}
 	};
 
-	OnClickListener getCustomNumber = new OnClickListener() {
+	OnClickListener getCustomEntryNumber = new OnClickListener() {
 		@Override
 		public void onClick(View v) {
-			new LongRunningIO().execute();
+			getCustomEnrtyNumberTask = new LongRunningIO();
+			getCustomEnrtyNumberTask.execute();
 		}
 	};
 	
@@ -143,8 +166,49 @@ public class ExShipperBarcodeReaderActivity extends Activity {
 			}
 		}
 	};
+	//end of OnClickListener
+	
+	//self-defined listeners
+	ViewsUpdateListener view_update = new ViewsUpdateListener() {
 
-	/* view components */
+		@Override
+		public void updateView(String p_result) {
+			// TODO Auto-generated method stub
+			
+		}
+	};
+	
+	ProgressBarUpdateListener progress_bar_update = new ProgressBarUpdateListener() {
+		
+		@Override
+		public void updateView(String p_result) {
+			// TODO Auto-generated method stub
+			
+		}
+		
+		@Override
+		public void setupProgressBar() {
+			// TODO Auto-generated method stub
+			progressBar = (ProgressBar) findViewById(R.id.progress_bar_get_customer_entry_number);
+			progressBar.setVisibility(View.VISIBLE);
+		}
+		
+		@Override
+		public boolean isProgressCountable() {
+			// TODO Auto-generated method stub
+			return false;
+		}
+		
+		@Override
+		public void hideProgressBar() {
+			// TODO Auto-generated method stub
+			
+		}
+
+	};
+	//end of self-defined listeners
+
+	/* XML view components */
 	Button btnGetCustomNumber = null;
 	TextView txtCustomNumber = null;
 	Button btnScan = null;
@@ -152,10 +216,13 @@ public class ExShipperBarcodeReaderActivity extends Activity {
 	TextView txtTotalAmount = null;
 	
 	Button btnSubmitSUDATrackingNumbers = null;
-
-	private void initViewComponents() {
+	
+	ProgressBar progressBar = null;
+	
+	//init function
+	private void initXMLViewComponents() {
 		btnGetCustomNumber = (Button) findViewById(R.id.btn_get_custom_number);
-		btnGetCustomNumber.setOnClickListener(getCustomNumber);
+		btnGetCustomNumber.setOnClickListener(getCustomEntryNumber);
 		txtCustomNumber = (TextView) findViewById(R.id.txt_custom_number);
 		
 		btnScan = (Button) findViewById(R.id.btn_scan);
@@ -167,15 +234,28 @@ public class ExShipperBarcodeReaderActivity extends Activity {
 		btnSubmitSUDATrackingNumbers = (Button) findViewById(R.id.btn_submit_suda_tracking_number);
 		btnSubmitSUDATrackingNumbers.setOnClickListener(submitSUDATrackingNumbers);
 	}
+	/* end of XML view components init function*/
 
 	//RESTful service
-	private class LongRunningIO extends AsyncTask<Void, Void, String> {
+	private class LongRunningIO extends AsyncTask<Void, Integer, String> {		
+		@Override
+		protected void onPreExecute() {
+			progressBar = (ProgressBar) findViewById(R.id.progress_bar_get_customer_entry_number);
+			progressBar.setVisibility(View.VISIBLE);
+			super.onPreExecute();
+		}
+
+		
+		@Override
+		protected void onProgressUpdate(Integer... values) {
+			super.onProgressUpdate(values);
+		}
 
 		@Override
 		protected String doInBackground(Void... params) {
 			HttpClient httpClient = new DefaultHttpClient();
 			HttpContext localContext = new BasicHttpContext();
-			HttpPost httpPost = new HttpPost("http://www.exwine-tw.appspot.com/exshipper_custom_entry_handler");
+			HttpPost httpPost = new HttpPost("https://exwine-tw.appspot.com/exshipper_custom_entry_handler");
 			
 			JSONObject responseJSON = null;
 			String txt_custom_number = null;
@@ -203,12 +283,15 @@ public class ExShipperBarcodeReaderActivity extends Activity {
 		
 		@Override
 		protected void onPostExecute(String result) {
+			progressBar.setVisibility(View.INVISIBLE);
 			if(result != null){
 			txtCustomNumber.setText(result);
 			}
 			super.onPostExecute(result);
 		}
 
+		
+		//RESTful download testing
 		protected String getContentFromEntity(HttpEntity entity) throws IllegalStateException, IOException{
 			/*working on...*/
 			InputStream inputFromServer = entity.getContent();

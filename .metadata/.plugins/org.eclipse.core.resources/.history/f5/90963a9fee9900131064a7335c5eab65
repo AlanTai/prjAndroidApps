@@ -1,0 +1,55 @@
+package com.exshipper.handlers;
+
+import java.net.URI;
+
+import com.exshipper.listeners.ProgressBarUpdateListener;
+import com.exshipper.listeners.ViewsUpdateListener;
+
+import android.os.AsyncTask;
+
+public class WebContentDownloadHandler extends AsyncTask<URI, Integer, String> {
+	private ProgressBarUpdateListener progressBarUpdateListener = null;
+	private ViewsUpdateListener txtViewResultUpdateListener = null;
+	
+	public WebContentDownloadHandler(ProgressBarUpdateListener p_progressbarUpdateListener, ViewsUpdateListener p_txtViewUpdateListener){
+		progressBarUpdateListener = p_progressbarUpdateListener;
+		txtViewResultUpdateListener = p_txtViewUpdateListener;
+	}
+
+	@Override
+	protected void onPostExecute(String p_result) {
+		// TODO Auto-generated method stub
+		progressBarUpdateListener.hideProgressBar();
+		if (p_result != null) {
+			txtViewResultUpdateListener.updateView(p_result);
+		}
+		super.onPostExecute(p_result);
+	}
+
+	@Override
+	protected void onPreExecute() {
+		// TODO Auto-generated method stub
+		progressBarUpdateListener.setupProgressBar();
+		super.onPreExecute();
+	}
+
+	@Override
+	protected void onProgressUpdate(Integer... values) {
+		// TODO Auto-generated method stub
+		if(progressBarUpdateListener.isProgressCountable()){
+			progressBarUpdateListener.updateView(values[0].toString());
+		}
+		super.onProgressUpdate(values);
+	}
+
+	@Override
+	protected String doInBackground(URI... params) {
+		// TODO Auto-generated method stub
+		int currentProgress = 0;
+		if(progressBarUpdateListener.isProgressCountable()){
+
+			publishProgress(currentProgress);
+		}
+		return null;
+	}
+}
