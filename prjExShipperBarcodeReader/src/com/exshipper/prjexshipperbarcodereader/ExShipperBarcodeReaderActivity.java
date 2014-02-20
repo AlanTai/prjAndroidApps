@@ -23,6 +23,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.exshipper.handlers.ViewsUpdateHandler;
+import com.exshipper.listeners.ViewsUpdateListener;
+
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Activity;
@@ -45,6 +48,9 @@ public class ExShipperBarcodeReaderActivity extends Activity {
 	Map<Integer, String> sudaTrackingNumberMap = new HashMap<Integer, String>();
 	JSONObject suda_tracking_number_obj = null;
 	JSONArray suda_tracking_number_list = null;
+	
+	//
+	ViewsUpdateHandler view_update_handler = null;
 	
 	//
 	LongRunningIO getCustomEnrtyNumberTask =null;
@@ -157,6 +163,13 @@ public class ExShipperBarcodeReaderActivity extends Activity {
 			}
 		}
 	};
+	//end of OnClickListener
+	
+	//self-defined listeners
+	ViewsUpdateListener view_update = new ViewsUpdateListener() {
+	};
+	
+	//end of self-defined listeners
 
 	/* view components */
 	Button btnGetCustomNumber = null;

@@ -1,0 +1,8 @@
+package com.exshipper.functionhandlers;
+
+import android.view.View;
+
+public interface ViewsUpdateHandler {
+	void updateview(View... views);
+
+}

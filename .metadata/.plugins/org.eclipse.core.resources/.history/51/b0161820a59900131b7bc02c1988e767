@@ -1,0 +1,5 @@
+package com.exshipper.functionhandlers;
+
+public interface ViewUpdateHandler {
+
+}

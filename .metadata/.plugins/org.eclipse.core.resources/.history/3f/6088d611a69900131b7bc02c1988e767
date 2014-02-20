@@ -1,0 +1,6 @@
+package com.exshipper.functionhandlers;
+
+public interface ViewUpdateHandler {
+	protected void updateview(Object new_task);
+
+}

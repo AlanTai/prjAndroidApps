@@ -1,0 +1,10 @@
+package com.exshipper.handlers;
+
+import android.view.View;
+
+public interface ViewsUpdateHandler {
+	void updateview(View... views);
+	
+	void addView();
+
+}
