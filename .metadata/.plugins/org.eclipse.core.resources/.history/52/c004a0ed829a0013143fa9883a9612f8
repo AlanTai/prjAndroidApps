@@ -15,6 +15,7 @@ public class ViewsUpdateHandler {
 	
 	private boolean updateView(){
 		String result = "NA";
+		viewUpdateListener.updateView(result);
 		return false;
 	}
 	

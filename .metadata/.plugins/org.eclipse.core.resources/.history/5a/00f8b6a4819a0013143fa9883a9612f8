@@ -171,9 +171,23 @@ public class ExShipperBarcodeReaderActivity extends Activity {
 	//self-defined listeners
 	ViewsUpdateListener view_update = new ViewsUpdateListener() {
 
+		@Override
+		public void updateView(String p_result) {
+			// TODO Auto-generated method stub
+			
+		}
 	};
 	
 	ProgressBarUpdateListener progress_bar_update = new ProgressBarUpdateListener() {
+		
+		@Override
+		public void updateView(String p_result) {
+			// TODO Auto-generated method stub
+			progressBar.setVisibility(View.INVISIBLE);
+			if(p_result != null){
+			txtCustomNumber.setText(p_result);
+			}
+		}
 		
 		@Override
 		public void setupProgressBar() {
@@ -192,15 +206,6 @@ public class ExShipperBarcodeReaderActivity extends Activity {
 		public void updateProgressBar(int p_progress) {
 			// TODO Auto-generated method stub
 			progressBar.setProgress(p_progress);
-		}
-
-		@Override
-		public void updateResult(String p_result) {
-			// TODO Auto-generated method stub
-			progressBar.setVisibility(View.INVISIBLE);
-			if(p_result != null){
-			txtCustomNumber.setText(p_result);
-			}
 		}
 
 	};

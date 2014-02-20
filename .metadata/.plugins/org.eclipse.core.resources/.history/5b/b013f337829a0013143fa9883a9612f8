@@ -19,15 +19,18 @@ import org.apache.http.protocol.HttpContext;
 import org.json.JSONObject;
 
 import com.exshipper.listeners.ProgressBarUpdateListener;
+import com.exshipper.listeners.ViewsUpdateListener;
 
 import android.os.AsyncTask;
 import android.util.Log;
 
 public class WebContentDownloadHandler extends AsyncTask<String, Integer, String> {
 	private ProgressBarUpdateListener progressBarUpdateListener = null;
+	private ViewsUpdateListener txtViewResultUpdateListener = null;
 	
-	public WebContentDownloadHandler(ProgressBarUpdateListener p_progressbarUpdateListener){
+	public WebContentDownloadHandler(ProgressBarUpdateListener p_progressbarUpdateListener, ViewsUpdateListener p_txtViewUpdateListener){
 		progressBarUpdateListener = p_progressbarUpdateListener;
+		txtViewResultUpdateListener = p_txtViewUpdateListener;
 	}
 
 	@Override

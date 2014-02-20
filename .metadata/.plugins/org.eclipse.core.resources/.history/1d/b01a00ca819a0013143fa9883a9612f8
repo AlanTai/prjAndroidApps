@@ -171,6 +171,11 @@ public class ExShipperBarcodeReaderActivity extends Activity {
 	//self-defined listeners
 	ViewsUpdateListener view_update = new ViewsUpdateListener() {
 
+		@Override
+		public void updateView(String p_result) {
+			// TODO Auto-generated method stub
+			
+		}
 	};
 	
 	ProgressBarUpdateListener progress_bar_update = new ProgressBarUpdateListener() {

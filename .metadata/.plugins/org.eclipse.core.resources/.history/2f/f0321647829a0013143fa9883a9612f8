@@ -19,6 +19,7 @@ import org.apache.http.protocol.HttpContext;
 import org.json.JSONObject;
 
 import com.exshipper.listeners.ProgressBarUpdateListener;
+import com.exshipper.listeners.ViewsUpdateListener;
 
 import android.os.AsyncTask;
 import android.util.Log;
