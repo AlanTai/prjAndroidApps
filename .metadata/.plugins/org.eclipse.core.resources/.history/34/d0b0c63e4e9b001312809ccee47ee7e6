@@ -64,9 +64,10 @@ public class WebContentDownloadHandler extends AsyncTask<String, Integer, String
 		String utf8_response = null;
 		
 		try{
-			if(progressBarUpdateListener.isAuthorizationNecessary() && progressBarUpdateListener.setAuthorizationInfo()!= null){
-				httpPost.setEntity(new UrlEncodedFormEntity(progressBarUpdateListener.setAuthorizationInfo()));
-			}
+			List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
+			nameValuePairs.add(new BasicNameValuePair("account", "alantai"));
+			nameValuePairs.add(new BasicNameValuePair("password", "1014"));
+			httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 			
 			HttpResponse serverResponse = httpClient.execute(httpPost, localContext);
 			
@@ -85,7 +86,7 @@ public class WebContentDownloadHandler extends AsyncTask<String, Integer, String
 					if(progressBarUpdateListener.isProgressCountable()){
 						publishProgress((int) (count/(float) total)*100);
 						
-						Thread.sleep(200); //slow down AsyncTask
+						Thread.sleep(500); //slow down AsyncTask
 					}
 				}
 				

@@ -3,6 +3,7 @@ package com.exshipper.listeners;
 import java.util.List;
 
 import org.apache.http.NameValuePair;
+import org.json.JSONObject;
 
 public interface ProgressBarUpdateListener extends ViewsUpdateListener{
 	void setupProgressBar();

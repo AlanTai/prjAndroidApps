@@ -205,17 +205,8 @@ public class ExShipperBarcodeReaderActivity extends Activity {
 
 		@Override
 		public boolean isAuthorizationNecessary() {
-			// user should set authorization information after reutrn true
+			// working on
 			return true;
-		}
-
-		@Override
-		public List<NameValuePair> setAuthorizationInfo() {
-			// TODO Auto-generated method stub
-			List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
-			nameValuePairs.add(new BasicNameValuePair("account", "alantai"));
-			nameValuePairs.add(new BasicNameValuePair("password", "1014"));
-			return nameValuePairs;
 		}
 
 
