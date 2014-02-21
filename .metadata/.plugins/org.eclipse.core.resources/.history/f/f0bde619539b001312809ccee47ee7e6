@@ -64,7 +64,6 @@ public class WebContentDownloadHandler extends AsyncTask<String, Integer, String
 		String utf8_response = null;
 		
 		try{
-			//authorization process
 			if(progressBarUpdateListener.isAuthorizationNecessary() && progressBarUpdateListener.setAuthorizationInfo()!= null){
 				httpPost.setEntity(new UrlEncodedFormEntity(progressBarUpdateListener.setAuthorizationInfo()));
 			}

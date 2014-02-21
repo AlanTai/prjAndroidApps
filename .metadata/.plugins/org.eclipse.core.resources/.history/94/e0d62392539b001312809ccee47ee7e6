@@ -205,7 +205,7 @@ public class ExShipperBarcodeReaderActivity extends Activity {
 
 		@Override
 		public boolean isAuthorizationNecessary() {
-			// user should set authorization information after return true
+			// user should set authorization information after reutrn true
 			return true;
 		}
 
