@@ -203,12 +203,6 @@ public class ExShipperBarcodeReaderActivity extends Activity {
 			}
 		}
 
-		@Override
-		public boolean isAuthorizationNecessary() {
-			// working on
-			return true;
-		}
-
 	};
 	//end of self-defined listeners
 
