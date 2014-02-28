@@ -1,7 +1,0 @@
-package com.exshipper.listeners;
-
-public interface ProgressBarUpdateListener extends ViewsUpdateListener{
-	static int progressBarStyle = 0;
-	void setupProgressBar();
-	void hideProgressBar();
-}

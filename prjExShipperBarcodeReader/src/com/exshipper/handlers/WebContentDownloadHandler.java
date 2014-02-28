@@ -2,18 +2,14 @@ package com.exshipper.handlers;
 
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.List;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
-import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.protocol.BasicHttpContext;
 import org.apache.http.protocol.HttpContext;
 import org.json.JSONObject;
@@ -33,6 +29,7 @@ public class WebContentDownloadHandler extends AsyncTask<String, Integer, String
 	@Override
 	protected void onPostExecute(String p_result) {
 		// TODO Auto-generated method stub
+		progressBarUpdateListener.updateResult(p_result);
 		super.onPostExecute(p_result);
 	}
 
@@ -102,6 +99,6 @@ public class WebContentDownloadHandler extends AsyncTask<String, Integer, String
 			Log.e("error", "Fail to get the response from server: "+e.getMessage());
 		}
 		
-		return null;
+		return txt_custom_entry_number;
 	}
 }

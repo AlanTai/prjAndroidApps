@@ -3,11 +3,9 @@
 <fullyQualifiedTypeName name="com.exshipper.prjexshipperbarcodereader.R.id"/>
 <fullyQualifiedTypeName name="com.exshipper.prjexshipperbarcodereader.ExShipperBarcodeReaderActivity.LongRunningIO"/>
 <fullyQualifiedTypeName name="android.net.wifi.WifiConfiguration.Status"/>
-<fullyQualifiedTypeName name="android.os.AsyncTask.Status"/>
 <fullyQualifiedTypeName name="android.view.View"/>
 <fullyQualifiedTypeName name="com.exshipper.factories.MainFactory"/>
 <fullyQualifiedTypeName name="com.exshipper.handlers.ViewsUpdateHandler"/>
-<fullyQualifiedTypeName name="android.os.AsyncTask"/>
 <fullyQualifiedTypeName name="java.net.URI"/>
 <fullyQualifiedTypeName name="com.exshipper.listeners.ViewsUpdateListener"/>
 <fullyQualifiedTypeName name="android.R.style"/>
@@ -15,7 +13,6 @@
 <fullyQualifiedTypeName name="android.R"/>
 <fullyQualifiedTypeName name="android.R.attr"/>
 <fullyQualifiedTypeName name="com.exshipper.handlers.AsyncTaskHandler"/>
-<fullyQualifiedTypeName name="com.exshipper.listeners.ProgressBarUpdateListener"/>
 <fullyQualifiedTypeName name="org.apache.http.client.HttpClient"/>
 <fullyQualifiedTypeName name="org.apache.http.impl.client.DefaultHttpClient"/>
 <fullyQualifiedTypeName name="org.apache.http.protocol.BasicHttpContext"/>
@@ -34,4 +31,8 @@
 <fullyQualifiedTypeName name="java.io.ByteArrayOutputStream"/>
 <fullyQualifiedTypeName name="org.json.JSONObject"/>
 <fullyQualifiedTypeName name="org.apache.http.client.entity.UrlEncodedFormEntity"/>
+<fullyQualifiedTypeName name="com.exshipper.handlers.WebContentDownloadHandler"/>
+<fullyQualifiedTypeName name="android.os.AsyncTask"/>
+<fullyQualifiedTypeName name="android.os.AsyncTask.Status"/>
+<fullyQualifiedTypeName name="com.exshipper.listeners.ProgressBarUpdateListener"/>
 </qualifiedTypeNameHistroy>
