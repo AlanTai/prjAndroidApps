@@ -1,5 +1,6 @@
 package com.exshipper.prjexshipperbarcodereader;
 
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -10,15 +11,14 @@ import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import com.exshipper.handlers.WebContentDownloadHandler;
-import com.exshipper.listeners.ProgressBarUpdateListener;
-import android.os.AsyncTask;
-import android.os.Bundle;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.AsyncTask;
+import android.os.Bundle;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -30,6 +30,9 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.exshipper.handlers.WebContentDownloadHandler;
+import com.exshipper.listeners.ProgressBarUpdateListener;
 
 public class ExShipperBarcodeReaderActivity extends Activity {
 	//inner variables
@@ -68,6 +71,10 @@ public class ExShipperBarcodeReaderActivity extends Activity {
 			uploadPickedPackagesTrackingNumbers.cancel(true);
 			uploadPickedPackagesTrackingNumbers=null;
 		}
+		txtScanResult.setText("");
+		txtScanResult = null;
+		txtTotalAmount.setText("");
+		txtTotalAmount = null;
 		super.onDestroy();
 	}
 
@@ -156,22 +163,6 @@ public class ExShipperBarcodeReaderActivity extends Activity {
 			startActivityForResult(myIntent, 0);
 		}
 	};
-
-	//get customer entry number (testing only)
-	OnClickListener getCustomEntryNumber = new OnClickListener() {
-		
-		@Override
-		public void onClick(View v) {
-			//use private class
-			/*
-			//with MVC design
-			if(uploadPickedPackagesTrackingNumbers != null && (uploadPickedPackagesTrackingNumbers.getStatus() != AsyncTask.Status.FINISHED)){
-				uploadPickedPackagesTrackingNumbers.cancel(true);
-			}
-			uploadPickedPackagesTrackingNumbers = new WebContentDownloadHandler(progress_bar_update);
-			uploadPickedPackagesTrackingNumbers.execute(new String[] {"https://exwine-tw.appspot.com/exshipper_custom_entry_handler"});*/
-		}
-	};
 	
 	OnClickListener deleteSUDATrackingNumberInfo = new OnClickListener() {
 		
@@ -256,7 +247,7 @@ public class ExShipperBarcodeReaderActivity extends Activity {
 			// TODO Auto-generated method stub
 			progressBar.setVisibility(View.INVISIBLE);
 			if(p_result != null){
-			txtCustomNumber.setText(p_result);
+			txtAppIntroduction.setText(p_result);
 			}
 		}
 
@@ -281,8 +272,7 @@ public class ExShipperBarcodeReaderActivity extends Activity {
 	//end of self-defined listeners
 
 	/* XML view components */
-	Button btnGetCustomNumber = null;
-	TextView txtCustomNumber = null;
+	TextView txtAppIntroduction = null;
 	Button btnScan = null;
 	TextView txtScanResult = null;
 	TextView txtTotalAmount = null;
@@ -294,10 +284,11 @@ public class ExShipperBarcodeReaderActivity extends Activity {
 	
 	//init function
 	private void initXMLViewComponents() {
-		btnGetCustomNumber = (Button) findViewById(R.id.btn_get_custom_number);
-		btnGetCustomNumber.setOnClickListener(getCustomEntryNumber);
-		txtCustomNumber = (TextView) findViewById(R.id.txt_custom_number);
-		
+		txtAppIntroduction = (TextView) findViewById(R.id.txt_introduction);
+		txtAppIntroduction.setText("The application is for packages pickup only!\n" +
+				"1. Scan all packages' barcodes (If you want to delete the barcode, please click the \'Delete\' key word)\n" +
+				"2. Suibmit them to server\n" +
+				"3. Get response from server and you're done");
 		btnScan = (Button) findViewById(R.id.btn_scan);
 		btnScan.setOnClickListener(startBarcodeReader);
 		txtScanResult = (TextView) findViewById(R.id.txt_result);

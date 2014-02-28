@@ -9,25 +9,17 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".ExShipperBarcodeReaderActivity" >
 
-    <Button 
-        android:id="@+id/btn_get_custom_number"
-        android:layout_width="300sp"
-        android:layout_height="50sp"
-        android:textAlignment="center"
-        android:text="@string/btn_get_custom_number"/>
-    
     <TextView 
-        android:id="@+id/txt_custom_number"
+        android:id="@+id/txt_introduction"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/btn_get_custom_number"/>
+        android:layout_height="wrap_content"/>
     
     <Button 
         android:id="@+id/btn_scan"
         android:layout_width = "100sp"
         android:layout_height= "50sp"
         android:text="@string/btn_scan"
-        android:layout_below="@+id/txt_custom_number"/>
+        android:layout_below="@+id/txt_introduction"/>
     
     <TextView 
         android:id="@+id/txt_result"
