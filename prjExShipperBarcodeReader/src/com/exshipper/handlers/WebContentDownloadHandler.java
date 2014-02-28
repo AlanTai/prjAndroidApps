@@ -90,7 +90,7 @@ public class WebContentDownloadHandler extends AsyncTask<String, Integer, String
 				//utf8_response = EntityUtils.toString(entityFromServer, HTTP.UTF_8);
 				utf8_response = new String(byteOutStream.toByteArray(),"utf-8");
 				jsonObj_response = new JSONObject(utf8_response);
-				txt_custom_entry_number = jsonObj_response.getString("custom_number");
+				txt_custom_entry_number = jsonObj_response.getString("response");
 				
 				return txt_custom_entry_number;
 			}

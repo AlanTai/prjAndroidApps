@@ -1,44 +1,32 @@
 package com.exshipper.prjexshipperbarcodereader;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
-import org.apache.http.protocol.BasicHttpContext;
-import org.apache.http.protocol.HTTP;
-import org.apache.http.protocol.HttpContext;
-import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import com.exshipper.handlers.WebContentDownloadHandler;
 import com.exshipper.listeners.ProgressBarUpdateListener;
-import com.exshipper.listeners.ViewsUpdateListener;
-
 import android.os.AsyncTask;
-import android.os.AsyncTask.Status;
 import android.os.Bundle;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.util.Log;
+import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -48,11 +36,10 @@ public class ExShipperBarcodeReaderActivity extends Activity {
 	String suda_tracking_number = null;
 	String scanResult = "";
 	Map<Integer, String> sudaTrackingNumberMap = new HashMap<Integer, String>();
-	JSONObject suda_tracking_number_obj = null;
+	JSONObject suda_tracking_numbers_json_obj = null;
 	JSONArray suda_tracking_number_list = null;
 	
-	LongRunningIO getCustomEnrtyNumberTask =null;
-	WebContentDownloadHandler uploadPickupPackagesTrackingNumbers =null;
+	WebContentDownloadHandler uploadPickedPackagesTrackingNumbers =null;
 	private void initInnerVariables(){
 		
 	}
@@ -77,9 +64,9 @@ public class ExShipperBarcodeReaderActivity extends Activity {
 	
 	@Override
 	protected void onDestroy() {
-		if(getCustomEnrtyNumberTask!=null && getCustomEnrtyNumberTask.getStatus()!=AsyncTask.Status.FINISHED){
-			getCustomEnrtyNumberTask.cancel(true);
-			getCustomEnrtyNumberTask=null;
+		if(uploadPickedPackagesTrackingNumbers!=null && uploadPickedPackagesTrackingNumbers.getStatus()!=AsyncTask.Status.FINISHED){
+			uploadPickedPackagesTrackingNumbers.cancel(true);
+			uploadPickedPackagesTrackingNumbers=null;
 		}
 		super.onDestroy();
 	}
@@ -101,11 +88,39 @@ public class ExShipperBarcodeReaderActivity extends Activity {
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
 						if(!sudaTrackingNumberMap.containsValue(suda_tracking_number)){
+							//add new suda tracking number into MapList
 							sudaTrackingNumberMap.put(suda_tracking_number.hashCode(), suda_tracking_number);
-							scanResult += suda_tracking_number+"\n";
+							scanResult = "The SUDA tracking number is: "+suda_tracking_number;
 							
 							txtScanResult.setText(scanResult);
 							txtTotalAmount.setText("Total Amount of SUDA Tracking Number: "+sudaTrackingNumberMap.size());
+							
+							//append suda tracking number info onto layout-list
+							TextView txtAddedSUDATrackingNumber = new TextView(ExShipperBarcodeReaderActivity.this);
+							txtAddedSUDATrackingNumber.setTextColor(Color.parseColor("#E39D53"));
+							txtAddedSUDATrackingNumber.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
+							txtAddedSUDATrackingNumber.setText(suda_tracking_number);
+							txtAddedSUDATrackingNumber.setGravity(Gravity.CENTER);
+							txtAddedSUDATrackingNumber.setPadding(3, 2, 1, 2);
+							
+							Button deleteBtn = new Button(ExShipperBarcodeReaderActivity.this);
+							deleteBtn.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
+							deleteBtn.setTextColor(Color.parseColor("#ff0000"));
+							deleteBtn.setText("Delete");
+							deleteBtn.setBackgroundColor(Color.TRANSPARENT);
+							deleteBtn.setGravity(Gravity.CENTER);
+							deleteBtn.setPadding(3, 2, 1, 2);
+							deleteBtn.setOnClickListener(deleteSUDATrackingNumberInfo);
+							
+							LinearLayout layoutSUDATrackingNumberInfoRow = new LinearLayout(ExShipperBarcodeReaderActivity.this);
+							layoutSUDATrackingNumberInfoRow.setOrientation(LinearLayout.HORIZONTAL);
+							layoutSUDATrackingNumberInfoRow.setPadding(1, 2, 1, 2);
+							layoutSUDATrackingNumberInfoRow.addView(txtAddedSUDATrackingNumber);
+							layoutSUDATrackingNumberInfoRow.addView(deleteBtn);
+							layoutSUDATrackingNumberInfoRow.setTag(suda_tracking_number.hashCode());
+							
+							deleteBtn.setTag(layoutSUDATrackingNumberInfoRow);
+							layoutSUDATrackingNumbersList.addView(layoutSUDATrackingNumberInfoRow);
 						}
 						else{
 							Toast.makeText(ExShipperBarcodeReaderActivity.this, "SUDA Tracking Number Duplicated!", Toast.LENGTH_LONG).show();
@@ -131,6 +146,7 @@ public class ExShipperBarcodeReaderActivity extends Activity {
 	}
 
 	// OnclickListeners
+	//start barcode scan action
 	OnClickListener startBarcodeReader = new OnClickListener() {
 
 		@Override
@@ -141,48 +157,79 @@ public class ExShipperBarcodeReaderActivity extends Activity {
 		}
 	};
 
+	//get customer entry number (testing only)
 	OnClickListener getCustomEntryNumber = new OnClickListener() {
+		
 		@Override
 		public void onClick(View v) {
 			//use private class
-			//getCustomEnrtyNumberTask = new LongRunningIO();
-			//getCustomEnrtyNumberTask.execute();
-			
+			/*
 			//with MVC design
-			if(uploadPickupPackagesTrackingNumbers != null && (uploadPickupPackagesTrackingNumbers.getStatus() != AsyncTask.Status.FINISHED)){
-				uploadPickupPackagesTrackingNumbers.cancel(true);
+			if(uploadPickedPackagesTrackingNumbers != null && (uploadPickedPackagesTrackingNumbers.getStatus() != AsyncTask.Status.FINISHED)){
+				uploadPickedPackagesTrackingNumbers.cancel(true);
 			}
-			uploadPickupPackagesTrackingNumbers = new WebContentDownloadHandler(progress_bar_update);
-			uploadPickupPackagesTrackingNumbers.execute(new String[] {"https://exwine-tw.appspot.com/exshipper_custom_entry_handler"});
+			uploadPickedPackagesTrackingNumbers = new WebContentDownloadHandler(progress_bar_update);
+			uploadPickedPackagesTrackingNumbers.execute(new String[] {"https://exwine-tw.appspot.com/exshipper_custom_entry_handler"});*/
 		}
 	};
 	
-	OnClickListener submitSUDATrackingNumbers = new OnClickListener() {
+	OnClickListener deleteSUDATrackingNumberInfo = new OnClickListener() {
 		
 		@Override
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
-			suda_tracking_number_obj = new JSONObject();
-			suda_tracking_number_list = new JSONArray();
-			
-			//take out all SUDA tracking numbers
-			for (Object suda_obj : sudaTrackingNumberMap.values()){
-				suda_tracking_number_list.put(suda_obj.toString());
+			if(v instanceof Button){
+				Button btn = (Button) v;
+				if(btn.getTag() instanceof LinearLayout){
+					LinearLayout tagLayout = (LinearLayout) btn.getTag();
+					if(tagLayout.getTag() instanceof Integer){
+						Integer tagKey = (Integer) tagLayout.getTag();
+						String value = sudaTrackingNumberMap.get(tagKey);
+						String msg = "The deleted SUDA tracking number is: "+value;
+						txtScanResult.setText(msg);
+						sudaTrackingNumberMap.remove(tagKey);
+					}
+					layoutSUDATrackingNumbersList.removeView(tagLayout);
+					txtTotalAmount.setText("Total Amount of SUDA Tracking Number: "+sudaTrackingNumberMap.size());
+				}
 			}
-			try {
-				suda_tracking_number_obj.put("suda_tracking_numbers", suda_tracking_number_list.toString());
-			} catch (JSONException e) {
-				Log.e("error", "fail to build a JSONObject");
+		}
+	};
+	
+	OnClickListener submitSUDATrackingNumbers = new OnClickListener() {
+		@Override
+		public void onClick(View v) {
+			// TODO Auto-generated method stub
+			
+			if(sudaTrackingNumberMap.size()!=0){
+				suda_tracking_numbers_json_obj = new JSONObject();
+				suda_tracking_number_list = new JSONArray();
+				
+				//take out all SUDA tracking numbers
+				for (Object suda_obj : sudaTrackingNumberMap.values()){
+					suda_tracking_number_list.put(suda_obj.toString());
+				}
+				try {
+					suda_tracking_numbers_json_obj.put("suda_tracking_numbers", suda_tracking_number_list.toString());
+					
+					//upload data
+					if(uploadPickedPackagesTrackingNumbers != null && (uploadPickedPackagesTrackingNumbers.getStatus() != AsyncTask.Status.FINISHED)){
+						uploadPickedPackagesTrackingNumbers.cancel(true);
+					}
+					uploadPickedPackagesTrackingNumbers = new WebContentDownloadHandler(progress_bar_update);
+					uploadPickedPackagesTrackingNumbers.execute(new String[] {"https://exwine-tw.appspot.com/exshipper_spearnet_packages_pickup_handler"});
+				} catch (JSONException e) {
+					Log.e("error", "fail to build a JSONObject");
+				}
+			}
+			else{
+				Toast.makeText(ExShipperBarcodeReaderActivity.this, "No data for upload!", Toast.LENGTH_LONG).show();
 			}
 		}
 	};
 	//end of OnClickListener
 	
 	//self-defined listeners
-	ViewsUpdateListener view_update = new ViewsUpdateListener() {
-
-	};
-	
 	ProgressBarUpdateListener progress_bar_update = new ProgressBarUpdateListener() {
 		
 		@Override
@@ -225,6 +272,7 @@ public class ExShipperBarcodeReaderActivity extends Activity {
 			List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
 			nameValuePairs.add(new BasicNameValuePair("account", "alantai"));
 			nameValuePairs.add(new BasicNameValuePair("password", "1014"));
+			nameValuePairs.add(new BasicNameValuePair("spearnet_picked_packages", suda_tracking_numbers_json_obj.toString()));
 			return nameValuePairs;
 		}
 
@@ -239,8 +287,9 @@ public class ExShipperBarcodeReaderActivity extends Activity {
 	TextView txtScanResult = null;
 	TextView txtTotalAmount = null;
 	
-	Button btnSubmitSUDATrackingNumbers = null;
+	LinearLayout layoutSUDATrackingNumbersList = null;
 	
+	Button btnSubmitSUDATrackingNumbers = null;
 	ProgressBar progressBar = null;
 	
 	//init function
@@ -257,79 +306,9 @@ public class ExShipperBarcodeReaderActivity extends Activity {
 		
 		btnSubmitSUDATrackingNumbers = (Button) findViewById(R.id.btn_submit_suda_tracking_number);
 		btnSubmitSUDATrackingNumbers.setOnClickListener(submitSUDATrackingNumbers);
+		
+		layoutSUDATrackingNumbersList = (LinearLayout) findViewById(R.id.layout_suda_tracking_numbers_list);
 	}
 	/* end of XML view components init function*/
-
-	//RESTful service
-	private class LongRunningIO extends AsyncTask<Void, Integer, String> {		
-		@Override
-		protected void onPreExecute() {
-			progressBar = (ProgressBar) findViewById(R.id.progress_bar_get_customer_entry_number);
-			progressBar.setVisibility(View.VISIBLE);
-			super.onPreExecute();
-		}
-
-		
-		@Override
-		protected void onProgressUpdate(Integer... values) {
-			super.onProgressUpdate(values);
-		}
-
-		@Override
-		protected String doInBackground(Void... params) {
-			HttpClient httpClient = new DefaultHttpClient();
-			HttpContext localContext = new BasicHttpContext();
-			HttpPost httpPost = new HttpPost("https://exwine-tw.appspot.com/exshipper_custom_entry_handler");
-			
-			JSONObject responseJSON = null;
-			String txt_custom_number = null;
-			String utf8_response = null;
-			
-			try{
-				List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
-				nameValuePairs.add(new BasicNameValuePair("account", "alantai"));
-				nameValuePairs.add(new BasicNameValuePair("password", "1014"));
-				httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
-				
-				HttpResponse serverResponse = httpClient.execute(httpPost,localContext);
-				HttpEntity entityFromServer = serverResponse.getEntity();
-				utf8_response = EntityUtils.toString(entityFromServer, HTTP.UTF_8); //get data encoded in utf-8
-				
-				responseJSON = new JSONObject(utf8_response);
-				txt_custom_number = responseJSON.getString("custom_number");
-				
-			}
-			catch(Exception e){
-				Log.e("Http Error", "Fail to get response from server! "+e.getMessage());
-			}
-			return txt_custom_number;
-		}
-		
-		@Override
-		protected void onPostExecute(String result) {
-			progressBar.setVisibility(View.INVISIBLE);
-			if(result != null){
-			txtCustomNumber.setText(result);
-			}
-			super.onPostExecute(result);
-		}
-
-		
-		//RESTful download testing
-		protected String getContentFromEntity(HttpEntity entity) throws IllegalStateException, IOException{
-			/*working on...*/
-			InputStream inputFromServer = entity.getContent();
-			StringBuffer outResult = new StringBuffer();
-			
-			int n = 1;
-			while(n>0){
-				byte[] b = new byte[4096];
-				n = inputFromServer.read(b);
-				if(n>0) outResult.append(new String(b,0,n));
-			}
-			return outResult.toString();
-		}
-
-	}
 
 }
