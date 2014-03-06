@@ -1,0 +1,64 @@
+package fragments;
+
+import com.exshipper.prjexshipperbarcodereader.R;
+
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+
+public class LoginFragment extends FragmentTemplate{
+
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		setHasOptionsMenu(false);
+		initXMLcomponents();
+		super.onCreate(savedInstanceState);
+	}
+
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		View mView = inflater.inflate(R.layout.login_fragment, container, false);
+		return mView;
+	}
+	
+	OnClickListener submitClick = new OnClickListener() {
+		
+		@Override
+		public void onClick(View v) {
+			// TODO Auto-generated method stub
+			
+		}
+	};
+	
+	
+	
+	@Override
+	public void onDestroy() {
+		// TODO Auto-generated method stub
+		if(editTxtAccount != null || editTxtPassword != null){
+			editTxtAccount = null;
+			editTxtPassword = null;
+		}
+		super.onDestroy();
+	}
+
+	//XML components
+	EditText editTxtAccount= null;
+	EditText editTxtPassword = null;
+	Button btnSubmit = null;
+	
+	private void initXMLcomponents(){
+		editTxtAccount = (EditText) getView().findViewById(R.id.editTxtAccount);
+		editTxtPassword = (EditText) getView().findViewById(R.id.editTxtPassword);
+		btnSubmit = (Button) getView().findViewById(R.id.btnSubmitLoginInfo);
+		btnSubmit.setOnClickListener(submitClick);
+	}
+
+}

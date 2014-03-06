@@ -1,0 +1,183 @@
+package fragments;
+
+import com.exshipper.prjexshipperbarcodereader.ExShipperBarcodeReaderActivity;
+import com.exshipper.prjexshipperbarcodereader.R;
+
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.graphics.Color;
+import android.os.Bundle;
+import android.util.TypedValue;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
+
+public class LoginFragment extends FragmentTemplate{
+
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		setHasOptionsMenu(false);
+		initXMLcomponents();
+		super.onCreate(savedInstanceState);
+	}
+
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		View mView = inflater.inflate(R.layout.login_fragment, container, false);
+		return mView;
+	}
+	
+	OnClickListener submitClick = new OnClickListener() {
+		
+		@Override
+		public void onClick(View v) {
+			// TODO Auto-generated method stub
+			if("alan".equals(editTxtAccount.getText().toString()) && "1014".equals(editTxtPassword.getText().toString())){
+				gotoSpearnetPackagesPickupHandler();
+			}
+			else {
+				popupDialog();
+			}
+		}
+	};
+	
+	private void popupDialog(){
+		//
+		AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+				ExShipperBarcodeReaderActivity.this);
+		alertDialogBuilder.setTitle("SUDA Tracking Number");
+		alertDialogBuilder
+				.setMessage(
+						"Do you want to save the SUDA Tracking Number-"
+								+ suda_tracking_number + "?")
+				.setCancelable(false)
+				.setPositiveButton("Yes",
+						new DialogInterface.OnClickListener() {
+
+							@Override
+							public void onClick(DialogInterface dialog,
+									int which) {
+								if (!sudaTrackingNumberMap
+										.containsValue(suda_tracking_number)) {
+									// add new suda tracking number into
+									// MapList
+									sudaTrackingNumberMap.put(
+											suda_tracking_number
+													.hashCode(),
+											suda_tracking_number);
+									scanResult = "The SUDA tracking number is: "
+											+ suda_tracking_number;
+
+									txtScanResult.setText(scanResult);
+									txtTotalAmount
+											.setText("Total Amount of SUDA Tracking Number: "
+													+ sudaTrackingNumberMap
+															.size());
+
+									// append suda tracking number info
+									// onto layout-list
+									TextView txtAddedSUDATrackingNumber = new TextView(
+											ExShipperBarcodeReaderActivity.this);
+									txtAddedSUDATrackingNumber.setTextColor(Color
+											.parseColor("#E39D53"));
+									txtAddedSUDATrackingNumber
+											.setTextSize(
+													TypedValue.COMPLEX_UNIT_SP,
+													16);
+									txtAddedSUDATrackingNumber
+											.setText(suda_tracking_number);
+									txtAddedSUDATrackingNumber
+											.setGravity(Gravity.CENTER);
+									txtAddedSUDATrackingNumber
+											.setPadding(3, 2, 1, 2);
+
+									Button deleteBtn = new Button(
+											ExShipperBarcodeReaderActivity.this);
+									deleteBtn.setTextSize(
+											TypedValue.COMPLEX_UNIT_SP,
+											16);
+									deleteBtn.setTextColor(Color
+											.parseColor("#ff0000"));
+									deleteBtn.setText("Delete");
+									deleteBtn
+											.setBackgroundColor(Color.TRANSPARENT);
+									deleteBtn
+											.setGravity(Gravity.CENTER);
+									deleteBtn.setPadding(3, 2, 1, 2);
+									deleteBtn
+											.setOnClickListener(deleteSUDATrackingNumberInfo);
+
+									LinearLayout layoutSUDATrackingNumberInfoRow = new LinearLayout(
+											ExShipperBarcodeReaderActivity.this);
+									layoutSUDATrackingNumberInfoRow
+											.setOrientation(LinearLayout.HORIZONTAL);
+									layoutSUDATrackingNumberInfoRow
+											.setPadding(1, 2, 1, 2);
+									layoutSUDATrackingNumberInfoRow
+											.addView(txtAddedSUDATrackingNumber);
+									layoutSUDATrackingNumberInfoRow
+											.addView(deleteBtn);
+									layoutSUDATrackingNumberInfoRow
+											.setTag(suda_tracking_number
+													.hashCode());
+
+									deleteBtn
+											.setTag(layoutSUDATrackingNumberInfoRow);
+									layoutSUDATrackingNumbersList
+											.addView(layoutSUDATrackingNumberInfoRow);
+								} else {
+									Toast.makeText(
+											getActivity(),
+											"SUDA Tracking Number Duplicated!",
+											Toast.LENGTH_LONG).show();
+								}
+							}
+						})
+				.setNegativeButton("No",
+						new DialogInterface.OnClickListener() {
+
+							@Override
+							public void onClick(DialogInterface dialog,
+									int which) {
+								dialog.cancel();
+							}
+						});
+
+		// create alert dialog
+		AlertDialog alertDialog = alertDialogBuilder.create();
+		alertDialog.show();
+	}
+
+	@Override
+	public void onPause() {
+		// TODO Auto-generated method stub
+		if(!"".equals(editTxtAccount.getText().toString()) || !"".equals(editTxtPassword.getText().toString())){
+			editTxtAccount.setText("");
+			editTxtPassword.setText("");
+		}
+		super.onPause();
+	}
+
+	//XML components
+	EditText editTxtAccount= null;
+	EditText editTxtPassword = null;
+	Button btnSubmit = null;
+	
+	private void initXMLcomponents(){
+		editTxtAccount = (EditText) getView().findViewById(R.id.editTxtAccount);
+		editTxtPassword = (EditText) getView().findViewById(R.id.editTxtPassword);
+		btnSubmit = (Button) getView().findViewById(R.id.btnSubmitLoginInfo);
+		btnSubmit.setOnClickListener(submitClick);
+	}
+
+}

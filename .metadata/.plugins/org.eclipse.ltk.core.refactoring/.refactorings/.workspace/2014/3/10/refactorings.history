@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Delete resource &apos;prjExShipperBarcodeReader/res/layout/spearnet_fragment.xml&apos;" deleteContents="false" description="Delete resource &apos;prjExShipperBarcodeReader/res/layout/spearnet_fragment.xml&apos;" element1="/prjExShipperBarcodeReader/res/layout/spearnet_fragment.xml" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1394081290851"/>
+</session>

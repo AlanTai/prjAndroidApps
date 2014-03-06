@@ -1,0 +1,85 @@
+package fragments;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import com.exshipper.handlers.WebContentDownloadHandler;
+import com.exshipper.prjexshipperbarcodereader.R;
+
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
+import android.widget.TextView;
+
+public class SpearnetPakcagesPickupFragment extends FragmentTemplate {
+	// inner variables
+	String suda_tracking_number = null;
+	String scanResult = "";
+	Map<Integer, String> sudaTrackingNumberMap = new HashMap<Integer, String>();
+	JSONObject suda_tracking_numbers_json_obj = null;
+	JSONArray suda_tracking_number_list = null;
+
+	WebContentDownloadHandler uploadPickedPackagesTrackingNumbers = null;
+	// end of inner variables & init function
+
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		setHasOptionsMenu(true);
+		initXMLViewComponents();
+		super.onCreate(savedInstanceState);
+	}
+
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		View mView = inflater.inflate(R.layout.spearnet_fragment, container,
+				false);
+		return mView;
+	}
+
+	// XML components
+
+	/* XML view components */
+	TextView txtAppIntroduction = null;
+	Button btnScan = null;
+	TextView txtScanResult = null;
+	TextView txtTotalAmount = null;
+
+	LinearLayout layoutSUDATrackingNumbersList = null;
+
+	Button btnSubmitSUDATrackingNumbers = null;
+	ProgressBar progressBar = null;
+
+	// init function
+	private void initXMLViewComponents() {
+		txtAppIntroduction = (TextView) getView().findViewById(R.id.txt_introduction);
+		txtAppIntroduction
+				.setText("The application is for packages pickup only!\n"
+						+ "1. Scan all packages' barcodes (If you want to delete the barcode, please click the \'Delete\' key word)\n"
+						+ "2. Suibmit them to server\n"
+						+ "3. Get response from server and you're done");
+		btnScan = (Button) getView().findViewById(R.id.btn_scan);
+		btnScan.setOnClickListener(startBarcodeReader);
+		txtScanResult = (TextView) getView().findViewById(R.id.txt_result);
+
+		txtTotalAmount = (TextView) getView().findViewById(R.id.txt_total_amount);
+
+		btnSubmitSUDATrackingNumbers = (Button) getView().findViewById(R.id.btn_submit_suda_tracking_number);
+		btnSubmitSUDATrackingNumbers
+				.setOnClickListener(submitSUDATrackingNumbers);
+
+		layoutSUDATrackingNumbersList = (LinearLayout) getView().findViewById(R.id.layout_suda_tracking_numbers_list);
+	}
+	/* end of XML view components init function */
+
+
+}

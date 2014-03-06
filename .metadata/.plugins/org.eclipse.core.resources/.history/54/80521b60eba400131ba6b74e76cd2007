@@ -1,0 +1,46 @@
+package fragments;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import com.exshipper.handlers.WebContentDownloadHandler;
+import com.exshipper.prjexshipperbarcodereader.R;
+
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
+public class SpearnetPakcagesPickupFragment extends FragmentTemplate {
+	// inner variables
+	String suda_tracking_number = null;
+	String scanResult = "";
+	Map<Integer, String> sudaTrackingNumberMap = new HashMap<Integer, String>();
+	JSONObject suda_tracking_numbers_json_obj = null;
+	JSONArray suda_tracking_number_list = null;
+
+	WebContentDownloadHandler uploadPickedPackagesTrackingNumbers = null;
+	// end of inner variables & init function
+
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		setHasOptionsMenu(true);
+		super.onCreate(savedInstanceState);
+	}
+
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		View mView = inflater.inflate(R.layout.spearnet_fragment, container,
+				false);
+		return mView;
+	}
+
+	// XML components
+
+}

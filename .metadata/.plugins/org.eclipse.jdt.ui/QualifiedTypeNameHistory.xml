@@ -31,12 +31,9 @@
 <fullyQualifiedTypeName name="android.os.AsyncTask"/>
 <fullyQualifiedTypeName name="android.os.AsyncTask.Status"/>
 <fullyQualifiedTypeName name="com.exshipper.listeners.ProgressBarUpdateListener"/>
-<fullyQualifiedTypeName name="android.view.View.OnClickListener"/>
 <fullyQualifiedTypeName name="android.widget.TextView"/>
 <fullyQualifiedTypeName name="android.graphics.Color"/>
-<fullyQualifiedTypeName name="android.widget.Button"/>
 <fullyQualifiedTypeName name="android.util.TypedValue"/>
-<fullyQualifiedTypeName name="android.widget.EditText"/>
 <fullyQualifiedTypeName name="android.app.ActionBar.LayoutParams"/>
 <fullyQualifiedTypeName name="org.w3c.dom.Text"/>
 <fullyQualifiedTypeName name="android.view.Gravity"/>
@@ -50,14 +47,17 @@
 <fullyQualifiedTypeName name="android.support.v4.app.FragmentTransaction"/>
 <fullyQualifiedTypeName name="fragments.MainFragment"/>
 <fullyQualifiedTypeName name="fragments.LoginFragment"/>
-<fullyQualifiedTypeName name="fragments.SpearnetPakcagesPickupFragment"/>
 <fullyQualifiedTypeName name="fragments.FragmentTemplate"/>
 <fullyQualifiedTypeName name="fragments.TWCustomEntryPackagesFragment"/>
 <fullyQualifiedTypeName name="android.view.MenuInflater"/>
 <fullyQualifiedTypeName name="com.exshipper.prjexshipperbarcodereader.ExShipperBarcodeReaderActivity"/>
-<fullyQualifiedTypeName name="android.widget.Toast"/>
 <fullyQualifiedTypeName name="com.exshipper.prjexshipperbarcodereader.R"/>
+<fullyQualifiedTypeName name="java.security.InvalidAlgorithmParameterException"/>
+<fullyQualifiedTypeName name="android.widget.EditText"/>
+<fullyQualifiedTypeName name="android.widget.Button"/>
+<fullyQualifiedTypeName name="android.view.View.OnClickListener"/>
+<fullyQualifiedTypeName name="android.widget.Toast"/>
+<fullyQualifiedTypeName name="fragments.SpearnetPakcagesPickupFragment"/>
 <fullyQualifiedTypeName name="com.exshipper.prjexshipperbarcodereader.R.id"/>
 <fullyQualifiedTypeName name="com.exshipper.prjexshipperbarcodereader.R.layout"/>
-<fullyQualifiedTypeName name="java.security.InvalidAlgorithmParameterException"/>
 </qualifiedTypeNameHistroy>
