@@ -7,8 +7,7 @@
     <FrameLayout
         android:id="@+id/fragment_content"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_weight="90"
+        android:layout_height="wrap_content"
         android:background="#dedede" >
     </FrameLayout>
 
@@ -16,8 +15,22 @@
         android:id="@+id/fragment_title"
         android:name="fragments.MainFragment"
         android:layout_width="fill_parent"
-        android:layout_weight="10"
-        android:layout_height="wrap_content" />
+        android:layout_height="fill_parent" />
 
+    <!-- Parting Line -->
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="10sp" />
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1sp"
+        android:background="#555" />
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="10sp" />
+    <!-- End -->
 
 </LinearLayout>

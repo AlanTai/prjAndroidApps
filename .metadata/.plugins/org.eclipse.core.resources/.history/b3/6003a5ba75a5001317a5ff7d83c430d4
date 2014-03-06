@@ -36,7 +36,6 @@
             <View
                 android:layout_width="fill_parent"
                 android:layout_height="10sp"/>
-            <!-- End -->
 
             <Button
                 android:id="@+id/btn_scan_tw_custom_entry"

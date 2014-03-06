@@ -4,20 +4,17 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <FrameLayout
+    <FrameLayout 
         android:id="@+id/fragment_content"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_weight="90"
-        android:background="#dedede" >
-    </FrameLayout>
-
-    <fragment
+        android:layout_height="match_parent"
+        android:background="#dedede"></FrameLayout>
+    
+    <fragment 
         android:id="@+id/fragment_title"
         android:name="fragments.MainFragment"
+        android:layout_gravity="bottom"
         android:layout_width="fill_parent"
-        android:layout_weight="10"
-        android:layout_height="wrap_content" />
-
-
+        android:layout_height="wrap_content"/>
+    
 </LinearLayout>
