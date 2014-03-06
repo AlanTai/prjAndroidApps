@@ -16,6 +16,7 @@ import com.exshipper.listeners.ProgressBarUpdateListener;
 import com.exshipper.prjexshipperbarcodereader.R;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
@@ -44,6 +45,7 @@ public class SpearnetPakcagesPickupFragment extends FragmentTemplate {
 	JSONArray suda_tracking_number_list = null;
 
 	WebContentDownloadHandler uploadPickedPackagesTrackingNumbers = null;
+	ProgressDialog mProgressBar= null;
 	// end of inner variables & init function
 
 	@Override
@@ -71,6 +73,8 @@ public class SpearnetPakcagesPickupFragment extends FragmentTemplate {
 			uploadPickedPackagesTrackingNumbers.cancel(true);
 			uploadPickedPackagesTrackingNumbers = null;
 		}
+		txtSubmitResult.setText("");
+		txtSubmitResult = null;
 		txtScanResult.setText("");
 		txtScanResult = null;
 		txtTotalAmount.setText("");
@@ -282,8 +286,16 @@ public class SpearnetPakcagesPickupFragment extends FragmentTemplate {
 		@Override
 		public void setupProgressBar() {
 			// TODO Auto-generated method stub
-			progressBar = (ProgressBar) getView().findViewById(R.id.progress_bar_get_customer_entry_number);
-			progressBar.setVisibility(View.VISIBLE);
+			//progressBar = (ProgressBar) getView().findViewById(R.id.progress_bar_spearnet);
+			//progressBar.setVisibility(View.VISIBLE);
+			
+			//progress bar dialog...
+			mProgressBar = new ProgressDialog(getActivity());
+			mProgressBar.setCancelable(false);
+			mProgressBar.setMessage("Uploading Data...");
+			mProgressBar.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+			mProgressBar.show();
+			
 		}
 
 		@Override
@@ -295,15 +307,22 @@ public class SpearnetPakcagesPickupFragment extends FragmentTemplate {
 		@Override
 		public void updateProgressBar(int p_progress) {
 			// TODO Auto-generated method stub
-			progressBar.setProgress(p_progress);
+			//progressBar.setProgress(p_progress);
+			
+			//progress dialog...
+			mProgressBar.setProgress(p_progress);
 		}
 
 		@Override
 		public void updateResult(String p_result) {
 			// TODO Auto-generated method stub
-			progressBar.setVisibility(View.INVISIBLE);
+			//progressBar.setVisibility(View.INVISIBLE);
+			
+			//progress dialog...
+			mProgressBar.dismiss();
+			
 			if (p_result != null) {
-				txtAppIntroduction.setText(p_result);
+				txtSubmitResult.setText(p_result);
 			}
 		}
 
@@ -338,6 +357,7 @@ public class SpearnetPakcagesPickupFragment extends FragmentTemplate {
 
 	LinearLayout layoutSUDATrackingNumbersList = null;
 
+	TextView txtSubmitResult = null;
 	Button btnSubmitSUDATrackingNumbers = null;
 	ProgressBar progressBar = null;
 
@@ -360,6 +380,7 @@ public class SpearnetPakcagesPickupFragment extends FragmentTemplate {
 				.setOnClickListener(submitSUDATrackingNumbers);
 
 		layoutSUDATrackingNumbersList = (LinearLayout) mView.findViewById(R.id.layout_suda_tracking_numbers_list);
+		txtSubmitResult = (TextView) mView.findViewById(R.id.txt_submit_result);
 	}
 	/* end of XML view components init function */
 
