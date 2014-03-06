@@ -1,0 +1,5 @@
+1394059635617	Rename type 'MainTabFragment'
+1394059693579	Rename resource 'fragment_main_tab.xml'
+1394059768955	Rename resource 'fragment_main.xml'
+1394061863033	Rename field 'mainTabFragment'
+1394062212237	Rename method 'gotoPackagesPickupHandler'

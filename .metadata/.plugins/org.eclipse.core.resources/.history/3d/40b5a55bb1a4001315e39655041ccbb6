@@ -1,0 +1,16 @@
+package fragments;
+
+import android.support.v4.app.Fragment;
+
+public class MainTabFragment extends Fragment{
+	
+	public void gotoLogin(){
+		
+	}
+	public void gotoPackagesPickupHandler(){
+		
+	}
+	public void gotoTWCustomEntryPackagesHandler(){
+		
+	}
+}

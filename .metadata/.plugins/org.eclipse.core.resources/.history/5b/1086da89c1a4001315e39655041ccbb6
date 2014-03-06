@@ -1,0 +1,6 @@
+package fragments;
+
+public class LoginFragment extends FragmentTemplate{
+
+
+}

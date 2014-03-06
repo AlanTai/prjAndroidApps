@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="com.exshipper.prjexshipperbarcodereader.ExShipperBarcodeReaderActivity.LongRunningIO"/>
 <fullyQualifiedTypeName name="android.net.wifi.WifiConfiguration.Status"/>
 <fullyQualifiedTypeName name="android.view.View"/>
 <fullyQualifiedTypeName name="com.exshipper.factories.MainFactory"/>
@@ -9,7 +8,6 @@
 <fullyQualifiedTypeName name="com.exshipper.listeners.ViewsUpdateListener"/>
 <fullyQualifiedTypeName name="android.R.style"/>
 <fullyQualifiedTypeName name="android.widget.ProgressBar"/>
-<fullyQualifiedTypeName name="android.R"/>
 <fullyQualifiedTypeName name="android.R.attr"/>
 <fullyQualifiedTypeName name="com.exshipper.handlers.AsyncTaskHandler"/>
 <fullyQualifiedTypeName name="org.apache.http.client.HttpClient"/>
@@ -33,7 +31,6 @@
 <fullyQualifiedTypeName name="android.os.AsyncTask"/>
 <fullyQualifiedTypeName name="android.os.AsyncTask.Status"/>
 <fullyQualifiedTypeName name="com.exshipper.listeners.ProgressBarUpdateListener"/>
-<fullyQualifiedTypeName name="com.exshipper.prjexshipperbarcodereader.R.id"/>
 <fullyQualifiedTypeName name="android.view.View.OnClickListener"/>
 <fullyQualifiedTypeName name="android.widget.TextView"/>
 <fullyQualifiedTypeName name="android.graphics.Color"/>
@@ -45,6 +42,22 @@
 <fullyQualifiedTypeName name="android.view.Gravity"/>
 <fullyQualifiedTypeName name="android.widget.LinearLayout"/>
 <fullyQualifiedTypeName name="org.apache.http.message.BasicNameValuePair"/>
+<fullyQualifiedTypeName name="android.R"/>
+<fullyQualifiedTypeName name="android.support.v4.app.FragmentActivity"/>
+<fullyQualifiedTypeName name="android.support.v4.app.Fragment"/>
+<fullyQualifiedTypeName name="fragments.MainTabFragment"/>
+<fullyQualifiedTypeName name="android.support.v4.app.FragmentManager"/>
+<fullyQualifiedTypeName name="android.support.v4.app.FragmentTransaction"/>
+<fullyQualifiedTypeName name="fragments.MainFragment"/>
+<fullyQualifiedTypeName name="fragments.LoginFragment"/>
+<fullyQualifiedTypeName name="fragments.SpearnetPakcagesPickupFragment"/>
+<fullyQualifiedTypeName name="fragments.FragmentTemplate"/>
+<fullyQualifiedTypeName name="fragments.TWCustomEntryPackagesFragment"/>
+<fullyQualifiedTypeName name="android.view.MenuInflater"/>
 <fullyQualifiedTypeName name="com.exshipper.prjexshipperbarcodereader.ExShipperBarcodeReaderActivity"/>
 <fullyQualifiedTypeName name="android.widget.Toast"/>
+<fullyQualifiedTypeName name="com.exshipper.prjexshipperbarcodereader.R"/>
+<fullyQualifiedTypeName name="com.exshipper.prjexshipperbarcodereader.R.id"/>
+<fullyQualifiedTypeName name="com.exshipper.prjexshipperbarcodereader.R.layout"/>
+<fullyQualifiedTypeName name="java.security.InvalidAlgorithmParameterException"/>
 </qualifiedTypeNameHistroy>

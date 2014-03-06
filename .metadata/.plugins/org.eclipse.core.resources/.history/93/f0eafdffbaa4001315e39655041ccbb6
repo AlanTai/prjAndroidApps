@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Barcode Reader</string>
+    <string name="action_settings">Settings</string>
+    <string name="title">Barcode Reader</string>
+    <string name="btn_scan">Scan</string>
+    <string name="btn_get_custom_number">Get Custom Entry Number</string>
+    <string name="btn_submit_suda_tracking_number">Submit</string>
+
+    
+    <!-- items selector -->
+    <string name="exshipper_fragment_title">ExShipper Services</string>
+    
+    <string name="menu_spearnet_packages_pickup">Spearnet Packages Pickup Handler</string>
+    <string name="menu_tw_custom_entry_packages_handler">TW Custom Entry Packages Handler</string>
+</resources>
