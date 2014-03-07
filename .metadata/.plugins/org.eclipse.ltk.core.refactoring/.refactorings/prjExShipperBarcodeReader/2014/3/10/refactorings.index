@@ -4,3 +4,5 @@
 1394061863033	Rename field 'mainTabFragment'
 1394062212237	Rename method 'gotoPackagesPickupHandler'
 1394081312243	Rename resource 'activity_exshipper_barcode_reader.xml'
+1394145689074	Rename field 'progress_bar_update'
+1394150508779	Rename field 'uploadPickedPackagesTrackingNumbers'

@@ -32,7 +32,6 @@ import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -44,8 +43,9 @@ public class SpearnetPakcagesPickupFragment extends FragmentTemplate {
 	JSONObject suda_tracking_numbers_json_obj = null;
 	JSONArray suda_tracking_number_list = null;
 
-	WebContentDownloadHandler uploadPickedPackagesTrackingNumbers = null;
-	ProgressDialog mProgressBar= null;
+	WebContentDownloadHandler uploadPickedPackagesTrackingNumbersHandler = null;
+	ProgressDialog mProgressBar = null;
+
 	// end of inner variables & init function
 
 	@Override
@@ -65,27 +65,25 @@ public class SpearnetPakcagesPickupFragment extends FragmentTemplate {
 		return mView;
 	}
 
-
 	@Override
 	public void onDestroy() {
-		if (uploadPickedPackagesTrackingNumbers != null
-				&& uploadPickedPackagesTrackingNumbers.getStatus() != AsyncTask.Status.FINISHED) {
-			uploadPickedPackagesTrackingNumbers.cancel(true);
-			uploadPickedPackagesTrackingNumbers = null;
+		if (uploadPickedPackagesTrackingNumbersHandler != null
+				&& uploadPickedPackagesTrackingNumbersHandler.getStatus() != AsyncTask.Status.FINISHED) {
+			uploadPickedPackagesTrackingNumbersHandler.cancel(true);
+			uploadPickedPackagesTrackingNumbersHandler = null;
 		}
-		txtSubmitResult.setText("");
 		txtSubmitResult = null;
-		txtScanResult.setText("");
 		txtScanResult = null;
-		txtTotalAmount.setText("");
 		txtTotalAmount = null;
+		mProgressBar = null;
+		layoutSUDATrackingNumbersList = null;
 		super.onDestroy();
 	}
 
 	@Override
 	public void onActivityResult(int requestCode, int resultCode,
 			Intent p_intent) {
-		
+
 		if (requestCode == 0) {
 			getActivity();
 			if (resultCode == FragmentActivity.RESULT_OK) {
@@ -205,7 +203,7 @@ public class SpearnetPakcagesPickupFragment extends FragmentTemplate {
 		}
 	}
 
-	// OnclickListeners
+	// OnClickListeners
 	// start barcode scan action
 	OnClickListener startBarcodeReader = new OnClickListener() {
 
@@ -261,41 +259,38 @@ public class SpearnetPakcagesPickupFragment extends FragmentTemplate {
 							suda_tracking_number_list.toString());
 
 					// upload data
-					if (uploadPickedPackagesTrackingNumbers != null
-							&& (uploadPickedPackagesTrackingNumbers.getStatus() != AsyncTask.Status.FINISHED)) {
-						uploadPickedPackagesTrackingNumbers.cancel(true);
+					if (uploadPickedPackagesTrackingNumbersHandler != null
+							&& (uploadPickedPackagesTrackingNumbersHandler.getStatus() != AsyncTask.Status.FINISHED)) {
+						uploadPickedPackagesTrackingNumbersHandler.cancel(true);
 					}
-					uploadPickedPackagesTrackingNumbers = new WebContentDownloadHandler(
-							progress_bar_update);
-					uploadPickedPackagesTrackingNumbers
+					uploadPickedPackagesTrackingNumbersHandler = new WebContentDownloadHandler(
+							updateProgressBar);
+					uploadPickedPackagesTrackingNumbersHandler
 							.execute(new String[] { "https://exwine-tw.appspot.com/exshipper_spearnet_packages_pickup_handler" });
 				} catch (JSONException e) {
-					Log.e("error", "fail to build a JSONObject");
+					Log.e("error", e.getMessage());
 				}
 			} else {
-				Toast.makeText(getActivity(),
-						"No data for upload!", Toast.LENGTH_LONG).show();
+				Toast.makeText(getActivity(), "No data for upload!",
+						Toast.LENGTH_LONG).show();
 			}
 		}
 	};
 	// end of OnClickListener
 
 	// self-defined listeners
-	ProgressBarUpdateListener progress_bar_update = new ProgressBarUpdateListener() {
+	ProgressBarUpdateListener updateProgressBar = new ProgressBarUpdateListener() {
 
 		@Override
 		public void setupProgressBar() {
-			// TODO Auto-generated method stub
-			//progressBar = (ProgressBar) getView().findViewById(R.id.progress_bar_spearnet);
-			//progressBar.setVisibility(View.VISIBLE);
-			
-			//progress bar dialog...
-			mProgressBar = new ProgressDialog(getActivity());
-			mProgressBar.setCancelable(false);
-			mProgressBar.setMessage("Uploading Data...");
-			mProgressBar.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-			mProgressBar.show();
-			
+			// progress bar dialog
+			if (mProgressBar == null) {
+				mProgressBar = new ProgressDialog(getActivity());
+				mProgressBar.setCancelable(false);
+				mProgressBar.setMessage("Uploading Data...");
+				mProgressBar.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+				mProgressBar.show();
+			}
 		}
 
 		@Override
@@ -306,21 +301,16 @@ public class SpearnetPakcagesPickupFragment extends FragmentTemplate {
 
 		@Override
 		public void updateProgressBar(int p_progress) {
-			// TODO Auto-generated method stub
-			//progressBar.setProgress(p_progress);
-			
-			//progress dialog...
+			// progress dialog
 			mProgressBar.setProgress(p_progress);
 		}
 
 		@Override
 		public void updateResult(String p_result) {
-			// TODO Auto-generated method stub
-			//progressBar.setVisibility(View.INVISIBLE);
-			
-			//progress dialog...
+			// progress dialog...
 			mProgressBar.dismiss();
 			
+			//get result from server
 			if (p_result != null) {
 				txtSubmitResult.setText(p_result);
 			}
@@ -346,9 +336,7 @@ public class SpearnetPakcagesPickupFragment extends FragmentTemplate {
 
 	};
 	// end of self-defined listeners
-	
-	
-	
+
 	/* XML view components */
 	TextView txtAppIntroduction = null;
 	Button btnScan = null;
@@ -359,11 +347,11 @@ public class SpearnetPakcagesPickupFragment extends FragmentTemplate {
 
 	TextView txtSubmitResult = null;
 	Button btnSubmitSUDATrackingNumbers = null;
-	ProgressBar progressBar = null;
 
 	// init function
 	private void initXMLViewComponents(View mView) {
-		txtAppIntroduction = (TextView) mView.findViewById(R.id.txt_introduction);
+		txtAppIntroduction = (TextView) mView
+				.findViewById(R.id.txt_introduction);
 		txtAppIntroduction
 				.setText("The application is for packages pickup only!\n"
 						+ "1. Scan all packages' barcodes (If you want to delete the barcode, please click the \'Delete\' key word)\n"
@@ -375,14 +363,15 @@ public class SpearnetPakcagesPickupFragment extends FragmentTemplate {
 
 		txtTotalAmount = (TextView) mView.findViewById(R.id.txt_total_amount);
 
-		btnSubmitSUDATrackingNumbers = (Button) mView.findViewById(R.id.btn_submit_suda_tracking_number);
+		btnSubmitSUDATrackingNumbers = (Button) mView
+				.findViewById(R.id.btn_submit_suda_tracking_number);
 		btnSubmitSUDATrackingNumbers
 				.setOnClickListener(submitSUDATrackingNumbers);
 
-		layoutSUDATrackingNumbersList = (LinearLayout) mView.findViewById(R.id.layout_suda_tracking_numbers_list);
+		layoutSUDATrackingNumbersList = (LinearLayout) mView
+				.findViewById(R.id.layout_suda_tracking_numbers_list);
 		txtSubmitResult = (TextView) mView.findViewById(R.id.txt_submit_result);
 	}
 	/* end of XML view components init function */
-
 
 }

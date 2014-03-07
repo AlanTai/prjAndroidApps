@@ -39,7 +39,7 @@
 
             <Button
                 android:id="@+id/btn_scan"
-                android:layout_width="100sp"
+                android:layout_width="250sp"
                 android:layout_height="50sp"
                 android:text="@string/btn_scan" />
 
@@ -71,7 +71,7 @@
 
             <Button
                 android:id="@+id/btn_submit_suda_tracking_number"
-                android:layout_width="100sp"
+                android:layout_width="250sp"
                 android:layout_height="50sp"
                 android:text="@string/btn_submit_suda_tracking_number" />
         </LinearLayout>

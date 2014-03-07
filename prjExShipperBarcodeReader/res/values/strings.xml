@@ -4,9 +4,6 @@
     <string name="app_name">ExShipper Logistics</string>
     <string name="action_settings">Settings</string>
     <string name="title">ExShipper Logistics Application</string>
-    <string name="btn_scan">Scan</string>
-    <string name="btn_get_custom_number">Get Custom Entry Number</string>
-    <string name="btn_submit_suda_tracking_number">Submit</string>
 
     
     <!-- items selector -->
@@ -26,7 +23,11 @@
     
     <!-- Spearnet -->
     <string name="spearnet_fragment_title">Spearnet</string>
+    <string name="btn_scan">Scan SUDA Barcode</string>
+    <string name="btn_get_custom_number">Get Custom Entry Number</string>
+    <string name="btn_submit_suda_tracking_number">Submit SUDA Numbers</string>
     
     <!-- TW Custom Entry -->
     <string name="btn_add_new_packages_set">Add Packages\' Set</string>
+    <string name="btn_submit_packages_sets">Submit Packages\' Sets</string>
 </resources>

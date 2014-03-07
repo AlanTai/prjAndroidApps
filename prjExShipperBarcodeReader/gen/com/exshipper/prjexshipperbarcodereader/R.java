@@ -60,10 +60,10 @@ public final class R {
         public static final int bookmark_title=0x7f09000b;
         public static final int bookmark_url=0x7f09000c;
         public static final int btnSubmitLoginInfo=0x7f090023;
+        public static final int btn_add_new_packages_set_tw_custom_entry=0x7f090038;
         public static final int btn_scan=0x7f090030;
-        public static final int btn_scan_tw_custom_entry=0x7f090038;
+        public static final int btn_submit_packages_sets_tw_custom_entry=0x7f09003c;
         public static final int btn_submit_suda_tracking_number=0x7f090035;
-        public static final int btn_submit_suda_tracking_number_tw_custom_entry=0x7f09003c;
         public static final int contents_supplement_text_view=0x7f090017;
         public static final int contents_text_view=0x7f090016;
         public static final int decode=0x7f090000;
@@ -82,7 +82,7 @@ public final class R {
         public static final int launch_product_query=0x7f090003;
         public static final int layout_main=0x7f09002e;
         public static final int layout_suda_tracking_numbers_list=0x7f090033;
-        public static final int layout_tw_custom_entry_tracking_numbers_list_tw_custom_entry=0x7f09003b;
+        public static final int layout_tw_custom_entry_tracking_numbers_list_tw_custom_entry=0x7f09003a;
         public static final int menu_encode=0x7f090042;
         public static final int menu_help=0x7f090041;
         public static final int menu_history=0x7f09003f;
@@ -118,10 +118,10 @@ public final class R {
         public static final int txt_introduction=0x7f09002f;
         public static final int txt_introduction_tw_custom_entry=0x7f090037;
         public static final int txt_result=0x7f090031;
-        public static final int txt_result_tw_custom_entry=0x7f090039;
         public static final int txt_submit_result=0x7f090034;
+        public static final int txt_submit_result_tw_custom_entry=0x7f09003b;
         public static final int txt_total_amount=0x7f090032;
-        public static final int txt_total_amount_tw_custom_entry=0x7f09003a;
+        public static final int txt_total_sets_tw_custom_entry=0x7f090039;
         public static final int type_text_view=0x7f090012;
         public static final int viewfinder_view=0x7f09000e;
     }
@@ -159,9 +159,10 @@ public final class R {
         /**  TW Custom Entry 
          */
         public static final int btn_add_new_packages_set=0x7f0a008d;
-        public static final int btn_get_custom_number=0x7f0a0080;
-        public static final int btn_scan=0x7f0a007f;
-        public static final int btn_submit_suda_tracking_number=0x7f0a0081;
+        public static final int btn_get_custom_number=0x7f0a008b;
+        public static final int btn_scan=0x7f0a008a;
+        public static final int btn_submit_packages_sets=0x7f0a008e;
+        public static final int btn_submit_suda_tracking_number=0x7f0a008c;
         public static final int button_add_calendar=0x7f0a0003;
         public static final int button_add_contact=0x7f0a0004;
         public static final int button_back=0x7f0a0005;
@@ -196,7 +197,7 @@ public final class R {
         public static final int contents_text=0x7f0a0022;
         /**  items selector 
          */
-        public static final int exshipper_fragment_title=0x7f0a0082;
+        public static final int exshipper_fragment_title=0x7f0a007f;
         public static final int history_clear_one_history_text=0x7f0a0024;
         public static final int history_clear_text=0x7f0a0023;
         public static final int history_email_title=0x7f0a0025;
@@ -204,20 +205,20 @@ public final class R {
         public static final int history_empty_detail=0x7f0a0027;
         public static final int history_send=0x7f0a0028;
         public static final int history_title=0x7f0a0029;
-        public static final int login_account=0x7f0a008a;
+        public static final int login_account=0x7f0a0087;
         /**  Login 
          */
-        public static final int login_fragment_title=0x7f0a0087;
-        public static final int login_introduction=0x7f0a0088;
-        public static final int login_password=0x7f0a008b;
+        public static final int login_fragment_title=0x7f0a0084;
+        public static final int login_introduction=0x7f0a0085;
+        public static final int login_password=0x7f0a0088;
         public static final int menu_encode_mecard=0x7f0a002a;
         public static final int menu_encode_vcard=0x7f0a002b;
         public static final int menu_help=0x7f0a002c;
         public static final int menu_history=0x7f0a002d;
         public static final int menu_settings=0x7f0a002e;
         public static final int menu_share=0x7f0a002f;
-        public static final int menu_spearnet_packages_pickup=0x7f0a0085;
-        public static final int menu_tw_custom_entry_packages_handler=0x7f0a0086;
+        public static final int menu_spearnet_packages_pickup=0x7f0a0082;
+        public static final int menu_tw_custom_entry_packages_handler=0x7f0a0083;
         public static final int msg_bulk_mode_scanned=0x7f0a0030;
         public static final int msg_camera_framework_bug=0x7f0a0031;
         public static final int msg_default_format=0x7f0a0032;
@@ -294,10 +295,10 @@ public final class R {
         public static final int sbc_name=0x7f0a0079;
         /**  Spearnet 
          */
-        public static final int spearnet_fragment_title=0x7f0a008c;
-        public static final int submit=0x7f0a0089;
-        public static final int technical_support_email=0x7f0a0084;
-        public static final int technical_support_phone=0x7f0a0083;
+        public static final int spearnet_fragment_title=0x7f0a0089;
+        public static final int submit=0x7f0a0086;
+        public static final int technical_support_email=0x7f0a0081;
+        public static final int technical_support_phone=0x7f0a0080;
         public static final int title=0x7f0a007e;
         public static final int wifi_changing_network=0x7f0a007a;
         public static final int wifi_ssid_label=0x7f0a007b;

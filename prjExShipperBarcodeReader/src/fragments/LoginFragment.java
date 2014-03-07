@@ -53,7 +53,7 @@ public class LoginFragment extends FragmentTemplate{
 				.setMessage(
 						"Wrong Account or Password!")
 				.setCancelable(false)
-				.setPositiveButton("Yes",
+				.setPositiveButton("OK",
 						new DialogInterface.OnClickListener() {
 
 							@Override

@@ -39,19 +39,13 @@
             <!-- End -->
 
             <Button
-                android:id="@+id/btn_scan_tw_custom_entry"
-                android:layout_width="200sp"
+                android:id="@+id/btn_add_new_packages_set_tw_custom_entry"
+                android:layout_width="250sp"
                 android:layout_height="50sp"
                 android:text="@string/btn_add_new_packages_set" />
 
             <TextView
-                android:id="@+id/txt_result_tw_custom_entry"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#000" />
-
-            <TextView
-                android:id="@+id/txt_total_amount_tw_custom_entry"
+                android:id="@+id/txt_total_sets_tw_custom_entry"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#00f" />
@@ -63,11 +57,17 @@
                 android:orientation="vertical" >
             </LinearLayout>
 
+            <TextView
+                android:id="@+id/txt_submit_result_tw_custom_entry"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#000" />
+            
             <Button
-                android:id="@+id/btn_submit_suda_tracking_number_tw_custom_entry"
-                android:layout_width="200sp"
+                android:id="@+id/btn_submit_packages_sets_tw_custom_entry"
+                android:layout_width="250sp"
                 android:layout_height="50sp"
-                android:text="@string/btn_submit_suda_tracking_number" />
+                android:text="@string/btn_submit_packages_sets" />
         </LinearLayout>
     </ScrollView>
 
