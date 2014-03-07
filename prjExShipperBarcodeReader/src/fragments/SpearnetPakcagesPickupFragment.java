@@ -40,7 +40,7 @@ public class SpearnetPakcagesPickupFragment extends FragmentTemplate {
 	String suda_tracking_number = null;
 	String scanResult = "";
 	Map<Integer, String> sudaTrackingNumberMap = new HashMap<Integer, String>();
-	JSONObject suda_tracking_numbers_json_obj = null;
+	JSONObject jsonObjSUDATrackingNumbers = null;
 	JSONArray suda_tracking_number_list = null;
 
 	WebContentDownloadHandler uploadPickedPackagesTrackingNumbersHandler = null;
@@ -247,7 +247,7 @@ public class SpearnetPakcagesPickupFragment extends FragmentTemplate {
 			// TODO Auto-generated method stub
 
 			if (sudaTrackingNumberMap.size() != 0) {
-				suda_tracking_numbers_json_obj = new JSONObject();
+				jsonObjSUDATrackingNumbers = new JSONObject();
 				suda_tracking_number_list = new JSONArray();
 
 				// take out all SUDA tracking numbers
@@ -255,7 +255,7 @@ public class SpearnetPakcagesPickupFragment extends FragmentTemplate {
 					suda_tracking_number_list.put(suda_obj.toString());
 				}
 				try {
-					suda_tracking_numbers_json_obj.put("suda_tracking_numbers",
+					jsonObjSUDATrackingNumbers.put("suda_tracking_numbers",
 							suda_tracking_number_list.toString());
 
 					// upload data
@@ -328,9 +328,12 @@ public class SpearnetPakcagesPickupFragment extends FragmentTemplate {
 			List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
 			nameValuePairs.add(new BasicNameValuePair("account", "alantai"));
 			nameValuePairs.add(new BasicNameValuePair("password", "1014"));
-			nameValuePairs.add(new BasicNameValuePair(
-					"spearnet_picked_packages", suda_tracking_numbers_json_obj
-							.toString()));
+			
+			if(jsonObjSUDATrackingNumbers != null){
+				nameValuePairs.add(new BasicNameValuePair(
+						"spearnet_picked_packages", jsonObjSUDATrackingNumbers
+								.toString()));
+			}
 			return nameValuePairs;
 		}
 

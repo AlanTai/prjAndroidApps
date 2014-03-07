@@ -1,8 +1,11 @@
 package fragments;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONObject;
 
 import com.exshipper.handlers.WebContentDownloadHandler;
 import com.exshipper.listeners.ProgressBarUpdateListener;
@@ -23,8 +26,13 @@ import android.widget.TextView;
 
 public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 
+	JSONObject jsonObjTWCustomEntryPackagesSets = null;
+
 	WebContentDownloadHandler getTWCustomEntryNumberHandler = null;
+	WebContentDownloadHandler submitPackagesSetsHandler = null;
 	ProgressDialog mProgressbar = null;
+
+	View triggerBtn = null;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -64,7 +72,7 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 	}
 
 	// OnClickListeners
-	OnClickListener getTWCustomEntryNumber = new OnClickListener() {
+	OnClickListener getTWCustomEntryNumberAndAddNewSet = new OnClickListener() {
 
 		@Override
 		public void onClick(View v) {
@@ -72,9 +80,19 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 			try {
 				if (getTWCustomEntryNumberHandler != null
 						&& getTWCustomEntryNumberHandler.getStatus() != AsyncTask.Status.FINISHED) {
+
+					// set connection between view and textview
+					if (triggerBtn != null) {
+						triggerBtn = null;
+						triggerBtn = v;
+						triggerBtn.setTag(txtDownlaodCustomEntryNumberResult);
+					}
+
+					//
 					getTWCustomEntryNumberHandler = new WebContentDownloadHandler(
 							updateProgressBar);
-					getTWCustomEntryNumberHandler.execute(new String[] {"https:exwine-tw.appspot.com/exshipper_tw_custom_entry_handler"});
+					getTWCustomEntryNumberHandler
+							.execute(new String[] { "https:exwine-tw.appspot.com/exshipper_tw_custom_entry_handler" });
 				}
 			} catch (Exception e) {
 				// TODO: handle exception
@@ -115,6 +133,27 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 		@Override
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
+			try {
+				if (submitPackagesSetsHandler != null
+						&& submitPackagesSetsHandler.getStatus() != AsyncTask.Status.FINISHED) {
+
+					// set connection between view and textview
+					if (triggerBtn != null) {
+						triggerBtn = null;
+						triggerBtn = v;
+						triggerBtn.setTag(txtSubmitResult);
+					}
+
+					//
+					submitPackagesSetsHandler = new WebContentDownloadHandler(
+							updateProgressBar);
+					submitPackagesSetsHandler
+							.execute(new String[] { "https:exwine-tw.appspot.com/exshipper_tw_custom_entry_handler" });
+				}
+			} catch (Exception e) {
+				// TODO: handle exception
+				Log.e("error", e.getMessage());
+			}
 
 		}
 	};
@@ -125,19 +164,31 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 		@Override
 		public void updateResult(String p_result) {
 			// TODO Auto-generated method stub
+			mProgressbar.dismiss();
+
+			// get result from server
+			if (p_result != null && triggerBtn != null) {
+				Object obj= triggerBtn.getTag();
+				if( obj != null && obj instanceof TextView){
+					TextView currentView = (TextView) obj;
+					currentView.setText(p_result);
+					
+				}
+			}
 
 		}
 
 		@Override
 		public void updateProgressBar(int p_progress) {
 			// TODO Auto-generated method stub
+			mProgressbar.setProgress(p_progress);
 
 		}
 
 		@Override
 		public void setupProgressBar() {
 			// TODO Auto-generated method stub
-			if(mProgressbar == null){
+			if (mProgressbar == null) {
 				mProgressbar = new ProgressDialog(getActivity());
 				mProgressbar.setCancelable(true);
 				mProgressbar.setMessage("Obtaining Custom Entry Number...");
@@ -150,7 +201,16 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 		@Override
 		public List<NameValuePair> setAuthorizationInfo() {
 			// TODO Auto-generated method stub
-			return null;
+			List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+			nameValuePairs.add(new BasicNameValuePair("account", "alantai"));
+			nameValuePairs.add(new BasicNameValuePair("password", "1014"));
+
+			if (jsonObjTWCustomEntryPackagesSets != null) {
+				nameValuePairs.add(new BasicNameValuePair(
+						"tw_custom_entry_packages_sets",
+						jsonObjTWCustomEntryPackagesSets.toString()));
+			}
+			return nameValuePairs;
 		}
 
 		@Override
@@ -162,13 +222,14 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 		@Override
 		public boolean isAuthorizationNecessary() {
 			// TODO Auto-generated method stub
-			return false;
+			return true;
 		}
 	};
 
 	/* XML components */
 	TextView txtIntroduction = null;
 	Button btnAddNewPackagesSet = null;
+	TextView txtDownlaodCustomEntryNumberResult = null;
 	TextView txtTotalSets = null;
 
 	LinearLayout layoutPakcagesSetsList = null;
@@ -183,7 +244,10 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 
 		btnAddNewPackagesSet = (Button) mView
 				.findViewById(R.id.btn_add_new_packages_set_tw_custom_entry);
-		btnAddNewPackagesSet.setOnClickListener(getTWCustomEntryNumber);
+		btnAddNewPackagesSet
+				.setOnClickListener(getTWCustomEntryNumberAndAddNewSet);
+		
+		txtDownlaodCustomEntryNumberResult = (TextView) mView.findViewById(R.id.txt_download_tw_custom_entry_number_result);
 
 		txtTotalSets = (TextView) mView
 				.findViewById(R.id.txt_total_sets_tw_custom_entry);
