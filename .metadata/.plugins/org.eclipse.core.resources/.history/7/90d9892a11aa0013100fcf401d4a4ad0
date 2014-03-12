@@ -117,18 +117,12 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 		@Override
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
-			
 			if(currentPackageSet!=null){
 				try {
-					currentPackageSet.put("current_btn_hashcode", v.hashCode());
 					currentPackageSet.put("current_package_set", v.getTag());
-
-					Intent myIntent = new Intent("com.google.zxing.client.android.SCAN");
-					myIntent.putExtra("SCAN_MODE", "ONE_D_MODE");
-					startActivityForResult(myIntent, currentPackageSet.getInt("current_btn_hashcode"));
 				} catch (JSONException e) {
 					// TODO Auto-generated catch block
-					Log.e("error", e.getMessage());
+					e.printStackTrace();
 				}
 			}
 		}

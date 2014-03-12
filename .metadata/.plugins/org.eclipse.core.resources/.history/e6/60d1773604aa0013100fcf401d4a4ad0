@@ -41,7 +41,7 @@ public class SpearnetPakcagesPickupFragment extends FragmentTemplate {
 	String scanResult = "";
 	Map<Integer, String> sudaTrackingNumberMap = new HashMap<Integer, String>();
 	JSONObject jsonObjSUDATrackingNumbers = null;
-	JSONArray jsonArySUDATrackingNumberList = null;
+	JSONArray suda_tracking_number_list = null;
 
 	WebContentDownloadHandler uploadPickedPackagesTrackingNumbersHandler = null;
 	ProgressDialog mProgressBar = null;
@@ -212,7 +212,6 @@ public class SpearnetPakcagesPickupFragment extends FragmentTemplate {
 			Intent myIntent = new Intent("com.google.zxing.client.android.SCAN");
 			myIntent.putExtra("SCAN_MODE", "ONE_D_MODE");
 			startActivityForResult(myIntent, 0);
-			
 		}
 	};
 
@@ -249,15 +248,15 @@ public class SpearnetPakcagesPickupFragment extends FragmentTemplate {
 
 			if (sudaTrackingNumberMap.size() != 0) {
 				jsonObjSUDATrackingNumbers = new JSONObject();
-				jsonArySUDATrackingNumberList = new JSONArray();
+				suda_tracking_number_list = new JSONArray();
 
 				// take out all SUDA tracking numbers
 				for (Object suda_obj : sudaTrackingNumberMap.values()) {
-					jsonArySUDATrackingNumberList.put(suda_obj.toString());
+					suda_tracking_number_list.put(suda_obj.toString());
 				}
 				try {
 					jsonObjSUDATrackingNumbers.put("suda_tracking_numbers",
-							jsonArySUDATrackingNumberList.toString());
+							suda_tracking_number_list.toString());
 
 					// upload data
 					if (uploadPickedPackagesTrackingNumbersHandler != null

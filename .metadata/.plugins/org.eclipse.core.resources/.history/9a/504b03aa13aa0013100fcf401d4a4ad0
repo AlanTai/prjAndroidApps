@@ -125,7 +125,7 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 
 					Intent myIntent = new Intent("com.google.zxing.client.android.SCAN");
 					myIntent.putExtra("SCAN_MODE", "ONE_D_MODE");
-					startActivityForResult(myIntent, currentPackageSet.getInt("current_btn_hashcode"));
+					startActivityForResult(myIntent, currentPackageSet.get("current_btn_hashcode"));
 				} catch (JSONException e) {
 					// TODO Auto-generated catch block
 					Log.e("error", e.getMessage());
