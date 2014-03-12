@@ -89,7 +89,7 @@ public class SpearnetPakcagesPickupFragment extends FragmentTemplate {
 			if (resultCode == FragmentActivity.RESULT_OK) {
 				suda_tracking_number = p_intent.getStringExtra("SCAN_RESULT");
 
-				//
+				//alert dialog
 				AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
 						getActivity());
 				alertDialogBuilder.setTitle("SUDA Tracking Number");

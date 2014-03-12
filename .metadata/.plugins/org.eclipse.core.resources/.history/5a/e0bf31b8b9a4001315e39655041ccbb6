@@ -1,6 +1,0 @@
-package fragments;
-
-public class MainFragment extends FragmentTemplate{
-	
-
-}

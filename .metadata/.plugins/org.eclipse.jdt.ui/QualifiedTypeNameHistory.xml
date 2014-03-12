@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="com.exshipper.factories.MainFactory"/>
 <fullyQualifiedTypeName name="com.exshipper.handlers.ViewsUpdateHandler"/>
 <fullyQualifiedTypeName name="java.net.URI"/>
 <fullyQualifiedTypeName name="com.exshipper.listeners.ViewsUpdateListener"/>
@@ -20,11 +19,8 @@
 <fullyQualifiedTypeName name="java.io.InputStream"/>
 <fullyQualifiedTypeName name="java.io.ByteArrayOutputStream"/>
 <fullyQualifiedTypeName name="org.apache.http.client.entity.UrlEncodedFormEntity"/>
-<fullyQualifiedTypeName name="android.graphics.Color"/>
-<fullyQualifiedTypeName name="android.util.TypedValue"/>
 <fullyQualifiedTypeName name="android.app.ActionBar.LayoutParams"/>
 <fullyQualifiedTypeName name="org.w3c.dom.Text"/>
-<fullyQualifiedTypeName name="android.view.Gravity"/>
 <fullyQualifiedTypeName name="android.R"/>
 <fullyQualifiedTypeName name="android.support.v4.app.FragmentActivity"/>
 <fullyQualifiedTypeName name="android.support.v4.app.Fragment"/>
@@ -43,9 +39,7 @@
 <fullyQualifiedTypeName name="fragments.SpearnetPakcagesPickupFragment"/>
 <fullyQualifiedTypeName name="com.exshipper.prjexshipperbarcodereader.R"/>
 <fullyQualifiedTypeName name="com.exshipper.prjexshipperbarcodereader.R.layout"/>
-<fullyQualifiedTypeName name="android.widget.LinearLayout"/>
 <fullyQualifiedTypeName name="android.accounts.OnAccountsUpdateListener"/>
-<fullyQualifiedTypeName name="android.widget.Button"/>
 <fullyQualifiedTypeName name="com.exshipper.listeners.ProgressBarUpdateListener"/>
 <fullyQualifiedTypeName name="android.view.View.OnClickListener"/>
 <fullyQualifiedTypeName name="android.os.AsyncTask"/>
@@ -55,9 +49,15 @@
 <fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="org.apache.http.NameValuePair"/>
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
-<fullyQualifiedTypeName name="org.json.JSONObject"/>
-<fullyQualifiedTypeName name="org.apache.http.message.BasicNameValuePair"/>
 <fullyQualifiedTypeName name="com.exshipper.prjexshipperbarcodereader.R.id"/>
 <fullyQualifiedTypeName name="com.exshipper.handlers.WebContentDownloadHandler"/>
+<fullyQualifiedTypeName name="org.apache.http.message.BasicNameValuePair"/>
+<fullyQualifiedTypeName name="org.json.JSONObject"/>
 <fullyQualifiedTypeName name="android.widget.TextView"/>
+<fullyQualifiedTypeName name="android.graphics.Color"/>
+<fullyQualifiedTypeName name="android.widget.Button"/>
+<fullyQualifiedTypeName name="android.util.TypedValue"/>
+<fullyQualifiedTypeName name="android.graphics.drawable.GradientDrawable.Orientation"/>
+<fullyQualifiedTypeName name="android.view.Gravity"/>
+<fullyQualifiedTypeName name="android.widget.LinearLayout"/>
 </qualifiedTypeNameHistroy>
