@@ -121,7 +121,7 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 
 													
 													//add to obj
-													jsonObjCurrentPackageSet.put(twCustomEntryNumber, "exshipper");
+													jsonObjCurrentPackageSet.put(twCustomEntryNumber, "");
 													
 													
 													// onto layout-list

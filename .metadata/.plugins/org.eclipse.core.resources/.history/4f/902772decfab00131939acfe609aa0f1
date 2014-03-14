@@ -110,6 +110,7 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 													// MapList
 													String scanResult = "The SUDA tracking number is: "
 															+ strScanedBarcode;
+													txtDownlaodCustomEntryNumberResult.setText(scanResult);
 
 													//
 													String twCustomEntryNumber = (String) currentBtnForScanBarcode
