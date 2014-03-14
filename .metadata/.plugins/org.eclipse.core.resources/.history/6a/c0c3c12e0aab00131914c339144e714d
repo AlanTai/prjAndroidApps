@@ -97,7 +97,7 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 													suda_tracking_number);
 											String scanResult = "The SUDA tracking number is: "
 													+ strScanedBarcode;
-											jsonObjTWCustomEntryPackagesSets.
+
 											
 											//
 											String twCustomEntryNumber = (String) currentBtnForScanBarcode.getTag(0x1);
