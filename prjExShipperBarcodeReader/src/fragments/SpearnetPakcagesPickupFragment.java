@@ -232,11 +232,11 @@ public class SpearnetPakcagesPickupFragment extends FragmentTemplate {
 								+ value;
 						txtScanResult.setText(msg);
 						sudaTrackingNumberMap.remove(tagKey);
+						layoutSUDATrackingNumbersList.removeView(tagLayout);
+						txtTotalAmount
+								.setText("Total Amount of SUDA Tracking Number: "
+										+ sudaTrackingNumberMap.size());
 					}
-					layoutSUDATrackingNumbersList.removeView(tagLayout);
-					txtTotalAmount
-							.setText("Total Amount of SUDA Tracking Number: "
-									+ sudaTrackingNumberMap.size());
 				}
 			}
 		}

@@ -95,9 +95,9 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 												jsonObj = jsonObjTWCustomEntryPackagesSets
 														.getJSONObject(jsonAryNames
 																.getString(ith));
-												
 
-												if (jsonObj.has(strScanedBarcode)) {
+												if (jsonObj
+														.has(strScanedBarcode)) {
 													Toast.makeText(
 															getActivity(),
 															"SUDA Tracking Number Duplicated!",
@@ -105,25 +105,21 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 															.show();
 													break;
 												} else {
-													//put into Packages' set
-													// add new suda tracking number into
-													// MapList
-													String scanResult = "The SUDA tracking number is: "
-															+ strScanedBarcode;
+													// put into Packages' set
 
 													//
 													String twCustomEntryNumber = (String) currentBtnForScanBarcode
 															.getTag(0x1);
 													JSONObject jsonObjCurrentPackageSet = (JSONObject) currentBtnForScanBarcode
 															.getTag(0x2);
-													LinearLayout layoutTrackingNumberList = (LinearLayout) currentBtnForScanBarcode
+													LinearLayout layoutCurrentPackageSet = (LinearLayout) currentBtnForScanBarcode
 															.getTag(0x3);
 
-													
-													//add to obj
-													jsonObjCurrentPackageSet.put(twCustomEntryNumber, "exshipper");
-													
-													
+													// add to obj
+													jsonObjCurrentPackageSet
+															.put(twCustomEntryNumber,
+																	"exshipper");
+
 													// onto layout-list
 													TextView txtAddedSUDATrackingNumber = new TextView(
 															getActivity());
@@ -138,13 +134,15 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 													txtAddedSUDATrackingNumber
 															.setGravity(Gravity.CENTER);
 													txtAddedSUDATrackingNumber
-															.setPadding(3, 2, 1, 2);
+															.setPadding(3, 2,
+																	1, 2);
 
 													Button deleteBtn = new Button(
 															getActivity());
-													deleteBtn.setTextSize(
-															TypedValue.COMPLEX_UNIT_SP,
-															16);
+													deleteBtn
+															.setTextSize(
+																	TypedValue.COMPLEX_UNIT_SP,
+																	16);
 													deleteBtn.setTextColor(Color
 															.parseColor("#ff0000"));
 													deleteBtn.setText("Delete");
@@ -152,7 +150,8 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 															.setBackgroundColor(Color.TRANSPARENT);
 													deleteBtn
 															.setGravity(Gravity.CENTER);
-													deleteBtn.setPadding(3, 2, 1, 2);
+													deleteBtn.setPadding(3, 2,
+															1, 2);
 													deleteBtn
 															.setOnClickListener(deleteSUDATrackingNumberInfo);
 
@@ -161,7 +160,8 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 													layoutSUDATrackingNumberInfoRow
 															.setOrientation(LinearLayout.HORIZONTAL);
 													layoutSUDATrackingNumberInfoRow
-															.setPadding(1, 2, 1, 2);
+															.setPadding(1, 2,
+																	1, 2);
 													layoutSUDATrackingNumberInfoRow
 															.addView(txtAddedSUDATrackingNumber);
 													layoutSUDATrackingNumberInfoRow
@@ -171,14 +171,21 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 																	.hashCode());
 
 													deleteBtn
-															.setTag(layoutSUDATrackingNumberInfoRow);
-													layoutTrackingNumberList
+															.setTag(0x1,
+																	layoutSUDATrackingNumberInfoRow);
+													deleteBtn.setTag(0x2, layoutCurrentPackageSet);
+													deleteBtn
+															.setTag(0x3,
+																	jsonObjCurrentPackageSet);
+													deleteBtn.setTag(0x4, strScanedBarcode);
+													layoutCurrentPackageSet
 															.addView(layoutSUDATrackingNumberInfoRow);
 												}
-												
+
 											} catch (JSONException e) {
-												// TODO Auto-generated catch block
-												e.printStackTrace();
+												// TODO Auto-generated catch
+												// block
+												Log.e("error", e.getMessage());
 											}
 										}
 									}
@@ -265,6 +272,19 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 		@Override
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
+			if (v instanceof Button) {
+				Button btn = (Button) v;
+				if (btn.getTag() instanceof LinearLayout) {
+					LinearLayout layoutInfoRow = (LinearLayout) btn.getTag(0x1);
+					LinearLayout layoutPackageSet = (LinearLayout) btn.getTag(0x2);
+					JSONObject jsonObjPackageSet = (JSONObject) btn.getTag(0x3);
+					String strBarcodeNumber = (String) btn.getTag(0x4);
+					
+					jsonObjPackageSet.remove(strBarcodeNumber);
+					layoutPackageSet.removeView(layoutInfoRow);
+					
+				}
+			}
 
 		}
 	};
