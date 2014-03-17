@@ -82,7 +82,7 @@ public final class R {
         public static final int launch_product_query=0x7f090003;
         public static final int layout_main=0x7f09002e;
         public static final int layout_suda_tracking_numbers_list=0x7f090033;
-        public static final int layout_tw_custom_entry_tracking_numbers_list_tw_custom_entry=0x7f09003b;
+        public static final int layout_tw_custom_entry_tracking_numbers_list=0x7f09003b;
         public static final int menu_encode=0x7f090043;
         public static final int menu_help=0x7f090042;
         public static final int menu_history=0x7f090040;

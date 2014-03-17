@@ -83,7 +83,7 @@ public class WebContentDownloadHandler extends AsyncTask<String, Integer, String
 					if(progressBarUpdateListener.isProgressCountable()){
 						publishProgress((int) (count/(float) total)*100);
 						
-						Thread.sleep(200); //slow down AsyncTask
+						Thread.sleep(100); //slow down AsyncTask
 					}
 				}
 				

@@ -57,7 +57,7 @@
                 android:textColor="#00f" />
 
             <LinearLayout
-                android:id="@+id/layout_tw_custom_entry_tracking_numbers_list_tw_custom_entry"
+                android:id="@+id/layout_tw_custom_entry_tracking_numbers_list"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical" >
