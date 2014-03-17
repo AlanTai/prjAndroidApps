@@ -58,6 +58,6 @@
 <fullyQualifiedTypeName name="org.json.JSONArray"/>
 <fullyQualifiedTypeName name="java.lang.Boolean"/>
 <fullyQualifiedTypeName name="android.widget.Button"/>
-<fullyQualifiedTypeName name="android.widget.LinearLayout"/>
 <fullyQualifiedTypeName name="org.json.JSONObject"/>
+<fullyQualifiedTypeName name="android.widget.LinearLayout"/>
 </qualifiedTypeNameHistroy>

@@ -18,7 +18,6 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.drawable.GradientDrawable.Orientation;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -87,15 +86,16 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 									public void onClick(DialogInterface dialog,
 											int which) {
 										JSONArray jsonAryNames = jsonObjTWCustomEntryPackagesSets
-												.names();
+												.names(); //get all names from jsonObj
 										for (int ith = 0; ith < jsonAryNames
 												.length(); ith++) {
 											JSONObject jsonObj;
 											try {
 												jsonObj = jsonObjTWCustomEntryPackagesSets
 														.getJSONObject(jsonAryNames
-																.getString(ith));
+																.getString(ith)); //get jsonObj corresponding to the tw custom entry number
 
+												//check if scanned barcode exists
 												if (jsonObj
 														.has(strScanedBarcode)) {
 													Toast.makeText(
@@ -105,9 +105,7 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 															.show();
 													break;
 												} else {
-													// put into Packages' set
-
-													//
+													//add new barcode into corresponding package set
 													String twCustomEntryNumber = (String) currentBtnForScanBarcode
 															.getTag(0x1);
 													JSONObject jsonObjCurrentPackageSet = (JSONObject) currentBtnForScanBarcode
@@ -120,7 +118,7 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 															.put(twCustomEntryNumber,
 																	"exshipper");
 
-													// onto layout-list
+													// add layout-list
 													TextView txtAddedSUDATrackingNumber = new TextView(
 															getActivity());
 													txtAddedSUDATrackingNumber.setTextColor(Color
@@ -249,6 +247,15 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 		@Override
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
+			if(v instanceof Button){
+				Button btn = (Button) v;
+				String strTWCustomEntryNumber = (String) btn.getTag(0x1);
+				LinearLayout layoutPackagesSet = (LinearLayout) btn.getTag(0x3);
+				
+				jsonObjTWCustomEntryPackagesSets.remove(strTWCustomEntryNumber);
+				layoutPackagesSet.removeAllViews();
+				layoutPakcagesSetsList.removeView(layoutPackagesSet);
+			}
 
 		}
 	};
@@ -337,12 +344,12 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 				}
 
 				//
-				TextView txtBarcodeNumber = new TextView(getActivity());
-				txtBarcodeNumber.setTextColor(Color.parseColor("#04550E"));
-				txtBarcodeNumber.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
-				txtBarcodeNumber.setGravity(Gravity.CENTER);
-				txtBarcodeNumber.setPadding(3, 2, 1, 2);
-				txtBarcodeNumber.setText(p_result);
+				TextView txtTWCustomEntryNumber = new TextView(getActivity());
+				txtTWCustomEntryNumber.setTextColor(Color.parseColor("#04550E"));
+				txtTWCustomEntryNumber.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
+				txtTWCustomEntryNumber.setGravity(Gravity.CENTER);
+				txtTWCustomEntryNumber.setPadding(3, 2, 1, 2);
+				txtTWCustomEntryNumber.setText(p_result);
 
 				Button btnDeletePackageSet = new Button(getActivity());
 				btnDeletePackageSet.setTextColor(Color.parseColor("#f00"));
@@ -351,12 +358,13 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 				btnDeletePackageSet.setPadding(3, 2, 1, 2);
 				btnDeletePackageSet.setText("Delete Package");
 				btnDeletePackageSet.setOnClickListener(deletePackagesSet);
-
+				
+				//
 				LinearLayout layoutPackageSetTitle = new LinearLayout(
 						getActivity());
 				layoutPackageSetTitle.setOrientation(LinearLayout.HORIZONTAL);
 				layoutPackageSetTitle.setPadding(1, 2, 1, 2);
-				layoutPackageSetTitle.addView(txtBarcodeNumber);
+				layoutPackageSetTitle.addView(txtTWCustomEntryNumber);
 				layoutPackageSetTitle.addView(btnDeletePackageSet);
 				// end
 
