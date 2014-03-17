@@ -310,6 +310,7 @@ public class SpearnetPakcagesPickupFragment extends FragmentTemplate {
 		public void updateResult(String p_result) {
 			// progress dialog...
 			mProgressBar.dismiss();
+			mProgressBar = null;
 			
 			//get result from server
 			if (p_result != null) {
