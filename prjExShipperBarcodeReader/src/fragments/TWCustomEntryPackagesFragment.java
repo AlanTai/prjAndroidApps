@@ -13,7 +13,6 @@ import com.exshipper.handlers.WebContentDownloadHandler;
 import com.exshipper.listeners.ProgressBarUpdateListener;
 import com.exshipper.prjexshipperbarcodereader.R;
 
-import android.R.color;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
@@ -119,11 +118,15 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 													// add new barcode into
 													// corresponding package set
 
-													JSONObject jsonObjFromBtnScanBarcode = (JSONObject) currentBtnForScanBarcode.getTag();
-													
-													String twCustomEntryNumber = (String) jsonObjFromBtnScanBarcode.get("p_result");
-													JSONObject jsonObjCurrentPackageSet = (JSONObject) jsonObjFromBtnScanBarcode.getJSONObject("layoutTrackingNumberist");
-													LinearLayout layoutCurrentPackageSet = (LinearLayout) jsonObjFromBtnScanBarcode.get("layoutTrackingNumberist");
+													JSONObject jsonObjFromBtnScanBarcode = (JSONObject) currentBtnForScanBarcode
+															.getTag();
+
+													String twCustomEntryNumber = (String) jsonObjFromBtnScanBarcode
+															.get("p_result");
+													JSONObject jsonObjCurrentPackageSet = (JSONObject) jsonObjFromBtnScanBarcode
+															.getJSONObject("layoutTrackingNumberist");
+													LinearLayout layoutCurrentPackageSet = (LinearLayout) jsonObjFromBtnScanBarcode
+															.get("layoutTrackingNumberist");
 
 													// add to obj
 													jsonObjCurrentPackageSet
@@ -266,10 +269,13 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 			if (v instanceof Button) {
 				JSONObject jsonObjFromBtnScanBarcode = (JSONObject) v.getTag();
 				try {
-					String twCustomEntryNumber = (String) jsonObjFromBtnScanBarcode.get("p_result");
-					LinearLayout layoutCurrentPackageSet = (LinearLayout) jsonObjFromBtnScanBarcode.get("layoutPackagesSets");
+					String twCustomEntryNumber = (String) jsonObjFromBtnScanBarcode
+							.get("p_result");
+					LinearLayout layoutCurrentPackageSet = (LinearLayout) jsonObjFromBtnScanBarcode
+							.get("layoutPackagesSets");
 
-					jsonObjTWCustomEntryPackagesSets.remove(twCustomEntryNumber);
+					jsonObjTWCustomEntryPackagesSets
+							.remove(twCustomEntryNumber);
 					layoutCurrentPackageSet.removeAllViews();
 					layoutPakcagesSetsList.removeView(layoutCurrentPackageSet);
 				} catch (JSONException e) {
@@ -351,7 +357,6 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 			// TODO Auto-generated method stub
 			mProgressbar.dismiss();
 			mProgressbar = null;
-			Toast.makeText(getActivity(), p_result, Toast.LENGTH_LONG).show();
 
 			// get result from server
 			if (p_result != null) {
@@ -363,91 +368,106 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 
 					JSONObject jsonObjPackagesSet = new JSONObject();
 					try {
-						if(jsonObjTWCustomEntryPackagesSets == null){
+						if (jsonObjTWCustomEntryPackagesSets == null) {
 							jsonObjTWCustomEntryPackagesSets = new JSONObject();
 						}
-						jsonObjTWCustomEntryPackagesSets.put(p_result,
-								jsonObjPackagesSet);
+
+						if (jsonObjTWCustomEntryPackagesSets
+								.has(p_result)) {
+							Toast.makeText(
+									getActivity(),
+									"Duplicated TW Custom Entry Number- "
+											+ p_result, Toast.LENGTH_LONG)
+									.show();
+						} else {
+							jsonObjTWCustomEntryPackagesSets.put(p_result,
+									jsonObjPackagesSet);
+							
+							//build View
+							TextView txtTWCustomEntryNumber = new TextView(
+									getActivity());
+							txtTWCustomEntryNumber.setTextColor(Color
+									.parseColor("#04550E"));
+							txtTWCustomEntryNumber.setTextSize(
+									TypedValue.COMPLEX_UNIT_SP, 16);
+							txtTWCustomEntryNumber.setGravity(Gravity.CENTER);
+							txtTWCustomEntryNumber.setPadding(3, 2, 1, 2);
+							txtTWCustomEntryNumber.setText(p_result);
+
+							Button btnDeletePackageSet = new Button(
+									getActivity());
+							btnDeletePackageSet.setTextColor(Color
+									.parseColor("#ff0000"));
+							btnDeletePackageSet.setTextSize(
+									TypedValue.COMPLEX_UNIT_SP, 16);
+							btnDeletePackageSet
+									.setBackgroundColor(Color.TRANSPARENT);
+							btnDeletePackageSet.setGravity(Gravity.CENTER);
+							btnDeletePackageSet.setPadding(3, 2, 1, 2);
+							btnDeletePackageSet.setText("Delete Package");
+							btnDeletePackageSet
+									.setOnClickListener(deletePackagesSet);
+
+							// scan button & tracking numbers list
+							Button btnStartBarcodeReader = new Button(
+									getActivity());
+							btnStartBarcodeReader.setTextSize(
+									TypedValue.COMPLEX_UNIT_SP, 16);
+							btnStartBarcodeReader.setTextColor(Color
+									.parseColor("#0000ff"));
+							btnStartBarcodeReader
+									.setBackgroundColor(Color.TRANSPARENT);
+							btnStartBarcodeReader.setGravity(Gravity.CENTER);
+							btnStartBarcodeReader.setText("Scan");
+							btnStartBarcodeReader
+									.setOnClickListener(startBarcodeReader);
+
+							//
+							LinearLayout layoutPackageSetTitle = new LinearLayout(
+									getActivity());
+							layoutPackageSetTitle
+									.setOrientation(LinearLayout.HORIZONTAL);
+							layoutPackageSetTitle.setPadding(1, 2, 1, 2);
+							layoutPackageSetTitle
+									.addView(txtTWCustomEntryNumber);
+							layoutPackageSetTitle
+									.addView(btnStartBarcodeReader);
+							layoutPackageSetTitle.addView(btnDeletePackageSet);
+							// end
+
+							LinearLayout layoutTrackingNumberList = new LinearLayout(
+									getActivity());
+							layoutTrackingNumberList
+									.setOrientation(LinearLayout.VERTICAL);
+							layoutTrackingNumberList.setPadding(1, 2, 1, 2);
+
+							// package layout
+							LinearLayout layoutPackagesSet = new LinearLayout(
+									getActivity());
+							layoutPackagesSet
+									.setOrientation(LinearLayout.VERTICAL);
+							layoutPackagesSet.setPadding(1, 2, 1, 2);
+							layoutPackagesSet.addView(layoutPackageSetTitle);
+							layoutPackagesSet.addView(layoutTrackingNumberList);
+							layoutPakcagesSetsList.addView(layoutPackagesSet);
+
+							//
+							JSONObject jsonObj = new JSONObject();
+							jsonObj.put("p_result", p_result);
+							jsonObj.put("jsonObjPackageSet", jsonObjPackagesSet);
+							jsonObj.put("layoutPackagesSets", layoutPackagesSet);
+							jsonObj.put("layoutTrackingNumberList",
+									layoutTrackingNumberList);
+
+							btnStartBarcodeReader.setTag(jsonObj);
+							btnDeletePackageSet.setTag(jsonObj);
+						}
+
 					} catch (JSONException e) {
 						// TODO Auto-generated catch block
 						Log.e("error", e.getMessage());
 					}
 
-					//
-					TextView txtTWCustomEntryNumber = new TextView(
-							getActivity());
-					txtTWCustomEntryNumber.setTextColor(Color
-							.parseColor("#04550E"));
-					txtTWCustomEntryNumber.setTextSize(
-							TypedValue.COMPLEX_UNIT_SP, 16);
-					txtTWCustomEntryNumber.setGravity(Gravity.CENTER);
-					txtTWCustomEntryNumber.setPadding(3, 2, 1, 2);
-					txtTWCustomEntryNumber.setText(p_result);
-
-					Button btnDeletePackageSet = new Button(getActivity());
-					btnDeletePackageSet.setTextColor(Color.parseColor("#ff0000"));
-					btnDeletePackageSet.setTextSize(TypedValue.COMPLEX_UNIT_SP,
-							16);
-					btnDeletePackageSet.setBackgroundColor(Color.TRANSPARENT);
-					btnDeletePackageSet.setGravity(Gravity.CENTER);
-					btnDeletePackageSet.setPadding(3, 2, 1, 2);
-					btnDeletePackageSet.setText("Delete Package");
-					btnDeletePackageSet.setOnClickListener(deletePackagesSet);
-
-
-					// scan button & tracking numbers list
-					Button btnStartBarcodeReader = new Button(getActivity());
-					btnStartBarcodeReader.setTextSize(
-							TypedValue.COMPLEX_UNIT_SP, 16);
-					btnStartBarcodeReader
-							.setTextColor(Color.parseColor("#0000ff"));
-					btnStartBarcodeReader.setBackgroundColor(Color.TRANSPARENT);
-					btnStartBarcodeReader.setGravity(Gravity.CENTER);
-					btnStartBarcodeReader.setText("Scan");
-					btnStartBarcodeReader
-							.setOnClickListener(startBarcodeReader);
-					
-					//
-					LinearLayout layoutPackageSetTitle = new LinearLayout(
-							getActivity());
-					layoutPackageSetTitle
-							.setOrientation(LinearLayout.HORIZONTAL);
-					layoutPackageSetTitle.setPadding(1, 2, 1, 2);
-					layoutPackageSetTitle.addView(txtTWCustomEntryNumber);
-					layoutPackageSetTitle.addView(btnStartBarcodeReader);
-					layoutPackageSetTitle.addView(btnDeletePackageSet);
-					// end
-
-
-					LinearLayout layoutTrackingNumberList = new LinearLayout(
-							getActivity());
-					layoutTrackingNumberList
-							.setOrientation(LinearLayout.VERTICAL);
-					layoutTrackingNumberList.setPadding(1, 2, 1, 2);
-					
-
-					// package layout
-					LinearLayout layoutPackagesSet = new LinearLayout(
-							getActivity());
-					layoutPackagesSet.setOrientation(LinearLayout.VERTICAL);
-					layoutPackagesSet.setPadding(1, 2, 1, 2);
-					layoutPackagesSet.addView(layoutPackageSetTitle);
-					layoutPackagesSet.addView(layoutTrackingNumberList);
-					layoutPakcagesSetsList.addView(layoutPackagesSet);
-					
-					//
-					JSONObject jsonObj = new JSONObject();
-					try {
-						jsonObj.put("p_result", p_result);
-						jsonObj.put("jsonObjPackageSet", jsonObjPackagesSet);
-						jsonObj.put("layoutPackagesSets", layoutPackagesSet);
-						jsonObj.put("layoutTrackingNumberList", layoutTrackingNumberList);
-					} catch (JSONException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-					btnStartBarcodeReader.setTag(jsonObj);
-					btnDeletePackageSet.setTag(jsonObj);
 				}
 			}
 
@@ -465,8 +485,7 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 			if (mProgressbar == null) {
 				mProgressbar = new ProgressDialog(getActivity());
 				mProgressbar.setCancelable(false);
-				mProgressbar
-						.setMessage("Get TW Custom Entry Number...");
+				mProgressbar.setMessage("Get TW Custom Entry Number...");
 				mProgressbar.setProgressStyle(ProgressDialog.STYLE_SPINNER);
 				mProgressbar.show();
 			}
@@ -582,8 +601,9 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 
 		txtTotalSets = (TextView) mView
 				.findViewById(R.id.txt_total_sets_tw_custom_entry);
-		
-		layoutPakcagesSetsList = (LinearLayout) mView.findViewById(R.id.layout_tw_custom_entry_tracking_numbers_list);
+
+		layoutPakcagesSetsList = (LinearLayout) mView
+				.findViewById(R.id.layout_tw_custom_entry_tracking_numbers_list);
 
 		txtSubmitResult = (TextView) mView
 				.findViewById(R.id.txt_submit_result_tw_custom_entry);

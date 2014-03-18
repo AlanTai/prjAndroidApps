@@ -77,18 +77,7 @@ public class ExShipperBarcodeReaderActivity extends FragmentActivity {
 	}
 	
 	private void setNullForAllVariables(){
-		suda_tracking_number = null;
-		sudaTrackingNumberMap = null;
-		suda_tracking_numbers_json_obj = null;
-		suda_tracking_number_list = null;
-
-		uploadPickedPackagesTrackingNumbers = null;
-		// end of inner variables & init function
-
-		// fragments management
-		fm =null;
-		mainFragment = null;
-		spearnetFragment = null;
+		
 	}
 
 }

@@ -57,7 +57,7 @@ public class WebContentDownloadHandler extends AsyncTask<String, Integer, String
 		HttpPost httpPost = new HttpPost(params[0]);
 		
 		JSONObject jsonObj_response = null;
-		String txt_response = null;
+		String txt_custom_entry_number = null;
 		String utf8_response = null;
 		
 		try{
@@ -90,15 +90,15 @@ public class WebContentDownloadHandler extends AsyncTask<String, Integer, String
 				//utf8_response = EntityUtils.toString(entityFromServer, HTTP.UTF_8);
 				utf8_response = new String(byteOutStream.toByteArray(),"utf-8");
 				jsonObj_response = new JSONObject(utf8_response);
-				txt_response = jsonObj_response.getString("response");
+				txt_custom_entry_number = jsonObj_response.getString("response");
 				
-				return txt_response;
+				return txt_custom_entry_number;
 			}
 		}
 		catch(Exception e){
 			Log.e("error", "Fail to get the response from server: "+e.getMessage());
 		}
 		
-		return txt_response;
+		return txt_custom_entry_number;
 	}
 }
