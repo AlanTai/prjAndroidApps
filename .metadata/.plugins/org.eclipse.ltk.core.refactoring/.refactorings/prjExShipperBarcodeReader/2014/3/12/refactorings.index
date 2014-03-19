@@ -2,3 +2,6 @@
 1395097109486	Rename local variable 'layoutPackageSet'
 1395097120356	Rename local variable 'jsonObjPackageSet'
 1395119679797	Rename local variable 'txt_custom_entry_number'
+1395201912537	Rename local variable 'layoutCurrentPackageSet'
+1395201921697	Rename local variable 'jsonObjCurrentPackageSet'
+1395201997777	Rename local variable 'deleteBtn'

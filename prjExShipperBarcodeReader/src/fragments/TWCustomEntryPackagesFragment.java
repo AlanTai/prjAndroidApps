@@ -88,22 +88,16 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 										JSONArray jsonAryNames = jsonObjTWCustomEntryPackagesSets
 												.names(); // get all names from
 															// jsonObj
+										
+										boolean isTrackingNumberExist = false;
 										for (int ith = 0; ith < jsonAryNames
 												.length(); ith++) {
 											JSONObject jsonObj;
 											try {
 												jsonObj = jsonObjTWCustomEntryPackagesSets
 														.getJSONObject(jsonAryNames
-																.getString(ith)); // get
-																					// jsonObj
-																					// corresponding
-																					// to
-																					// the
-																					// tw
-																					// custom
-																					// entry
-																					// number
-
+																.getString(ith));
+		
 												// check if scanned barcode
 												// exists
 												if (jsonObj
@@ -113,96 +107,102 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 															"SUDA Tracking Number Duplicated!",
 															Toast.LENGTH_LONG)
 															.show();
+													isTrackingNumberExist = true;
 													break;
-												} else {
-													// add new barcode into
-													// corresponding package set
-
-													JSONObject jsonObjFromBtnScanBarcode = (JSONObject) currentBtnForScanBarcode
-															.getTag();
-
-													String twCustomEntryNumber = (String) jsonObjFromBtnScanBarcode
-															.get("p_result");
-													JSONObject jsonObjCurrentPackageSet = (JSONObject) jsonObjFromBtnScanBarcode
-															.getJSONObject("layoutTrackingNumberist");
-													LinearLayout layoutCurrentPackageSet = (LinearLayout) jsonObjFromBtnScanBarcode
-															.get("layoutTrackingNumberist");
-
-													// add to obj
-													jsonObjCurrentPackageSet
-															.put(twCustomEntryNumber,
-																	"exshipper");
-
-													// add layout-list
-													TextView txtAddedSUDATrackingNumber = new TextView(
-															getActivity());
-													txtAddedSUDATrackingNumber.setTextColor(Color
-															.parseColor("#04550E"));
-													txtAddedSUDATrackingNumber
-															.setTextSize(
-																	TypedValue.COMPLEX_UNIT_SP,
-																	16);
-													txtAddedSUDATrackingNumber
-															.setText(strScanedBarcode);
-													txtAddedSUDATrackingNumber
-															.setGravity(Gravity.CENTER);
-													txtAddedSUDATrackingNumber
-															.setPadding(3, 2,
-																	1, 2);
-
-													Button deleteBtn = new Button(
-															getActivity());
-													deleteBtn
-															.setTextSize(
-																	TypedValue.COMPLEX_UNIT_SP,
-																	16);
-													deleteBtn.setTextColor(Color
-															.parseColor("#ff0000"));
-													deleteBtn.setText("Delete");
-													deleteBtn
-															.setBackgroundColor(Color.TRANSPARENT);
-													deleteBtn
-															.setGravity(Gravity.CENTER);
-													deleteBtn.setPadding(3, 2,
-															1, 2);
-													deleteBtn
-															.setOnClickListener(deleteSUDATrackingNumberInfo);
-
-													LinearLayout layoutSUDATrackingNumberInfoRow = new LinearLayout(
-															getActivity());
-													layoutSUDATrackingNumberInfoRow
-															.setOrientation(LinearLayout.HORIZONTAL);
-													layoutSUDATrackingNumberInfoRow
-															.setPadding(1, 2,
-																	1, 2);
-													layoutSUDATrackingNumberInfoRow
-															.addView(txtAddedSUDATrackingNumber);
-													layoutSUDATrackingNumberInfoRow
-															.addView(deleteBtn);
-													layoutSUDATrackingNumberInfoRow
-															.setTag(strScanedBarcode
-																	.hashCode());
-
-													deleteBtn
-															.setTag(0x1,
-																	layoutSUDATrackingNumberInfoRow);
-													deleteBtn
-															.setTag(0x2,
-																	layoutCurrentPackageSet);
-													deleteBtn
-															.setTag(0x3,
-																	jsonObjCurrentPackageSet);
-													deleteBtn.setTag(0x4,
-															strScanedBarcode);
-													layoutCurrentPackageSet
-															.addView(layoutSUDATrackingNumberInfoRow);
 												}
-
 											} catch (JSONException e) {
 												// TODO Auto-generated catch
 												// block
 												Log.e("error", e.getMessage());
 											}
+										}
+										
+										//
+										if(!isTrackingNumberExist){
+											// add new barcode into
+											// corresponding package set
+											try{
+
+												JSONObject jsonObjFromBtnScanBarcode = (JSONObject) currentBtnForScanBarcode
+														.getTag();
+
+												String twCustomEntryNumber = (String) jsonObjFromBtnScanBarcode
+														.get("p_result");
+												JSONObject jsonObjCurrentPackagesSet = (JSONObject) jsonObjFromBtnScanBarcode
+														.getJSONObject("jsonObjPackageSet");
+												LinearLayout layoutCurrentPackagesSet = (LinearLayout) jsonObjFromBtnScanBarcode
+														.get("layoutTrackingNumberList");
+
+												// add to obj
+												jsonObjCurrentPackagesSet
+														.put(strScanedBarcode,
+																twCustomEntryNumber);
+
+												// add layout-list
+												TextView txtAddedSUDATrackingNumber = new TextView(
+														getActivity());
+												txtAddedSUDATrackingNumber.setTextColor(Color
+														.parseColor("#04550E"));
+												txtAddedSUDATrackingNumber
+														.setTextSize(
+																TypedValue.COMPLEX_UNIT_SP,
+																16);
+												txtAddedSUDATrackingNumber
+														.setText(strScanedBarcode);
+												txtAddedSUDATrackingNumber
+														.setGravity(Gravity.CENTER);
+												txtAddedSUDATrackingNumber
+														.setPadding(3, 2,
+																1, 2);
+
+												Button btnDeleteInfoRow = new Button(
+														getActivity());
+												btnDeleteInfoRow
+														.setTextSize(
+																TypedValue.COMPLEX_UNIT_SP,
+																16);
+												btnDeleteInfoRow.setTextColor(Color
+														.parseColor("#ff0000"));
+												btnDeleteInfoRow.setText("Delete");
+												btnDeleteInfoRow
+														.setBackgroundColor(Color.TRANSPARENT);
+												btnDeleteInfoRow
+														.setGravity(Gravity.CENTER);
+												btnDeleteInfoRow.setPadding(3, 2,
+														1, 2);
+												btnDeleteInfoRow
+														.setOnClickListener(deleteSUDATrackingNumberInfo);
+
+												LinearLayout layoutSUDATrackingNumberInfoRow = new LinearLayout(
+														getActivity());
+												layoutSUDATrackingNumberInfoRow
+														.setOrientation(LinearLayout.HORIZONTAL);
+												layoutSUDATrackingNumberInfoRow
+														.setPadding(1, 2,
+																1, 2);
+												layoutSUDATrackingNumberInfoRow
+														.addView(txtAddedSUDATrackingNumber);
+												layoutSUDATrackingNumberInfoRow
+														.addView(btnDeleteInfoRow);
+												layoutSUDATrackingNumberInfoRow
+														.setTag(strScanedBarcode
+																.hashCode());
+												
+												//
+												JSONObject jsonObjCurrentInfoRow = new JSONObject();
+												jsonObjCurrentInfoRow.put("layoutSUDATrackingNumberInfoRow", layoutSUDATrackingNumberInfoRow);
+												jsonObjCurrentInfoRow.put("layoutCurrentPackagesSet", layoutCurrentPackagesSet);
+												jsonObjCurrentInfoRow.put("jsonObjCurrentPackagesSet", jsonObjCurrentPackagesSet);
+												jsonObjCurrentInfoRow.put("strScanedBarcode", strScanedBarcode);
+												btnDeleteInfoRow.setTag(jsonObjCurrentInfoRow);
+
+												layoutCurrentPackagesSet
+														.addView(layoutSUDATrackingNumberInfoRow);
+											}
+											catch (Exception e){
+												Log.e("error", e.getMessage());
+											}
+
 										}
 									}
 								})
@@ -309,15 +309,20 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 			// TODO Auto-generated method stub
 			if (v instanceof Button) {
 				Button btn = (Button) v;
-				if (btn.getTag() instanceof LinearLayout) {
-					LinearLayout layoutInfoRow = (LinearLayout) btn.getTag(0x1);
-					LinearLayout layoutPackageSet = (LinearLayout) btn
-							.getTag(0x2);
-					JSONObject jsonObjPackageSet = (JSONObject) btn.getTag(0x3);
-					String strBarcodeNumber = (String) btn.getTag(0x4);
-
-					jsonObjPackageSet.remove(strBarcodeNumber);
-					layoutPackageSet.removeView(layoutInfoRow);
+				if (btn.getTag() instanceof JSONObject) {
+					JSONObject jsonObj = (JSONObject) btn.getTag();
+					try{
+						JSONObject jsonObjCurrentPackagesSet = jsonObj.getJSONObject("jsonObjCurrentPackagesSet");
+						LinearLayout layoutCurrentPackagesSet = (LinearLayout) jsonObj.get("layoutCurrentPackagesSet");
+						LinearLayout layoutSUDATrackingNumberInfoRow = (LinearLayout) jsonObj.get("layoutSUDATrackingNumberInfoRow");
+						String strScanedBarcode = jsonObj.getString("strScanedBarcode");
+						
+						jsonObjCurrentPackagesSet.remove(strScanedBarcode);
+						layoutCurrentPackagesSet.removeView(layoutSUDATrackingNumberInfoRow);
+					}
+					catch (Exception e){
+						Log.e("error", e.getMessage());
+					}
 
 				}
 			}
