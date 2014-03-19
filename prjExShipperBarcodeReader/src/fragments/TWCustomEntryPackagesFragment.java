@@ -29,6 +29,8 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.FrameLayout;
+import android.widget.FrameLayout.LayoutParams;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -148,7 +150,7 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 																TypedValue.COMPLEX_UNIT_SP,
 																16);
 												txtAddedSUDATrackingNumber
-														.setText(strScanedBarcode);
+														.setText("SUDA NO."+strScanedBarcode);
 												txtAddedSUDATrackingNumber
 														.setGravity(Gravity.CENTER);
 												txtAddedSUDATrackingNumber
@@ -273,6 +275,9 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 							.get("p_result");
 					LinearLayout layoutCurrentPackageSet = (LinearLayout) jsonObjFromBtnScanBarcode
 							.get("layoutPackagesSets");
+					
+					txtDownlaodCustomEntryNumberResult.setText("Current Deleted SUDA NO."+twCustomEntryNumber);
+					
 
 					jsonObjTWCustomEntryPackagesSets
 							.remove(twCustomEntryNumber);
@@ -365,7 +370,7 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 
 			// get result from server
 			if (p_result != null) {
-				txtDownlaodCustomEntryNumberResult.setText(p_result);
+				txtDownlaodCustomEntryNumberResult.setText("Current Obtained TW Custom Entry NO."+p_result);
 				// parse jsonObj to get TW Custom Entry Number...
 
 				//
@@ -392,12 +397,12 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 							TextView txtTWCustomEntryNumber = new TextView(
 									getActivity());
 							txtTWCustomEntryNumber.setTextColor(Color
-									.parseColor("#04550E"));
+									.parseColor("#000000"));
 							txtTWCustomEntryNumber.setTextSize(
 									TypedValue.COMPLEX_UNIT_SP, 16);
 							txtTWCustomEntryNumber.setGravity(Gravity.CENTER);
 							txtTWCustomEntryNumber.setPadding(3, 2, 1, 2);
-							txtTWCustomEntryNumber.setText(p_result);
+							txtTWCustomEntryNumber.setText("TW Custom Entry NO. "+p_result);
 
 							Button btnDeletePackageSet = new Button(
 									getActivity());
@@ -428,16 +433,14 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 									.setOnClickListener(startBarcodeReader);
 
 							//
-							LinearLayout layoutPackageSetTitle = new LinearLayout(
+							LinearLayout layoutPackageSetBtnsField = new LinearLayout(
 									getActivity());
-							layoutPackageSetTitle
+							layoutPackageSetBtnsField
 									.setOrientation(LinearLayout.HORIZONTAL);
-							layoutPackageSetTitle.setPadding(1, 2, 1, 2);
-							layoutPackageSetTitle
-									.addView(txtTWCustomEntryNumber);
-							layoutPackageSetTitle
+							layoutPackageSetBtnsField.setPadding(1, 2, 1, 2);
+							layoutPackageSetBtnsField
 									.addView(btnStartBarcodeReader);
-							layoutPackageSetTitle.addView(btnDeletePackageSet);
+							layoutPackageSetBtnsField.addView(btnDeletePackageSet);
 							// end
 
 							LinearLayout layoutTrackingNumberList = new LinearLayout(
@@ -445,15 +448,23 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 							layoutTrackingNumberList
 									.setOrientation(LinearLayout.VERTICAL);
 							layoutTrackingNumberList.setPadding(1, 2, 1, 2);
+							
+							//psrting line
+							View viewPartingLine = new View(getActivity());
+							viewPartingLine.setLayoutParams(new FrameLayout.LayoutParams(LayoutParams.MATCH_PARENT, 3));
+							viewPartingLine.setBackgroundColor(Color.parseColor("#ffffff"));
 
 							// package layout
 							LinearLayout layoutPackagesSet = new LinearLayout(
 									getActivity());
 							layoutPackagesSet
 									.setOrientation(LinearLayout.VERTICAL);
+							layoutPackagesSet.setBackgroundColor(Color.parseColor("#e1e1e1"));
 							layoutPackagesSet.setPadding(1, 2, 1, 2);
-							layoutPackagesSet.addView(layoutPackageSetTitle);
+							layoutPackagesSet.addView(txtTWCustomEntryNumber);
+							layoutPackagesSet.addView(layoutPackageSetBtnsField);
 							layoutPackagesSet.addView(layoutTrackingNumberList);
+							layoutPackagesSet.addView(viewPartingLine);
 							layoutPakcagesSetsList.addView(layoutPackagesSet);
 
 							//
