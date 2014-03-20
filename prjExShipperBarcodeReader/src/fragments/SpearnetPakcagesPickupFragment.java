@@ -112,12 +112,12 @@ public class SpearnetPakcagesPickupFragment extends FragmentTemplate {
 													suda_tracking_number
 															.hashCode(),
 													suda_tracking_number);
-											scanResult = "The SUDA tracking number is: "
+											scanResult = "*Current Obtained SUDA NO. "
 													+ suda_tracking_number;
 
 											txtScanResult.setText(scanResult);
 											txtTotalAmount
-													.setText("Total Amount of SUDA Tracking Number: "
+													.setText("*Total Amount of SUDA NO.-"
 															+ sudaTrackingNumberMap
 																	.size());
 
@@ -132,7 +132,7 @@ public class SpearnetPakcagesPickupFragment extends FragmentTemplate {
 															TypedValue.COMPLEX_UNIT_SP,
 															16);
 											txtAddedSUDATrackingNumber
-													.setText(suda_tracking_number);
+													.setText("SUDA NO."+suda_tracking_number);
 											txtAddedSUDATrackingNumber
 													.setGravity(Gravity.CENTER);
 											txtAddedSUDATrackingNumber
@@ -161,9 +161,9 @@ public class SpearnetPakcagesPickupFragment extends FragmentTemplate {
 											layoutSUDATrackingNumberInfoRow
 													.setPadding(1, 2, 1, 2);
 											layoutSUDATrackingNumberInfoRow
-													.addView(txtAddedSUDATrackingNumber);
+											.addView(deleteBtn);
 											layoutSUDATrackingNumberInfoRow
-													.addView(deleteBtn);
+													.addView(txtAddedSUDATrackingNumber);
 											layoutSUDATrackingNumberInfoRow
 													.setTag(suda_tracking_number
 															.hashCode());
@@ -175,7 +175,7 @@ public class SpearnetPakcagesPickupFragment extends FragmentTemplate {
 										} else {
 											Toast.makeText(
 													getActivity(),
-													"SUDA Tracking Number Duplicated!",
+													"SUDA NO. Duplicated!",
 													Toast.LENGTH_LONG).show();
 										}
 									}
@@ -197,7 +197,7 @@ public class SpearnetPakcagesPickupFragment extends FragmentTemplate {
 			} else {
 				getActivity();
 				if (resultCode == FragmentActivity.RESULT_CANCELED) {
-					Log.i("APP", "Scan Unsuccessful");
+					Log.e("APP", "Scan Unsuccessfully");
 				}
 			}
 		}
@@ -228,13 +228,13 @@ public class SpearnetPakcagesPickupFragment extends FragmentTemplate {
 					if (tagLayout.getTag() instanceof Integer) {
 						Integer tagKey = (Integer) tagLayout.getTag();
 						String value = sudaTrackingNumberMap.get(tagKey);
-						String msg = "The deleted SUDA tracking number is: "
+						String msg = "*Current Deleted SUDA NO."
 								+ value;
 						txtScanResult.setText(msg);
 						sudaTrackingNumberMap.remove(tagKey);
 						layoutSUDATrackingNumbersList.removeView(tagLayout);
 						txtTotalAmount
-								.setText("Total Amount of SUDA Tracking Number: "
+								.setText("*Total Amount of SUDA NO.-"
 										+ sudaTrackingNumberMap.size());
 					}
 				}
@@ -358,10 +358,10 @@ public class SpearnetPakcagesPickupFragment extends FragmentTemplate {
 		txtAppIntroduction = (TextView) mView
 				.findViewById(R.id.txt_introduction);
 		txtAppIntroduction
-				.setText("The application is for packages pickup only!\n"
+				.setText("Spearnet Packages Pickup Handler\n\n"
 						+ "1. Scan all packages' barcodes (If you want to delete the barcode, please click the \'Delete\' key word)\n"
-						+ "2. Suibmit them to server\n"
-						+ "3. Get response from server and you're done");
+						+ "2. Submit the SUDA NO. to the server and wait for the reply\n"
+						+ "3. Once you get response from the server, you're done");
 		btnScan = (Button) mView.findViewById(R.id.btn_scan);
 		btnScan.setOnClickListener(startBarcodeReader);
 		txtScanResult = (TextView) mView.findViewById(R.id.txt_result);

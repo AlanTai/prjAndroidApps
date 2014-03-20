@@ -183,9 +183,9 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 														.setPadding(1, 2,
 																1, 2);
 												layoutSUDATrackingNumberInfoRow
-														.addView(txtAddedSUDATrackingNumber);
+												.addView(btnDeleteInfoRow);
 												layoutSUDATrackingNumberInfoRow
-														.addView(btnDeleteInfoRow);
+														.addView(txtAddedSUDATrackingNumber);
 												layoutSUDATrackingNumberInfoRow
 														.setTag(strScanedBarcode
 																.hashCode());
@@ -276,7 +276,7 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 					LinearLayout layoutCurrentPackageSet = (LinearLayout) jsonObjFromBtnScanBarcode
 							.get("layoutPackagesSets");
 					
-					txtDownlaodCustomEntryNumberResult.setText("Current Deleted SUDA NO."+twCustomEntryNumber);
+					txtDownlaodCustomEntryNumberResult.setText("Current Deleted TW Custom Entry NO."+twCustomEntryNumber);
 					
 
 					jsonObjTWCustomEntryPackagesSets
@@ -424,7 +424,7 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 							btnStartBarcodeReader.setTextSize(
 									TypedValue.COMPLEX_UNIT_SP, 16);
 							btnStartBarcodeReader.setTextColor(Color
-									.parseColor("#0000ff"));
+									.parseColor("#744a0f"));
 							btnStartBarcodeReader
 									.setBackgroundColor(Color.TRANSPARENT);
 							btnStartBarcodeReader.setGravity(Gravity.CENTER);
@@ -438,9 +438,9 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 							layoutPackageSetBtnsField
 									.setOrientation(LinearLayout.HORIZONTAL);
 							layoutPackageSetBtnsField.setPadding(1, 2, 1, 2);
+							layoutPackageSetBtnsField.addView(btnDeletePackageSet);
 							layoutPackageSetBtnsField
 									.addView(btnStartBarcodeReader);
-							layoutPackageSetBtnsField.addView(btnDeletePackageSet);
 							// end
 
 							LinearLayout layoutTrackingNumberList = new LinearLayout(
