@@ -95,7 +95,7 @@ public class SpearnetPakcagesPickupFragment extends FragmentTemplate {
 				alertDialogBuilder.setTitle("SUDA Tracking Number");
 				alertDialogBuilder
 						.setMessage(
-								"Do you want to save the SUDA NO. "
+								"Do you want to save the SUDA Tracking Number-"
 										+ suda_tracking_number + "?")
 						.setCancelable(false)
 						.setPositiveButton("Yes",
@@ -117,7 +117,7 @@ public class SpearnetPakcagesPickupFragment extends FragmentTemplate {
 
 											txtScanResult.setText(scanResult);
 											txtTotalAmount
-													.setText("*Total Amount of SUDA NO. = "
+													.setText("*Total Amount of SUDA NO. ="
 															+ sudaTrackingNumberMap
 																	.size());
 

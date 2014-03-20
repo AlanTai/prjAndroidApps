@@ -513,7 +513,6 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 			List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
 			nameValuePairs.add(new BasicNameValuePair("account", "alantai"));
 			nameValuePairs.add(new BasicNameValuePair("password", "1014"));
-			nameValuePairs.add(new BasicNameValuePair("token","tw_custom_entry_handler_get_number"));
 
 			return nameValuePairs;
 		}
@@ -570,7 +569,6 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 			List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
 			nameValuePairs.add(new BasicNameValuePair("account", "alantai"));
 			nameValuePairs.add(new BasicNameValuePair("password", "1014"));
-			nameValuePairs.add(new BasicNameValuePair("token", "tw_custom_entry_handler_submit_packages_sets"));
 
 			if (jsonObjTWCustomEntryPackagesSets != null) {
 				nameValuePairs.add(new BasicNameValuePair(
