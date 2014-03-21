@@ -347,10 +347,32 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 				}
 
 				// set asynctask
-				submitPackagesSetsHandler = new WebContentDownloadHandler(
-						progressBarForSubmitPackagesSets);
-				submitPackagesSetsHandler
-						.execute(new String[] { "https://exwine-tw.appspot.com/exshipper_tw_custom_entry_handler" });
+				if(jsonObjTWCustomEntryPackagesSets != null){
+					boolean isJSONObjEmpty = false;
+					JSONArray jsonAryNames = jsonObjTWCustomEntryPackagesSets.names();
+					String strTWCustomEntryNumber = null;
+					for (int ith = 0; ith < jsonAryNames.length(); ith++){
+						JSONObject jsonObj = (JSONObject) jsonObjTWCustomEntryPackagesSets.get(jsonAryNames.getString(ith));
+						if(jsonObj.length() == 0){
+							isJSONObjEmpty = true;
+							strTWCustomEntryNumber = jsonAryNames.getString(ith);
+							break;
+						}
+					}
+					if(isJSONObjEmpty){
+						Toast.makeText(getActivity(), "The Package Set, " + strTWCustomEntryNumber +", doesn't has any package!", Toast.LENGTH_LONG).show();
+					}
+					else{
+						submitPackagesSetsHandler = new WebContentDownloadHandler(
+								progressBarForSubmitPackagesSets);
+						submitPackagesSetsHandler
+								.execute(new String[] { "https://exwine-tw.appspot.com/exshipper_tw_custom_entry_handler" });
+					}
+				}
+				else{
+					Toast.makeText(getActivity(), "No data for upload!", Toast.LENGTH_LONG).show();
+				}
+				
 			} catch (Exception e) {
 				// TODO: handle exception
 				Log.e("error", e.getMessage());
@@ -386,7 +408,7 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 								.has(p_result)) {
 							Toast.makeText(
 									getActivity(),
-									"Duplicated TW Custom Entry Number- "
+									"Duplicated TW Custom Entry NO. "
 											+ p_result, Toast.LENGTH_LONG)
 									.show();
 						} else {
