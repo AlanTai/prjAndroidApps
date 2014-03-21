@@ -138,7 +138,7 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 												// add to obj
 												jsonObjCurrentPackagesSet
 														.put(strScanedBarcode,
-																"exshipper");
+																twCustomEntryNumber);
 
 												// add layout-list
 												TextView txtAddedSUDATrackingNumber = new TextView(
@@ -347,7 +347,7 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 				}
 
 				// set asynctask
-				if(jsonObjTWCustomEntryPackagesSets != null && jsonObjTWCustomEntryPackagesSets.length()>0){
+				if(jsonObjTWCustomEntryPackagesSets != null){
 					boolean isJSONObjEmpty = false;
 					JSONArray jsonAryNames = jsonObjTWCustomEntryPackagesSets.names();
 					String strTWCustomEntryNumber = null;
