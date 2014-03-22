@@ -145,11 +145,12 @@ public class SpearnetPakcagesPickupFragment extends FragmentTemplate {
 													16);
 											deleteBtn.setTextColor(Color
 													.parseColor("#ff0000"));
-											deleteBtn.setText("Delete");
+											deleteBtn.setText("Delete NO.");
 											deleteBtn
 													.setBackgroundColor(Color.TRANSPARENT);
 											deleteBtn
 													.setGravity(Gravity.CENTER);
+											deleteBtn.setBackgroundResource(R.drawable.clicked_item);
 											deleteBtn.setPadding(3, 2, 1, 2);
 											deleteBtn
 													.setOnClickListener(deleteSUDATrackingNumberInfo);
@@ -234,7 +235,7 @@ public class SpearnetPakcagesPickupFragment extends FragmentTemplate {
 						sudaTrackingNumberMap.remove(tagKey);
 						layoutSUDATrackingNumbersList.removeView(tagLayout);
 						txtTotalAmount
-								.setText("*Total Amount of SUDA NO.-"
+								.setText("*Total Amount of SUDA NO. ="
 										+ sudaTrackingNumberMap.size());
 					}
 				}
