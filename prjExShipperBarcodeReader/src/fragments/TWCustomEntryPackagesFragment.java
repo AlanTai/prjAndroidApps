@@ -272,6 +272,7 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 						.execute(new String[] { "https://exwine-tw.appspot.com/exshipper_tw_custom_entry_handler" });
 			} catch (Exception e) {
 				// TODO: handle exception
+				Toast.makeText(getActivity(), "Fail to get response from server!", Toast.LENGTH_SHORT).show();
 				Log.e("error", e.getMessage());
 			}
 		}
@@ -456,7 +457,11 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 
 							//length
 							TextView txtLength = new TextView(getActivity());
+							txtLength.setText("Length: ");
+							txtLength.setLayoutParams(new LinearLayout.LayoutParams(100, 50));
+							txtLength.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
 							EditText editTxtLength = new EditText(getActivity());
+							editTxtLength.setLayoutParams(new LinearLayout.LayoutParams(250, 50));
 							LinearLayout layoutLength = new LinearLayout(
 									getActivity());
 							layoutLength
@@ -467,7 +472,11 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 
 							//width
 							TextView txtWidth = new TextView(getActivity());
+							txtWidth.setText("Width: ");
+							txtWidth.setLayoutParams(new LinearLayout.LayoutParams(100, 50));
+							txtWidth.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
 							EditText editTxtWidth = new EditText(getActivity());
+							editTxtWidth.setLayoutParams(new LinearLayout.LayoutParams(250, 50));
 							LinearLayout layoutWidth = new LinearLayout(
 									getActivity());
 							layoutWidth
@@ -478,18 +487,26 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 					
 							//height
 							TextView txtHeight = new TextView(getActivity());
+							txtHeight.setText("Height: ");
+							txtHeight.setLayoutParams(new LinearLayout.LayoutParams(100, 50));
+							txtHeight.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
 							EditText editTxtHeight = new EditText(getActivity());
-							LinearLayout layoutheight = new LinearLayout(
+							editTxtHeight.setLayoutParams(new LinearLayout.LayoutParams(250, 50));
+							LinearLayout layoutHeight = new LinearLayout(
 									getActivity());
-							layoutheight
+							layoutHeight
 							.setOrientation(LinearLayout.HORIZONTAL);
-							layoutheight.setPadding(1, 2, 1, 2);
-							layoutheight.addView(txtHeight);
-							layoutheight.addView(editTxtHeight);
+							layoutHeight.setPadding(1, 2, 1, 2);
+							layoutHeight.addView(txtHeight);
+							layoutHeight.addView(editTxtHeight);
 							
 							//weight
 							TextView txtWeight = new TextView(getActivity());
+							txtWeight.setText("Weight: ");
+							txtWeight.setLayoutParams(new LinearLayout.LayoutParams(100, 50));
+							txtWeight.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
 							EditText editTxtWeight = new EditText(getActivity());
+							editTxtWeight.setLayoutParams(new LinearLayout.LayoutParams(250, 50));
 							LinearLayout layoutWeight = new LinearLayout(
 									getActivity());
 							layoutWeight
@@ -498,7 +515,16 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 							layoutWeight.addView(txtWeight);
 							layoutWeight.addView(editTxtWeight);
 
-							LinearLayout layoutSizeWeight = new LinearLayout(getActivity()); 
+							//size & weight layout
+							LinearLayout layoutSizeWeight = new LinearLayout(getActivity());
+							layoutSizeWeight
+							.setOrientation(LinearLayout.VERTICAL);
+							layoutSizeWeight.setPadding(1, 2, 1, 2);
+							layoutSizeWeight.addView(layoutLength);
+							layoutSizeWeight.addView(layoutWidth);
+							layoutSizeWeight.addView(layoutHeight);
+							layoutSizeWeight.addView(layoutWeight);
+							//end
 							
 							// button
 							Button btnDeletePackageSet = new Button(
@@ -564,6 +590,7 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 									.parseColor("#e1e1e1"));
 							layoutPackagesSet.setPadding(1, 2, 1, 2);
 							layoutPackagesSet.addView(txtTWCustomEntryNumber);
+							layoutPackagesSet.addView(layoutSizeWeight);
 							layoutPackagesSet
 									.addView(layoutPackageSetBtnsField);
 							layoutPackagesSet.addView(layoutTrackingNumberList);
