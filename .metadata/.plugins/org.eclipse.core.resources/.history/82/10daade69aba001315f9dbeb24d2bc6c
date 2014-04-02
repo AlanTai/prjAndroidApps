@@ -29,5 +29,5 @@
     
     <!-- TW Custom Entry -->
     <string name="btn_add_new_packages_set">Add New Package Set</string>
-    <string name="btn_submit_packages_sets">Submit Packages Information</string>
+    <string name="btn_submit_packages_sets">Submit Packages Info</string>
 </resources>

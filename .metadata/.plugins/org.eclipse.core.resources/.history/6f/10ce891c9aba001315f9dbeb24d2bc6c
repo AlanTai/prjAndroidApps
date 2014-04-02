@@ -784,7 +784,7 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 				jsonObjTWCustomEntryPackagesSets = null;
 				jsonObjTWCustomEntryPackageSizeWeight = null;
 				txtTWCustomEntryHandlingResult.setText("Successfully Submitted the Data");
-				txtSubmitResult.setText(p_result); //get response from server
+				//txtSubmitResult.setText(p_result);
 			}
 		}
 
@@ -856,11 +856,7 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 	private void initXMLViewComponents(View mView) {
 		txtIntroduction = (TextView) mView
 				.findViewById(R.id.txt_introduction_tw_custom_entry);
-		txtIntroduction.setText("TW Custom Entry Handler\n\n"
-				+ "1. Click 'Add New Package Set' button to get TW Custom Entry Barcode Number\n"
-				+ "2. Key in size and weight of package"
-				+ "3. Click 'Scan' button to scan package barcode"
-				+ "4. Click 'Submit Packages Information' button to submit information");
+		txtIntroduction.setText("TW Custom Entry Handler");
 
 		btnAddNewPackagesSet = (Button) mView
 				.findViewById(R.id.btn_add_new_packages_set_tw_custom_entry);
