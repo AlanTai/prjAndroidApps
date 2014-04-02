@@ -268,7 +268,7 @@ public class SpearnetPakcagesPickupFragment extends FragmentTemplate {
 					uploadPickedPackagesTrackingNumbersHandler = new WebContentDownloadHandler(
 							updateProgressBar);
 					uploadPickedPackagesTrackingNumbersHandler
-							.execute(new String[] { "https://exwine-tw.appspot.com/exshipper_spearnet_packages_pickup_handler" });
+							.execute(new String[] { "https://winever-test.appspot.com/exshipper_spearnet_packages_pickup_handler" });
 				} catch (JSONException e) {
 					Log.e("error", e.getMessage());
 				}

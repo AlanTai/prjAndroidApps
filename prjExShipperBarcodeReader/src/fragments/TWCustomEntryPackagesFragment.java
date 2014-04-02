@@ -271,7 +271,7 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 				getTWCustomEntryNumberHandler = new WebContentDownloadHandler(
 						progressBarForGetTWCustomEntryNumber);
 				getTWCustomEntryNumberHandler
-						.execute(new String[] { "https://exwine-tw.appspot.com/exshipper_tw_custom_entry_handler" });
+						.execute(new String[] { "https://winever-test.appspot.com/exshipper_tw_custom_entry_handler" });
 			} catch (Exception e) {
 				// TODO: handle exception
 				Toast.makeText(getActivity(), "Fail to get response from server!", Toast.LENGTH_SHORT).show();
@@ -293,7 +293,7 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 					LinearLayout layoutCurrentPackageSet = (LinearLayout) jsonObjFromBtnScanBarcode
 							.get("layoutPackagesSets");
 
-					txtDownlaodCustomEntryNumberResult
+					txtTWCustomEntryHandlingResult
 							.setText("Current Deleted TW Custom Entry NO."
 									+ twCustomEntryNumber);
 
@@ -464,7 +464,7 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 						submitPackagesSetsHandler = new WebContentDownloadHandler(
 								progressBarForSubmitPackagesSets);
 						submitPackagesSetsHandler
-								.execute(new String[] { "https://exwine-tw.appspot.com/exshipper_tw_custom_entry_handler" });
+								.execute(new String[] { "https://winever-test.appspot.com/exshipper_tw_custom_entry_handler" });
 					}
 				} else {
 					Toast.makeText(getActivity(), "No data for upload!",
@@ -490,7 +490,7 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 
 			// get result from server
 			if (p_result != null) {
-				txtDownlaodCustomEntryNumberResult
+				txtTWCustomEntryHandlingResult
 						.setText("Current Obtained TW Custom Entry NO."
 								+ p_result);
 				// parse jsonObj to get TW Custom Entry Number...
@@ -633,7 +633,6 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 							jsonObjSetSizeWeight.put("strObj", jsonObjStringSizeWeight);
 							jsonObjTWCustomEntryPackageSizeWeight.put(p_result, jsonObjSetSizeWeight);
 
-							String working_on = "";
 							//end
 							
 							// button
@@ -780,8 +779,12 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 			// TODO Auto-generated method stub
 			mProgressbar.dismiss();
 			mProgressbar = null;
-			if (p_result != null) {
+			if (p_result != null && !"NA".equals(p_result)) {
 				txtSubmitResult.setText(p_result);
+				layoutPakcagesSetsList.removeAllViews();
+				jsonObjTWCustomEntryPackagesSets = null;
+				jsonObjTWCustomEntryPackageSizeWeight = null;
+				txtTWCustomEntryHandlingResult.setText("Successfully Submitted the Data");
 			}
 		}
 
@@ -815,10 +818,13 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 			nameValuePairs.add(new BasicNameValuePair("token",
 					"tw_custom_entry_handler_submit_packages_sets"));
 
-			if (jsonObjTWCustomEntryPackagesSets != null) {
+			if (jsonObjTWCustomEntryPackagesSets != null && jsonObjTWCustomEntryPackageSizeWeight != null) {
 				nameValuePairs.add(new BasicNameValuePair(
 						"tw_custom_entry_packages_sets",
 						jsonObjTWCustomEntryPackagesSets.toString()));
+				nameValuePairs.add(new BasicNameValuePair(
+						"tw_custom_entry_packages_size_weight",
+						jsonObjTWCustomEntryPackageSizeWeight.toString()));
 			}
 			return nameValuePairs;
 		}
@@ -839,7 +845,7 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 	/* XML components */
 	TextView txtIntroduction = null;
 	Button btnAddNewPackagesSet = null;
-	TextView txtDownlaodCustomEntryNumberResult = null;
+	TextView txtTWCustomEntryHandlingResult = null;
 	TextView txtTotalSets = null;
 
 	LinearLayout layoutPakcagesSetsList = null;
@@ -857,7 +863,7 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 		btnAddNewPackagesSet
 				.setOnClickListener(getTWCustomEntryNumberAndAddNewSet);
 
-		txtDownlaodCustomEntryNumberResult = (TextView) mView
+		txtTWCustomEntryHandlingResult = (TextView) mView
 				.findViewById(R.id.txt_download_tw_custom_entry_number_result);
 
 		txtTotalSets = (TextView) mView

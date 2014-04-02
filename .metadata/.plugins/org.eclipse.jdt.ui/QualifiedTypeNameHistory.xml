@@ -37,7 +37,6 @@
 <fullyQualifiedTypeName name="com.exshipper.handlers.WebContentDownloadHandler"/>
 <fullyQualifiedTypeName name="android.util.TypedValue"/>
 <fullyQualifiedTypeName name="android.graphics.drawable.GradientDrawable.Orientation"/>
-<fullyQualifiedTypeName name="android.view.Gravity"/>
 <fullyQualifiedTypeName name="com.exshipper.listeners.ProgressBarUpdateListener"/>
 <fullyQualifiedTypeName name="android.support.v4.app.FragmentActivity"/>
 <fullyQualifiedTypeName name="java.lang.Boolean"/>
@@ -50,7 +49,6 @@
 <fullyQualifiedTypeName name="android.widget.FrameLayout"/>
 <fullyQualifiedTypeName name="android.widget.FrameLayout.LayoutParams"/>
 <fullyQualifiedTypeName name="org.apache.http.message.BasicNameValuePair"/>
-<fullyQualifiedTypeName name="com.exshipper.prjexshipperbarcodereader.R.drawable"/>
 <fullyQualifiedTypeName name="android.widget.TextView"/>
 <fullyQualifiedTypeName name="android.widget.LinearLayout.LayoutParams"/>
 <fullyQualifiedTypeName name="org.json.JSONArray"/>
@@ -59,5 +57,7 @@
 <fullyQualifiedTypeName name="android.widget.LinearLayout"/>
 <fullyQualifiedTypeName name="android.widget.EditText"/>
 <fullyQualifiedTypeName name="android.widget.Toast"/>
+<fullyQualifiedTypeName name="com.exshipper.prjexshipperbarcodereader.R.drawable"/>
+<fullyQualifiedTypeName name="android.view.Gravity"/>
 <fullyQualifiedTypeName name="org.json.JSONObject"/>
 </qualifiedTypeNameHistroy>
