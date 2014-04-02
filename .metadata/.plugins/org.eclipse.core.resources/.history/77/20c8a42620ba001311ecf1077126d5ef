@@ -221,6 +221,40 @@ public class SpearnetPakcagesPickupFragment extends FragmentTemplate {
 
 		@Override
 		public void onClick(View v) {
+			
+			//alert dialog
+			AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+					getActivity());
+			alertDialogBuilder.setTitle("SUDA Tracking Number");
+			alertDialogBuilder
+					.setMessage(
+							"Do you want to save the SUDA NO. "
+									+ suda_tracking_number + "?")
+					.setCancelable(false)
+					.setPositiveButton("Yes",
+							new DialogInterface.OnClickListener() {
+
+								@Override
+								public void onClick(DialogInterface dialog,
+										int which) {
+									
+								}
+							})
+					.setNegativeButton("No",
+							new DialogInterface.OnClickListener() {
+
+								@Override
+								public void onClick(DialogInterface dialog,
+										int which) {
+									dialog.cancel();
+								}
+							});
+
+			// create alert dialog
+			AlertDialog alertDialog = alertDialogBuilder.create();
+			alertDialog.show();
+			//end
+			
 			// TODO Auto-generated method stub
 			if (v instanceof Button) {
 				Button btn = (Button) v;

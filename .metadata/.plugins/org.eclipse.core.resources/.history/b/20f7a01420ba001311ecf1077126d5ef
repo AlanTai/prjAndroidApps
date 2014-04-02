@@ -221,25 +221,59 @@ public class SpearnetPakcagesPickupFragment extends FragmentTemplate {
 
 		@Override
 		public void onClick(View v) {
-			// TODO Auto-generated method stub
-			if (v instanceof Button) {
-				Button btn = (Button) v;
-				if (btn.getTag() instanceof LinearLayout) {
-					LinearLayout tagLayout = (LinearLayout) btn.getTag();
-					if (tagLayout.getTag() instanceof Integer) {
-						Integer tagKey = (Integer) tagLayout.getTag();
-						String value = sudaTrackingNumberMap.get(tagKey);
-						String msg = "*Current Deleted SUDA NO."
-								+ value;
-						txtScanResult.setText(msg);
-						sudaTrackingNumberMap.remove(tagKey);
-						layoutSUDATrackingNumbersList.removeView(tagLayout);
-						txtTotalAmount
-								.setText("*Total Amount of SUDA NO. ="
-										+ sudaTrackingNumberMap.size());
-					}
-				}
-			}
+			
+			//alert dialog
+			AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+					getActivity());
+			alertDialogBuilder.setTitle("SUDA Tracking Number");
+			alertDialogBuilder
+					.setMessage(
+							"Do you want to save the SUDA NO. "
+									+ suda_tracking_number + "?")
+					.setCancelable(false)
+					.setPositiveButton("Yes",
+							new DialogInterface.OnClickListener() {
+
+								@Override
+								public void onClick(DialogInterface dialog,
+										int which) {
+
+									// TODO Auto-generated method stub
+									if (v instanceof Button) {
+										Button btn = (Button) v;
+										if (btn.getTag() instanceof LinearLayout) {
+											LinearLayout tagLayout = (LinearLayout) btn.getTag();
+											if (tagLayout.getTag() instanceof Integer) {
+												Integer tagKey = (Integer) tagLayout.getTag();
+												String value = sudaTrackingNumberMap.get(tagKey);
+												String msg = "*Current Deleted SUDA NO."
+														+ value;
+												txtScanResult.setText(msg);
+												sudaTrackingNumberMap.remove(tagKey);
+												layoutSUDATrackingNumbersList.removeView(tagLayout);
+												txtTotalAmount
+														.setText("*Total Amount of SUDA NO. ="
+																+ sudaTrackingNumberMap.size());
+											}
+										}
+									}
+								}
+							})
+					.setNegativeButton("No",
+							new DialogInterface.OnClickListener() {
+
+								@Override
+								public void onClick(DialogInterface dialog,
+										int which) {
+									dialog.cancel();
+								}
+							});
+
+			// create alert dialog
+			AlertDialog alertDialog = alertDialogBuilder.create();
+			alertDialog.show();
+			//end
+			
 		}
 	};
 

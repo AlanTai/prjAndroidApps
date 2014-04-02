@@ -299,6 +299,7 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 
 					jsonObjTWCustomEntryPackagesSets
 							.remove(twCustomEntryNumber);
+					jsonObjTWCustomEntryPackageSizeWeight.remove(twCustomEntryNumber);
 					layoutCurrentPackageSet.removeAllViews();
 					layoutPakcagesSetsList.removeView(layoutCurrentPackageSet);
 				} catch (JSONException e) {
@@ -408,7 +409,7 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 						try{
 							float length = Float.parseFloat(editLength
 									.getText().toString());
-							jsonObjSizeWeight.put("length", String.valueOf(length));
+							jsonObjSizeWeight.put("length", length);
 							isSizeWeightInfoValided = true;
 						}
 						catch(Exception e){
@@ -419,7 +420,7 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 						try{
 							float width = Float.parseFloat(editWidth
 									.getText().toString());
-							jsonObjSizeWeight.put("width", String.valueOf(width));
+							jsonObjSizeWeight.put("width", width);
 							isSizeWeightInfoValided = true;
 						}
 						catch(Exception e){
@@ -430,7 +431,7 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 						try{
 							float height = Float.parseFloat(editHeight
 									.getText().toString());
-							jsonObjSizeWeight.put("height", String.valueOf(height));
+							jsonObjSizeWeight.put("height", height);
 							isSizeWeightInfoValided = true;
 						}
 						catch(Exception e){
@@ -441,7 +442,7 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 						try{
 							float weight = Float.parseFloat(editWeight
 									.getText().toString());
-							jsonObjSizeWeight.put("weight", String.valueOf(weight));
+							jsonObjSizeWeight.put("weight", weight);
 							isSizeWeightInfoValided = true;
 						}
 						catch(Exception e){

@@ -221,6 +221,114 @@ public class SpearnetPakcagesPickupFragment extends FragmentTemplate {
 
 		@Override
 		public void onClick(View v) {
+			
+			//alert dialog
+			AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+					getActivity());
+			alertDialogBuilder.setTitle("SUDA Tracking Number");
+			alertDialogBuilder
+					.setMessage(
+							"Do you want to save the SUDA NO. "
+									+ suda_tracking_number + "?")
+					.setCancelable(false)
+					.setPositiveButton("Yes",
+							new DialogInterface.OnClickListener() {
+
+								@Override
+								public void onClick(DialogInterface dialog,
+										int which) {
+									if (!sudaTrackingNumberMap
+											.containsValue(suda_tracking_number)) {
+										// add new suda tracking number into
+										// MapList
+										sudaTrackingNumberMap.put(
+												suda_tracking_number
+														.hashCode(),
+												suda_tracking_number);
+										scanResult = "*Current Obtained SUDA NO. "
+												+ suda_tracking_number;
+
+										txtScanResult.setText(scanResult);
+										txtTotalAmount
+												.setText("*Total Amount of SUDA NO. = "
+														+ sudaTrackingNumberMap
+																.size());
+
+										// append suda tracking number info
+										// onto layout-list
+										TextView txtAddedSUDATrackingNumber = new TextView(
+												getActivity());
+										txtAddedSUDATrackingNumber.setTextColor(Color
+												.parseColor("#04550E"));
+										txtAddedSUDATrackingNumber
+												.setTextSize(
+														TypedValue.COMPLEX_UNIT_SP,
+														16);
+										txtAddedSUDATrackingNumber
+												.setText("SUDA NO."+suda_tracking_number);
+										txtAddedSUDATrackingNumber
+												.setGravity(Gravity.CENTER);
+										txtAddedSUDATrackingNumber
+												.setPadding(3, 2, 1, 2);
+
+										Button deleteBtn = new Button(
+												getActivity());
+										deleteBtn.setTextSize(
+												TypedValue.COMPLEX_UNIT_SP,
+												16);
+										deleteBtn.setTextColor(Color
+												.parseColor("#ff0000"));
+										deleteBtn.setText("Delete NO.");
+										deleteBtn
+												.setBackgroundColor(Color.TRANSPARENT);
+										deleteBtn
+												.setGravity(Gravity.CENTER);
+										deleteBtn.setBackgroundResource(R.drawable.clicked_item);
+										deleteBtn.setPadding(3, 2, 1, 2);
+										deleteBtn
+												.setOnClickListener(deleteSUDATrackingNumberInfo);
+
+										LinearLayout layoutSUDATrackingNumberInfoRow = new LinearLayout(
+												getActivity());
+										layoutSUDATrackingNumberInfoRow
+												.setOrientation(LinearLayout.HORIZONTAL);
+										layoutSUDATrackingNumberInfoRow
+												.setPadding(1, 2, 1, 2);
+										layoutSUDATrackingNumberInfoRow
+										.addView(deleteBtn);
+										layoutSUDATrackingNumberInfoRow
+												.addView(txtAddedSUDATrackingNumber);
+										layoutSUDATrackingNumberInfoRow
+												.setTag(suda_tracking_number
+														.hashCode());
+
+										deleteBtn
+												.setTag(layoutSUDATrackingNumberInfoRow);
+										layoutSUDATrackingNumbersList
+												.addView(layoutSUDATrackingNumberInfoRow);
+									} else {
+										Toast.makeText(
+												getActivity(),
+												"SUDA NO. Duplicated!",
+												Toast.LENGTH_LONG).show();
+									}
+								}
+							})
+					.setNegativeButton("No",
+							new DialogInterface.OnClickListener() {
+
+								@Override
+								public void onClick(DialogInterface dialog,
+										int which) {
+									dialog.cancel();
+								}
+							});
+
+			// create alert dialog
+			AlertDialog alertDialog = alertDialogBuilder.create();
+			alertDialog.show();
+			//end
+			
 			// TODO Auto-generated method stub
 			if (v instanceof Button) {
 				Button btn = (Button) v;
@@ -240,6 +348,10 @@ public class SpearnetPakcagesPickupFragment extends FragmentTemplate {
 					}
 				}
 			}
+			
+			
+			
+			
 		}
 	};
 

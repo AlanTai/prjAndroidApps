@@ -343,7 +343,6 @@ public class SpearnetPakcagesPickupFragment extends FragmentTemplate {
 	};
 	// end of self-defined listeners
 
-	
 	/* XML view components */
 	TextView txtAppIntroduction = null;
 	Button btnScan = null;

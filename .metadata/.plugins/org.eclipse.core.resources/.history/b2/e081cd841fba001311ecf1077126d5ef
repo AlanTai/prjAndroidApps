@@ -221,6 +221,8 @@ public class SpearnetPakcagesPickupFragment extends FragmentTemplate {
 
 		@Override
 		public void onClick(View v) {
+			
+			
 			// TODO Auto-generated method stub
 			if (v instanceof Button) {
 				Button btn = (Button) v;
@@ -240,6 +242,10 @@ public class SpearnetPakcagesPickupFragment extends FragmentTemplate {
 					}
 				}
 			}
+			
+			
+			
+			
 		}
 	};
 
