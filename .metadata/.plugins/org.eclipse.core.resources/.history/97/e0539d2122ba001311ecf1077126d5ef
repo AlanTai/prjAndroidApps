@@ -551,11 +551,9 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 							txtLength.setText("Length(inch): ");
 							txtLength.setLayoutParams(new LinearLayout.LayoutParams(150, 50));
 							txtLength.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
-							txtLength.setGravity(Gravity.CENTER);
 							EditText editTxtLength = new EditText(getActivity());
 							editTxtLength.setLayoutParams(new LinearLayout.LayoutParams(250, 50));
 							editTxtLength.setInputType(InputType.TYPE_NUMBER_FLAG_DECIMAL);
-							editTxtLength.setGravity(Gravity.CENTER);
 							LinearLayout layoutLength = new LinearLayout(
 									getActivity());
 							layoutLength

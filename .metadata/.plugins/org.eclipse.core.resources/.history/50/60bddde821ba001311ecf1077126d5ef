@@ -551,11 +551,9 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 							txtLength.setText("Length(inch): ");
 							txtLength.setLayoutParams(new LinearLayout.LayoutParams(150, 50));
 							txtLength.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
-							txtLength.setGravity(Gravity.CENTER);
 							EditText editTxtLength = new EditText(getActivity());
 							editTxtLength.setLayoutParams(new LinearLayout.LayoutParams(250, 50));
 							editTxtLength.setInputType(InputType.TYPE_NUMBER_FLAG_DECIMAL);
-							editTxtLength.setGravity(Gravity.CENTER);
 							LinearLayout layoutLength = new LinearLayout(
 									getActivity());
 							layoutLength
@@ -569,11 +567,9 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 							txtWidth.setText("Width(inch): ");
 							txtWidth.setLayoutParams(new LinearLayout.LayoutParams(150, 50));
 							txtWidth.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
-							txtWidth.setGravity(Gravity.CENTER);
 							EditText editTxtWidth = new EditText(getActivity());
 							editTxtWidth.setLayoutParams(new LinearLayout.LayoutParams(250, 50));
 							editTxtWidth.setInputType(InputType.TYPE_NUMBER_FLAG_DECIMAL);
-							editTxtWidth.setGravity(Gravity.CENTER);
 							LinearLayout layoutWidth = new LinearLayout(
 									getActivity());
 							layoutWidth
@@ -587,11 +583,9 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 							txtHeight.setText("Height(inch): ");
 							txtHeight.setLayoutParams(new LinearLayout.LayoutParams(150, 50));
 							txtHeight.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
-							txtHeight.setGravity(Gravity.CENTER);
 							EditText editTxtHeight = new EditText(getActivity());
 							editTxtHeight.setLayoutParams(new LinearLayout.LayoutParams(250, 50));
 							editTxtHeight.setInputType(InputType.TYPE_NUMBER_FLAG_DECIMAL);
-							editTxtHeight.setGravity(Gravity.CENTER);
 							LinearLayout layoutHeight = new LinearLayout(
 									getActivity());
 							layoutHeight
