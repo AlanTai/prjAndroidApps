@@ -361,8 +361,8 @@ public class SpearnetPakcagesPickupFragment extends FragmentTemplate {
 				.findViewById(R.id.txt_introduction);
 		txtAppIntroduction
 				.setText("Spearnet Packages Pickup Handler\n\n"
-						+ "1. Click button 'Scan SUDA Barcode' to scan the package barcode (If you want to delete the barcode, please click the \'Delete\' key word)\n"
-						+ "2. Click button 'Submit SUDA Numbers' to submit the SUDA numbers to the server\n"
+						+ "1. Scan all packages' barcodes (If you want to delete the barcode, please click the \'Delete\' key word)\n"
+						+ "2. Submit the SUDA NO. to the server and wait for the reply\n"
 						+ "3. Once you get response from the server, you're done\n");
 		btnScan = (Button) mView.findViewById(R.id.btn_scan);
 		btnScan.setOnClickListener(startBarcodeReader);
