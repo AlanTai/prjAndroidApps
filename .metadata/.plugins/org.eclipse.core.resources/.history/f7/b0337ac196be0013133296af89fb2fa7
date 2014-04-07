@@ -783,27 +783,20 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 				JSONObject jsonObj = null;
 				try{
 					jsonObj = new JSONObject(p_result);
-					String key = jsonObj.getString("key");
-					if("success".equals(key)){
+					if("success".equals(jsonObj.get("key"))){
 						layoutPakcagesSetsList.removeAllViews();
 						jsonObjTWCustomEntryPackagesSets = null;
 						jsonObjTWCustomEntryPackageSizeWeight = null;
 						txtTWCustomEntryHandlingResult.setText("Successfully Submitted the Data");
-						String result = jsonObj.getString("result");
-						txtSubmitResult.setText(result); //get response from server
-					}
-					else if("na".equals(key)){
-						String result = jsonObj.getString("result");
-						txtSubmitResult.setText(result); //get response from server
-					}
-					else if("unknown_package".equals(key)){
-						String result = jsonObj.getString("result");
-						txtSubmitResult.setText(result); //get response from server
+						txtSubmitResult.setText(p_result); //get response from server
 					}
 				}
 				catch(Exception e){
 					Log.e("error", e.getMessage());
 				}
+				
+				
+				
 			}
 		}
 

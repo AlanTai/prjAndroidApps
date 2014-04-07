@@ -780,30 +780,19 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 			mProgressbar.dismiss();
 			mProgressbar = null;
 			if (p_result != null && !"NA".equals(p_result)) {
-				JSONObject jsonObj = null;
 				try{
-					jsonObj = new JSONObject(p_result);
-					String key = jsonObj.getString("key");
-					if("success".equals(key)){
-						layoutPakcagesSetsList.removeAllViews();
-						jsonObjTWCustomEntryPackagesSets = null;
-						jsonObjTWCustomEntryPackageSizeWeight = null;
-						txtTWCustomEntryHandlingResult.setText("Successfully Submitted the Data");
-						String result = jsonObj.getString("result");
-						txtSubmitResult.setText(result); //get response from server
-					}
-					else if("na".equals(key)){
-						String result = jsonObj.getString("result");
-						txtSubmitResult.setText(result); //get response from server
-					}
-					else if("unknown_package".equals(key)){
-						String result = jsonObj.getString("result");
-						txtSubmitResult.setText(result); //get response from server
-					}
+					JSONObject jsonObj = new JSONObject(p_result);
 				}
 				catch(Exception e){
 					Log.e("error", e.getMessage());
 				}
+				
+				
+				layoutPakcagesSetsList.removeAllViews();
+				jsonObjTWCustomEntryPackagesSets = null;
+				jsonObjTWCustomEntryPackageSizeWeight = null;
+				txtTWCustomEntryHandlingResult.setText("Successfully Submitted the Data");
+				txtSubmitResult.setText(p_result); //get response from server
 			}
 		}
 
