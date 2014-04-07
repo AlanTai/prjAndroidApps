@@ -289,7 +289,7 @@ public class SpearnetPakcagesPickupFragment extends FragmentTemplate {
 			if (mProgressBar == null) {
 				mProgressBar = new ProgressDialog(getActivity());
 				mProgressBar.setCancelable(false);
-				mProgressBar.setMessage("Uploading Data...");
+				mProgressBar.setMessage("Processing...");
 				mProgressBar.setProgressStyle(ProgressDialog.STYLE_SPINNER);
 				mProgressBar.show();
 			}
@@ -315,28 +315,7 @@ public class SpearnetPakcagesPickupFragment extends FragmentTemplate {
 			
 			//get result from server
 			if (p_result != null) {
-				JSONObject jsonObj = null;
-				try{
-					jsonObj = new JSONObject(p_result);
-					String key = jsonObj.getString("key");
-					String result = jsonObj.getString("result");
-					if("success".equals(key)){
-						jsonArySUDATrackingNumberList = null;
-						jsonObjSUDATrackingNumbers = null;
-						layoutSUDATrackingNumbersList.removeAllViews();
-						txtSubmitResult.setText(result);
-					}
-					else if("duplicated_number".equals(key)){
-						txtSubmitResult.setText(result);
-					}
-					else if("unknown".equals(result)){
-						txtSubmitResult.setText(result);
-					}
-				}
-				catch(Exception e){
-					Log.e("UpdateResult error", e.getMessage());
-				}
-				
+				txtSubmitResult.setText(p_result);
 			}
 		}
 
