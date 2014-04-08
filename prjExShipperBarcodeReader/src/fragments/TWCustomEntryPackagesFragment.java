@@ -792,10 +792,7 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 						txtTWCustomEntryHandlingResult.setText("Successfully Submitted the Data");
 						txtSubmitResult.setText(result); //get response from server
 					}
-					else if("na".equals(key)){
-						txtSubmitResult.setText(result); //get response from server
-					}
-					else if("unknown_package".equals(key)){
+					else{
 						txtSubmitResult.setText(result); //get response from server
 					}
 				}

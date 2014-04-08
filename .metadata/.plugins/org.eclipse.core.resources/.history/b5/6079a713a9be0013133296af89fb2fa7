@@ -271,7 +271,7 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 				getTWCustomEntryNumberHandler = new WebContentDownloadHandler(
 						progressBarForGetTWCustomEntryNumber);
 				getTWCustomEntryNumberHandler
-						.execute(new String[] { "https://exwine-tw.appspot.com/exshipper_tw_custom_entry_handler" });
+						.execute(new String[] { "https://winever-test.appspot.com/exshipper_tw_custom_entry_handler" });
 			} catch (Exception e) {
 				// TODO: handle exception
 				Toast.makeText(getActivity(), "Fail to get response from server!", Toast.LENGTH_SHORT).show();
@@ -293,7 +293,7 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 					LinearLayout layoutCurrentPackageSet = (LinearLayout) jsonObjFromBtnScanBarcode
 							.get("layoutPackagesSets");
 
-					txtDownlaodCustomEntryNumberResult
+					txtTWCustomEntryHandlingResult
 							.setText("Current Deleted TW Custom Entry NO."
 									+ twCustomEntryNumber);
 
@@ -464,7 +464,7 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 						submitPackagesSetsHandler = new WebContentDownloadHandler(
 								progressBarForSubmitPackagesSets);
 						submitPackagesSetsHandler
-								.execute(new String[] { "https://exwine-tw.appspot.com/exshipper_tw_custom_entry_handler" });
+								.execute(new String[] { "https://winever-test.appspot.com/exshipper_tw_custom_entry_handler" });
 					}
 				} else {
 					Toast.makeText(getActivity(), "No data for upload!",
@@ -490,7 +490,7 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 
 			// get result from server
 			if (p_result != null) {
-				txtDownlaodCustomEntryNumberResult
+				txtTWCustomEntryHandlingResult
 						.setText("Current Obtained TW Custom Entry NO."
 								+ p_result);
 				// parse jsonObj to get TW Custom Entry Number...
@@ -633,7 +633,6 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 							jsonObjSetSizeWeight.put("strObj", jsonObjStringSizeWeight);
 							jsonObjTWCustomEntryPackageSizeWeight.put(p_result, jsonObjSetSizeWeight);
 
-							String working_on = "";
 							//end
 							
 							// button
@@ -781,7 +780,28 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 			mProgressbar.dismiss();
 			mProgressbar = null;
 			if (p_result != null) {
-				txtSubmitResult.setText(p_result);
+				JSONObject jsonObj = null;
+				try{
+					jsonObj = new JSONObject(p_result);
+					String key = jsonObj.getString("key");
+					String result = jsonObj.getString("result");
+					if("success".equals(key)){
+						layoutPakcagesSetsList.removeAllViews();
+						jsonObjTWCustomEntryPackagesSets = null;
+						jsonObjTWCustomEntryPackageSizeWeight = null;
+						txtTWCustomEntryHandlingResult.setText("Successfully Submitted the Data");
+						txtSubmitResult.setText(result); //get response from server
+					}
+					else if("na".equals(key)){
+						txtSubmitResult.setText(result); //get response from server
+					}
+					else if("unknown_package".equals(key)){
+						txtSubmitResult.setText(result); //get response from server
+					}
+				}
+				catch(Exception e){
+					Log.e("error", e.getMessage());
+				}
 			}
 		}
 
@@ -815,10 +835,13 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 			nameValuePairs.add(new BasicNameValuePair("token",
 					"tw_custom_entry_handler_submit_packages_sets"));
 
-			if (jsonObjTWCustomEntryPackagesSets != null) {
+			if (jsonObjTWCustomEntryPackagesSets != null && jsonObjTWCustomEntryPackageSizeWeight != null) {
 				nameValuePairs.add(new BasicNameValuePair(
 						"tw_custom_entry_packages_sets",
 						jsonObjTWCustomEntryPackagesSets.toString()));
+				nameValuePairs.add(new BasicNameValuePair(
+						"tw_custom_entry_packages_size_weight",
+						jsonObjTWCustomEntryPackageSizeWeight.toString()));
 			}
 			return nameValuePairs;
 		}
@@ -839,7 +862,7 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 	/* XML components */
 	TextView txtIntroduction = null;
 	Button btnAddNewPackagesSet = null;
-	TextView txtDownlaodCustomEntryNumberResult = null;
+	TextView txtTWCustomEntryHandlingResult = null;
 	TextView txtTotalSets = null;
 
 	LinearLayout layoutPakcagesSetsList = null;
@@ -850,14 +873,19 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 	private void initXMLViewComponents(View mView) {
 		txtIntroduction = (TextView) mView
 				.findViewById(R.id.txt_introduction_tw_custom_entry);
-		txtIntroduction.setText("TW Custom Entry Handler");
+		txtIntroduction.setText("TW Custom Entry Handler\n\n"
+				+ "1. Click 'Add New Package Set' button to get TW Custom Entry Barcode Number; (If you want to delete the barcode or the package set, please click the \'Delete\' key word)\n"
+				+ "2. Key in size and weight of package\n"
+				+ "3. Click 'Scan' button to scan package barcode\n"
+				+ "4. Click 'Submit Packages Information' button to submit information\n"
+				+ "5. Once you get response from server, you're done\n");
 
 		btnAddNewPackagesSet = (Button) mView
 				.findViewById(R.id.btn_add_new_packages_set_tw_custom_entry);
 		btnAddNewPackagesSet
 				.setOnClickListener(getTWCustomEntryNumberAndAddNewSet);
 
-		txtDownlaodCustomEntryNumberResult = (TextView) mView
+		txtTWCustomEntryHandlingResult = (TextView) mView
 				.findViewById(R.id.txt_download_tw_custom_entry_number_result);
 
 		txtTotalSets = (TextView) mView

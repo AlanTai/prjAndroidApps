@@ -325,10 +325,11 @@ public class SpearnetPakcagesPickupFragment extends FragmentTemplate {
 						jsonObjSUDATrackingNumbers = null;
 						layoutSUDATrackingNumbersList.removeAllViews();
 						txtSubmitResult.setText(result);
-						txtScanResult.setText("");
-						txtTotalAmount.setText("");
 					}
-					else{
+					else if("duplicated_number".equals(key)){
+						txtSubmitResult.setText(result);
+					}
+					else if("unknown".equals(result)){
 						txtSubmitResult.setText(result);
 					}
 				}

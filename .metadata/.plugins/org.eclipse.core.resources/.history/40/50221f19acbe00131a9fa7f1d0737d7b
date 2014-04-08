@@ -325,8 +325,6 @@ public class SpearnetPakcagesPickupFragment extends FragmentTemplate {
 						jsonObjSUDATrackingNumbers = null;
 						layoutSUDATrackingNumbersList.removeAllViews();
 						txtSubmitResult.setText(result);
-						txtScanResult.setText("");
-						txtTotalAmount.setText("");
 					}
 					else{
 						txtSubmitResult.setText(result);

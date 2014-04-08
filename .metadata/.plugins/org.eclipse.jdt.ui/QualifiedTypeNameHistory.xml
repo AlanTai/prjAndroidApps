@@ -53,11 +53,11 @@
 <fullyQualifiedTypeName name="android.widget.LinearLayout.LayoutParams"/>
 <fullyQualifiedTypeName name="org.json.JSONArray"/>
 <fullyQualifiedTypeName name="android.text.InputType"/>
-<fullyQualifiedTypeName name="java.lang.Exception"/>
 <fullyQualifiedTypeName name="android.widget.LinearLayout"/>
 <fullyQualifiedTypeName name="android.widget.EditText"/>
 <fullyQualifiedTypeName name="android.widget.Toast"/>
 <fullyQualifiedTypeName name="com.exshipper.prjexshipperbarcodereader.R.drawable"/>
 <fullyQualifiedTypeName name="android.view.Gravity"/>
+<fullyQualifiedTypeName name="java.lang.Exception"/>
 <fullyQualifiedTypeName name="org.json.JSONObject"/>
 </qualifiedTypeNameHistroy>
