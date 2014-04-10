@@ -662,7 +662,6 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 									.setBackgroundColor(Color.TRANSPARENT);
 							btnStartBarcodeReader.setGravity(Gravity.CENTER);
 							btnStartBarcodeReader.setText("Scan");
-							btnStartBarcodeReader.setBackgroundResource(R.drawable.clicked_item);
 							btnStartBarcodeReader
 									.setOnClickListener(startBarcodeReader);
 

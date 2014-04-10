@@ -391,7 +391,6 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 					//end
 					
 					//check if information of size & weight are empty
-					boolean isSizeWeightInfoValided = false;
 					JSONArray jsonArySizeWeightInfoNames = jsonObjTWCustomEntryPackageSizeWeight.names();
 					for (int ith = 0 ; ith < jsonArySizeWeightInfoNames.length() ; ith++){
 						JSONObject jsonObj= (JSONObject) jsonObjTWCustomEntryPackageSizeWeight.get(jsonArySizeWeightInfoNames.getString(ith));
@@ -662,7 +661,6 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 									.setBackgroundColor(Color.TRANSPARENT);
 							btnStartBarcodeReader.setGravity(Gravity.CENTER);
 							btnStartBarcodeReader.setText("Scan");
-							btnStartBarcodeReader.setBackgroundResource(R.drawable.clicked_item);
 							btnStartBarcodeReader
 									.setOnClickListener(startBarcodeReader);
 
