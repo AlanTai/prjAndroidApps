@@ -11,5 +11,11 @@
         android:orderInCategory="100"
         android:showAsAction="never"
         android:title="@string/menu_tw_custom_entry_packages_handler"/>
+    
+    <item
+        android:id="@+id/app_exit"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="@string/app_exit"/>
 
 </menu>

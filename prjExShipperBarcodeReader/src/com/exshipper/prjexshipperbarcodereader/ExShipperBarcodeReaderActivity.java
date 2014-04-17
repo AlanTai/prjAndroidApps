@@ -1,32 +1,15 @@
 package com.exshipper.prjexshipperbarcodereader;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import org.json.JSONArray;
-import org.json.JSONObject;
-
 import android.os.Bundle;
+import android.os.Process;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.view.Menu;
 import android.view.MenuItem;
-import com.exshipper.handlers.WebContentDownloadHandler;
 import fragments.MainFragment;
 import fragments.SpearnetPakcagesPickupFragment;
 
 public class ExShipperBarcodeReaderActivity extends FragmentActivity {
-
-	// inner variables
-	String suda_tracking_number = null;
-	String scanResult = "";
-	Map<Integer, String> sudaTrackingNumberMap = new HashMap<Integer, String>();
-	JSONObject suda_tracking_numbers_json_obj = null;
-	JSONArray suda_tracking_number_list = null;
-
-	WebContentDownloadHandler uploadPickedPackagesTrackingNumbers = null;
-	// end of inner variables & init function
-
 	// fragments management
 	FragmentManager fm =null;
 	MainFragment mainFragment = null;
@@ -64,6 +47,8 @@ public class ExShipperBarcodeReaderActivity extends FragmentActivity {
 			break;
 		case R.id.tw_custom_entry_packages_handler:
 			mainFragment.gotoTWCustomEntryPackagesHandler();
+		case R.id.app_exit:
+			Process.killProcess(Process.myPid()); //force to kill the app
 		default:
 			break;
 		}
@@ -77,14 +62,6 @@ public class ExShipperBarcodeReaderActivity extends FragmentActivity {
 	}
 	
 	private void setNullForAllVariables(){
-		suda_tracking_number = null;
-		sudaTrackingNumberMap = null;
-		suda_tracking_numbers_json_obj = null;
-		suda_tracking_number_list = null;
-
-		uploadPickedPackagesTrackingNumbers = null;
-		// end of inner variables & init function
-
 		// fragments management
 		fm =null;
 		mainFragment = null;

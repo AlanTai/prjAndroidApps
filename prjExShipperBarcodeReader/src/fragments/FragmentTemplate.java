@@ -8,11 +8,11 @@ import android.support.v4.app.FragmentTransaction;
 
 public class FragmentTemplate extends Fragment {
 	//
+	private int currentTabHandler = 0x0;
 	private static final int EXSHIPPER_LOGIN = 0x1;
 	private static final int EXSHIPPER_SPEARNET_PACKAGES_PICKUP_HANDLER = 0x2;
 	private static final int EXSHIPPER_TW_CUSTOM_ENTRY_PACKAGES_HANDLER = 0x3;
 
-	private int currentTabHandler = 0x0;
 	
 	//---functions of toggling fragments---
 	public void gotoLogin() {
