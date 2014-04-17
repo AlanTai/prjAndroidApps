@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename field &apos;delete_view&apos; in &apos;fragments.SpearnetPakcagesPickupFragment&apos; to &apos;viewDeleteBtn&apos;&#x0A;- Original project: &apos;prjExShipperBarcodeReader&apos;&#x0A;- Original element: &apos;fragments.SpearnetPakcagesPickupFragment.delete_view&apos;&#x0A;- Renamed element: &apos;fragments.SpearnetPakcagesPickupFragment.viewDeleteBtn&apos;&#x0A;- Update references to refactored element&#x0A;- Update textual occurrences in comments and strings" delegate="false" deprecate="false" description="Rename field &apos;delete_view&apos;" flags="589826" getter="false" id="org.eclipse.jdt.ui.rename.field" input="/src&lt;fragments{SpearnetPakcagesPickupFragment.java[SpearnetPakcagesPickupFragment^delete_view" name="viewDeleteBtn" references="true" setter="false" stamp="1397753063656" textual="false" version="1.0"/>
+</session>

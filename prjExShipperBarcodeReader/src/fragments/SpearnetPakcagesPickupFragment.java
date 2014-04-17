@@ -37,14 +37,19 @@ import android.widget.Toast;
 
 public class SpearnetPakcagesPickupFragment extends FragmentTemplate {
 	// inner variables
-	String suda_tracking_number = null;
-	String scanResult = "";
-	Map<Integer, String> sudaTrackingNumberMap = new HashMap<Integer, String>();
-	JSONObject jsonObjSUDATrackingNumbers = null;
-	JSONArray jsonArySUDATrackingNumberList = null;
+	private String suda_tracking_number = null;
+	private String scanResult = "";
+	private Map<Integer, String> sudaTrackingNumberMap = new HashMap<Integer, String>();
 
-	WebContentDownloadHandler uploadPickedPackagesTrackingNumbersHandler = null;
-	ProgressDialog mProgressBar = null;
+	private JSONObject jsonObjSUDATrackingNumbers = null;
+	private JSONArray jsonArySUDATrackingNumberList = null;
+
+	private WebContentDownloadHandler uploadPickedPackagesTrackingNumbersHandler = null;
+	private ProgressDialog mProgressBar = null;
+
+	
+	private View viewDeleteBtn = null;
+	private AlertDialog.Builder alertDialogBuilder = null;
 
 	// end of inner variables & init function
 
@@ -80,6 +85,11 @@ public class SpearnetPakcagesPickupFragment extends FragmentTemplate {
 		super.onDestroy();
 	}
 
+	/* alert dialog setup trigger parameter */
+	boolean isTriggerFunction = false;
+
+	/* end alert dialog setup */
+
 	@Override
 	public void onActivityResult(int requestCode, int resultCode,
 			Intent p_intent) {
@@ -89,7 +99,7 @@ public class SpearnetPakcagesPickupFragment extends FragmentTemplate {
 			if (resultCode == FragmentActivity.RESULT_OK) {
 				suda_tracking_number = p_intent.getStringExtra("SCAN_RESULT");
 
-				//alert dialog
+				// alert dialog
 				AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
 						getActivity());
 				alertDialogBuilder.setTitle("SUDA Tracking Number");
@@ -132,7 +142,8 @@ public class SpearnetPakcagesPickupFragment extends FragmentTemplate {
 															TypedValue.COMPLEX_UNIT_SP,
 															16);
 											txtAddedSUDATrackingNumber
-													.setText("SUDA NO."+suda_tracking_number);
+													.setText("SUDA NO."
+															+ suda_tracking_number);
 											txtAddedSUDATrackingNumber
 													.setGravity(Gravity.CENTER);
 											txtAddedSUDATrackingNumber
@@ -140,18 +151,22 @@ public class SpearnetPakcagesPickupFragment extends FragmentTemplate {
 
 											Button btnDeleteSUDATrackingNumber = new Button(
 													getActivity());
-											btnDeleteSUDATrackingNumber.setTextSize(
-													TypedValue.COMPLEX_UNIT_SP,
-													16);
+											btnDeleteSUDATrackingNumber
+													.setTextSize(
+															TypedValue.COMPLEX_UNIT_SP,
+															16);
 											btnDeleteSUDATrackingNumber.setTextColor(Color
 													.parseColor("#ff0000"));
-											btnDeleteSUDATrackingNumber.setText("Delete NO.");
+											btnDeleteSUDATrackingNumber
+													.setText("Delete NO.");
 											btnDeleteSUDATrackingNumber
 													.setBackgroundColor(Color.TRANSPARENT);
 											btnDeleteSUDATrackingNumber
 													.setGravity(Gravity.CENTER);
-											btnDeleteSUDATrackingNumber.setBackgroundResource(R.drawable.clicked_item);
-											btnDeleteSUDATrackingNumber.setPadding(3, 2, 1, 2);
+											btnDeleteSUDATrackingNumber
+													.setBackgroundResource(R.drawable.clicked_item);
+											btnDeleteSUDATrackingNumber
+													.setPadding(3, 2, 1, 2);
 											btnDeleteSUDATrackingNumber
 													.setOnClickListener(deleteSUDATrackingNumberInfo);
 
@@ -162,7 +177,7 @@ public class SpearnetPakcagesPickupFragment extends FragmentTemplate {
 											layoutSUDATrackingNumberInfoRow
 													.setPadding(1, 2, 1, 2);
 											layoutSUDATrackingNumberInfoRow
-											.addView(btnDeleteSUDATrackingNumber);
+													.addView(btnDeleteSUDATrackingNumber);
 											layoutSUDATrackingNumberInfoRow
 													.addView(txtAddedSUDATrackingNumber);
 											layoutSUDATrackingNumberInfoRow
@@ -174,8 +189,7 @@ public class SpearnetPakcagesPickupFragment extends FragmentTemplate {
 											layoutSUDATrackingNumbersList
 													.addView(layoutSUDATrackingNumberInfoRow);
 										} else {
-											Toast.makeText(
-													getActivity(),
+											Toast.makeText(getActivity(),
 													"SUDA NO. Duplicated!",
 													Toast.LENGTH_LONG).show();
 										}
@@ -213,33 +227,60 @@ public class SpearnetPakcagesPickupFragment extends FragmentTemplate {
 			Intent myIntent = new Intent("com.google.zxing.client.android.SCAN");
 			myIntent.putExtra("SCAN_MODE", "ONE_D_MODE");
 			startActivityForResult(myIntent, 0);
-			
+
 		}
 	};
 
 	OnClickListener deleteSUDATrackingNumberInfo = new OnClickListener() {
-
 		@Override
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
-			if (v instanceof Button) {
-				Button btn = (Button) v;
-				if (btn.getTag() instanceof LinearLayout) {
-					LinearLayout tagLayout = (LinearLayout) btn.getTag();
-					if (tagLayout.getTag() instanceof Integer) {
-						Integer tagKey = (Integer) tagLayout.getTag();
-						String value = sudaTrackingNumberMap.get(tagKey);
-						String msg = "*Current Deleted SUDA NO."
-								+ value;
-						txtScanResult.setText(msg);
-						sudaTrackingNumberMap.remove(tagKey);
-						layoutSUDATrackingNumbersList.removeView(tagLayout);
-						txtTotalAmount
-								.setText("*Total Amount of SUDA NO. ="
-										+ sudaTrackingNumberMap.size());
+			viewDeleteBtn = v;
+			if (alertDialogBuilder == null) {
+				alertDialogBuilder = new AlertDialog.Builder(getActivity());
+			}
+			DialogInterface.OnClickListener currentDialogListener = new DialogInterface.OnClickListener() {
+				@Override
+				public void onClick(DialogInterface dialog,
+						int which) {
+					// TODO Auto-generated method stub
+					if (viewDeleteBtn instanceof Button) {
+						Button btn = (Button) viewDeleteBtn;
+						if (btn.getTag() instanceof LinearLayout) {
+							LinearLayout tagLayout = (LinearLayout) btn.getTag();
+							if (tagLayout.getTag() instanceof Integer) {
+								Integer tagKey = (Integer) tagLayout.getTag();
+								String value = sudaTrackingNumberMap.get(tagKey);
+								String msg = "*Current Deleted SUDA NO." + value;
+								txtScanResult.setText(msg);
+								sudaTrackingNumberMap.remove(tagKey);
+								layoutSUDATrackingNumbersList.removeView(tagLayout);
+								txtTotalAmount
+										.setText("*Total Amount of SUDA NO. ="
+												+ sudaTrackingNumberMap.size());
+							}
+						}
 					}
 				}
-			}
+			};
+			
+			alertDialogBuilder.setTitle("Delete SUDA Tracking Number");
+			alertDialogBuilder
+					.setMessage(
+							"Do you want to delete the SUDA tracking number?")
+					.setCancelable(false)
+					.setPositiveButton("Yes", currentDialogListener
+							).setNegativeButton("No", new DialogInterface.OnClickListener() {
+								
+								@Override
+								public void onClick(DialogInterface dialog, int which) {
+									// TODO Auto-generated method stub
+									dialog.cancel();
+								}
+							});
+			
+			AlertDialog currentAlertDialog = alertDialogBuilder.create();
+			currentAlertDialog.show();
 		}
 	};
 
@@ -262,7 +303,8 @@ public class SpearnetPakcagesPickupFragment extends FragmentTemplate {
 
 					// upload data
 					if (uploadPickedPackagesTrackingNumbersHandler != null
-							&& (uploadPickedPackagesTrackingNumbersHandler.getStatus() != AsyncTask.Status.FINISHED)) {
+							&& (uploadPickedPackagesTrackingNumbersHandler
+									.getStatus() != AsyncTask.Status.FINISHED)) {
 						uploadPickedPackagesTrackingNumbersHandler.cancel(true);
 					}
 					uploadPickedPackagesTrackingNumbersHandler = new WebContentDownloadHandler(
@@ -312,30 +354,28 @@ public class SpearnetPakcagesPickupFragment extends FragmentTemplate {
 			// progress dialog...
 			mProgressBar.dismiss();
 			mProgressBar = null;
-			
-			//get result from server
+
+			// get result from server
 			if (p_result != null) {
 				JSONObject jsonObj = null;
-				try{
+				try {
 					jsonObj = new JSONObject(p_result);
 					String key = jsonObj.getString("key");
 					String result = jsonObj.getString("result");
-					if("success".equals(key)){
+					if ("success".equals(key)) {
 						jsonArySUDATrackingNumberList = null;
 						jsonObjSUDATrackingNumbers = null;
 						layoutSUDATrackingNumbersList.removeAllViews();
 						txtSubmitResult.setText(result);
 						txtScanResult.setText("");
 						txtTotalAmount.setText("");
-					}
-					else{
+					} else {
 						txtSubmitResult.setText(result);
 					}
-				}
-				catch(Exception e){
+				} catch (Exception e) {
 					Log.e("UpdateResult error", e.getMessage());
 				}
-				
+
 			}
 		}
 
@@ -351,8 +391,8 @@ public class SpearnetPakcagesPickupFragment extends FragmentTemplate {
 			List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
 			nameValuePairs.add(new BasicNameValuePair("account", "alantai"));
 			nameValuePairs.add(new BasicNameValuePair("password", "1014"));
-			
-			if(jsonObjSUDATrackingNumbers != null){
+
+			if (jsonObjSUDATrackingNumbers != null) {
 				nameValuePairs.add(new BasicNameValuePair(
 						"spearnet_picked_packages", jsonObjSUDATrackingNumbers
 								.toString()));
@@ -363,7 +403,6 @@ public class SpearnetPakcagesPickupFragment extends FragmentTemplate {
 	};
 	// end of self-defined listeners
 
-	
 	/* XML view components */
 	TextView txtAppIntroduction = null;
 	Button btnScan = null;

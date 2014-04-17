@@ -49,6 +49,9 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 
 	Button currentBtnForScanBarcode = null;
 
+	private View viewDeleteBtn = null;
+	private AlertDialog.Builder alertDialogBuilder = null;
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -274,7 +277,9 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 						.execute(new String[] { "https://winever-test.appspot.com/exshipper_tw_custom_entry_handler" });
 			} catch (Exception e) {
 				// TODO: handle exception
-				Toast.makeText(getActivity(), "Fail to get response from server!", Toast.LENGTH_SHORT).show();
+				Toast.makeText(getActivity(),
+						"Fail to get response from server!", Toast.LENGTH_SHORT)
+						.show();
 				Log.e("error", e.getMessage());
 			}
 		}
@@ -285,30 +290,64 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 		@Override
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
-			if (v instanceof Button) {
-				JSONObject jsonObjFromBtnScanBarcode = (JSONObject) v.getTag();
-				try {
-					String twCustomEntryNumber = (String) jsonObjFromBtnScanBarcode
-							.get("p_result");
-					LinearLayout layoutCurrentPackageSet = (LinearLayout) jsonObjFromBtnScanBarcode
-							.get("layoutPackagesSets");
-
-					txtTWCustomEntryHandlingResult
-							.setText("Current Deleted TW Custom Entry NO."
-									+ twCustomEntryNumber);
-
-					jsonObjTWCustomEntryPackagesSets
-							.remove(twCustomEntryNumber);
-					jsonObjTWCustomEntryPackageSizeWeight.remove(twCustomEntryNumber);
-					layoutCurrentPackageSet.removeAllViews();
-					layoutPakcagesSetsList.removeView(layoutCurrentPackageSet);
-				} catch (JSONException e) {
-					// TODO Auto-generated catch block
-					Log.e("error", e.getMessage());
-				}
-
+			viewDeleteBtn = v;
+			if (alertDialogBuilder == null) {
+				alertDialogBuilder = new AlertDialog.Builder(getActivity());
 			}
+			;
+			DialogInterface.OnClickListener currentDialogListener = new DialogInterface.OnClickListener() {
 
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					// TODO Auto-generated method stub
+
+					if (viewDeleteBtn instanceof Button) {
+						JSONObject jsonObjFromBtnScanBarcode = (JSONObject) viewDeleteBtn
+								.getTag();
+						try {
+							String twCustomEntryNumber = (String) jsonObjFromBtnScanBarcode
+									.get("p_result");
+							LinearLayout layoutCurrentPackageSet = (LinearLayout) jsonObjFromBtnScanBarcode
+									.get("layoutPackagesSets");
+
+							txtTWCustomEntryHandlingResult
+									.setText("Current Deleted TW Custom Entry NO."
+											+ twCustomEntryNumber);
+
+							jsonObjTWCustomEntryPackagesSets
+									.remove(twCustomEntryNumber);
+							jsonObjTWCustomEntryPackageSizeWeight
+									.remove(twCustomEntryNumber);
+							layoutCurrentPackageSet.removeAllViews();
+							layoutPakcagesSetsList
+									.removeView(layoutCurrentPackageSet);
+						} catch (JSONException e) {
+							// TODO Auto-generated catch block
+							Log.e("error", e.getMessage());
+						}
+
+					}
+
+				}
+			};
+			alertDialogBuilder
+					.setTitle("Delete Package Set")
+					.setMessage("Do you want to delete the package set?")
+					.setCancelable(false)
+					.setPositiveButton("Yes", currentDialogListener)
+					.setNegativeButton("No",
+							new DialogInterface.OnClickListener() {
+
+								@Override
+								public void onClick(DialogInterface dialog,
+										int which) {
+									// TODO Auto-generated method stub
+									dialog.cancel();
+								}
+							});
+
+			AlertDialog currentAlertDialog = alertDialogBuilder.create();
+			currentAlertDialog.show();
 		}
 	};
 
@@ -331,29 +370,63 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 		@Override
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
-			if (v instanceof Button) {
-				Button btn = (Button) v;
-				if (btn.getTag() instanceof JSONObject) {
-					JSONObject jsonObj = (JSONObject) btn.getTag();
-					try {
-						JSONObject jsonObjCurrentPackagesSet = jsonObj
-								.getJSONObject("jsonObjCurrentPackagesSet");
-						LinearLayout layoutCurrentPackagesSet = (LinearLayout) jsonObj
-								.get("layoutCurrentPackagesSet");
-						LinearLayout layoutSUDATrackingNumberInfoRow = (LinearLayout) jsonObj
-								.get("layoutSUDATrackingNumberInfoRow");
-						String strScanedBarcode = jsonObj
-								.getString("strScanedBarcode");
+			viewDeleteBtn = v;
+			if (alertDialogBuilder == null) {
+				alertDialogBuilder = new AlertDialog.Builder(getActivity());
+			}
+			;
+			DialogInterface.OnClickListener currentDialogListener = new DialogInterface.OnClickListener() {
 
-						jsonObjCurrentPackagesSet.remove(strScanedBarcode);
-						layoutCurrentPackagesSet
-								.removeView(layoutSUDATrackingNumberInfoRow);
-					} catch (Exception e) {
-						Log.e("error", e.getMessage());
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					// TODO Auto-generated method stub
+
+					if (viewDeleteBtn instanceof Button) {
+						Button btn = (Button) viewDeleteBtn;
+						if (btn.getTag() instanceof JSONObject) {
+							JSONObject jsonObj = (JSONObject) btn.getTag();
+							try {
+								JSONObject jsonObjCurrentPackagesSet = jsonObj
+										.getJSONObject("jsonObjCurrentPackagesSet");
+								LinearLayout layoutCurrentPackagesSet = (LinearLayout) jsonObj
+										.get("layoutCurrentPackagesSet");
+								LinearLayout layoutSUDATrackingNumberInfoRow = (LinearLayout) jsonObj
+										.get("layoutSUDATrackingNumberInfoRow");
+								String strScanedBarcode = jsonObj
+										.getString("strScanedBarcode");
+
+								jsonObjCurrentPackagesSet
+										.remove(strScanedBarcode);
+								layoutCurrentPackagesSet
+										.removeView(layoutSUDATrackingNumberInfoRow);
+							} catch (Exception e) {
+								Log.e("error", e.getMessage());
+							}
+
+						}
 					}
 
 				}
-			}
+			};
+			alertDialogBuilder
+					.setTitle("Delete SUDA Tracking Number")
+					.setMessage(
+							"Do you want to delete the SUDA tracking number?")
+					.setCancelable(false)
+					.setPositiveButton("Yes", currentDialogListener)
+					.setNegativeButton("No",
+							new DialogInterface.OnClickListener() {
+
+								@Override
+								public void onClick(DialogInterface dialog,
+										int which) {
+									// TODO Auto-generated method stub
+									dialog.cancel();
+								}
+							});
+
+			AlertDialog currentAlertDialog = alertDialogBuilder.create();
+			currentAlertDialog.show();
 
 		}
 	};
@@ -372,15 +445,17 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 				// set asynctask
 				if (jsonObjTWCustomEntryPackagesSets != null
 						&& jsonObjTWCustomEntryPackagesSets.length() > 0) {
-					//check if jsonObj empty
+					// check if jsonObj empty
 					boolean isJSONObjEmpty = false;
 					JSONArray jsonAryTWCustomEntryPackagesSetsNames = jsonObjTWCustomEntryPackagesSets
 							.names();
 					String strTWCustomEntryNumber = null;
-					
-					for (int ith = 0; ith < jsonAryTWCustomEntryPackagesSetsNames.length(); ith++) {
+
+					for (int ith = 0; ith < jsonAryTWCustomEntryPackagesSetsNames
+							.length(); ith++) {
 						JSONObject jsonObj = (JSONObject) jsonObjTWCustomEntryPackagesSets
-								.get(jsonAryTWCustomEntryPackagesSetsNames.getString(ith));
+								.get(jsonAryTWCustomEntryPackagesSetsNames
+										.getString(ith));
 						if (jsonObj.length() == 0) {
 							isJSONObjEmpty = true;
 							strTWCustomEntryNumber = jsonAryTWCustomEntryPackagesSetsNames
@@ -388,72 +463,83 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 							break;
 						}
 					}
-					//end
-					
-					//check if information of size & weight are empty
-					boolean isSizeWeightInfoValided = false;
-					JSONArray jsonArySizeWeightInfoNames = jsonObjTWCustomEntryPackageSizeWeight.names();
-					for (int ith = 0 ; ith < jsonArySizeWeightInfoNames.length() ; ith++){
-						JSONObject jsonObj= (JSONObject) jsonObjTWCustomEntryPackageSizeWeight.get(jsonArySizeWeightInfoNames.getString(ith));
-						LinearLayout layoutSizeWeight = (LinearLayout) jsonObj.get("layoutObj");
-						JSONObject jsonObjSizeWeight = (JSONObject) jsonObj.get("strObj");
+					// end
 
-						LinearLayout layoutLength = (LinearLayout) layoutSizeWeight.getChildAt(0);
-						EditText editLength = (EditText) layoutLength.getChildAt(1);
-						LinearLayout layoutWidth = (LinearLayout) layoutSizeWeight.getChildAt(1);
-						EditText editWidth = (EditText) layoutWidth.getChildAt(1);
-						LinearLayout layoutHeight = (LinearLayout) layoutSizeWeight.getChildAt(2);
-						EditText editHeight = (EditText) layoutHeight.getChildAt(1);
-						LinearLayout layoutWeight = (LinearLayout) layoutSizeWeight.getChildAt(3);
-						EditText editWeight = (EditText) layoutWeight.getChildAt(1);
-						try{
+					// check if information of size & weight are empty
+					boolean isSizeWeightInfoValided = false;
+					JSONArray jsonArySizeWeightInfoNames = jsonObjTWCustomEntryPackageSizeWeight
+							.names();
+					for (int ith = 0; ith < jsonArySizeWeightInfoNames.length(); ith++) {
+						JSONObject jsonObj = (JSONObject) jsonObjTWCustomEntryPackageSizeWeight
+								.get(jsonArySizeWeightInfoNames.getString(ith));
+						LinearLayout layoutSizeWeight = (LinearLayout) jsonObj
+								.get("layoutObj");
+						JSONObject jsonObjSizeWeight = (JSONObject) jsonObj
+								.get("strObj");
+
+						LinearLayout layoutLength = (LinearLayout) layoutSizeWeight
+								.getChildAt(0);
+						EditText editLength = (EditText) layoutLength
+								.getChildAt(1);
+						LinearLayout layoutWidth = (LinearLayout) layoutSizeWeight
+								.getChildAt(1);
+						EditText editWidth = (EditText) layoutWidth
+								.getChildAt(1);
+						LinearLayout layoutHeight = (LinearLayout) layoutSizeWeight
+								.getChildAt(2);
+						EditText editHeight = (EditText) layoutHeight
+								.getChildAt(1);
+						LinearLayout layoutWeight = (LinearLayout) layoutSizeWeight
+								.getChildAt(3);
+						EditText editWeight = (EditText) layoutWeight
+								.getChildAt(1);
+						try {
 							float length = Float.parseFloat(editLength
 									.getText().toString());
 							jsonObjSizeWeight.put("length", length);
 							isSizeWeightInfoValided = true;
-						}
-						catch(Exception e){
+						} catch (Exception e) {
 							editLength.requestFocus();
-							Toast.makeText(getActivity(), "Invalid Length", Toast.LENGTH_LONG).show();
+							Toast.makeText(getActivity(), "Invalid Length",
+									Toast.LENGTH_LONG).show();
 							break;
 						}
-						try{
-							float width = Float.parseFloat(editWidth
-									.getText().toString());
+						try {
+							float width = Float.parseFloat(editWidth.getText()
+									.toString());
 							jsonObjSizeWeight.put("width", width);
 							isSizeWeightInfoValided = true;
-						}
-						catch(Exception e){
+						} catch (Exception e) {
 							editWidth.requestFocus();
-							Toast.makeText(getActivity(), "Invalid Width", Toast.LENGTH_LONG).show();
+							Toast.makeText(getActivity(), "Invalid Width",
+									Toast.LENGTH_LONG).show();
 							break;
 						}
-						try{
+						try {
 							float height = Float.parseFloat(editHeight
 									.getText().toString());
 							jsonObjSizeWeight.put("height", height);
 							isSizeWeightInfoValided = true;
-						}
-						catch(Exception e){
+						} catch (Exception e) {
 							editHeight.requestFocus();
-							Toast.makeText(getActivity(), "Invalid Height", Toast.LENGTH_LONG).show();
+							Toast.makeText(getActivity(), "Invalid Height",
+									Toast.LENGTH_LONG).show();
 							break;
 						}
-						try{
+						try {
 							float weight = Float.parseFloat(editWeight
 									.getText().toString());
 							jsonObjSizeWeight.put("weight", weight);
 							isSizeWeightInfoValided = true;
-						}
-						catch(Exception e){
+						} catch (Exception e) {
 							editWeight.requestFocus();
-							Toast.makeText(getActivity(), "Invalid Weight", Toast.LENGTH_LONG).show();
+							Toast.makeText(getActivity(), "Invalid Weight",
+									Toast.LENGTH_LONG).show();
 							break;
 						}
 					}
-					
-					
-					//execute the submission
+
+					// execute the submission
 					if (isJSONObjEmpty) {
 						Toast.makeText(
 								getActivity(),
@@ -498,9 +584,11 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 				//
 				if (!"NA".equals(p_result)) {
 					JSONObject jsonObjPackagesSet = new JSONObject();
-					
+
 					JSONObject jsonObjSetSizeWeight = new JSONObject();
-					JSONObject jsonObjStringSizeWeight = new JSONObject(); //save string data
+					JSONObject jsonObjStringSizeWeight = new JSONObject(); // save
+																			// string
+																			// data
 					try {
 						jsonObjStringSizeWeight.put("length", "NA");
 						jsonObjStringSizeWeight.put("width", "NA");
@@ -510,16 +598,15 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 						// TODO Auto-generated catch block
 						Log.e("error", e.getMessage());
 					}
-					
-					
+
 					try {
 						//
 						if (jsonObjTWCustomEntryPackagesSets == null) {
 							jsonObjTWCustomEntryPackagesSets = new JSONObject();
 						}
-						
+
 						//
-						if(jsonObjTWCustomEntryPackageSizeWeight == null){
+						if (jsonObjTWCustomEntryPackageSizeWeight == null) {
 							jsonObjTWCustomEntryPackageSizeWeight = new JSONObject();
 						}
 
@@ -530,7 +617,7 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 											+ p_result, Toast.LENGTH_LONG)
 									.show();
 						} else {
-							//add new package info jsonobj
+							// add new package info jsonobj
 							jsonObjTWCustomEntryPackagesSets.put(p_result,
 									jsonObjPackagesSet);
 
@@ -546,15 +633,21 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 							txtTWCustomEntryNumber
 									.setText("TW Custom Entry NO. " + p_result);
 
-							//length
+							// length
 							TextView txtLength = new TextView(getActivity());
 							txtLength.setText("Length(inch): ");
-							txtLength.setLayoutParams(new LinearLayout.LayoutParams(150, 50));
-							txtLength.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
+							txtLength
+									.setLayoutParams(new LinearLayout.LayoutParams(
+											150, 50));
+							txtLength.setTextSize(TypedValue.COMPLEX_UNIT_SP,
+									14);
 							txtLength.setGravity(Gravity.CENTER);
 							EditText editTxtLength = new EditText(getActivity());
-							editTxtLength.setLayoutParams(new LinearLayout.LayoutParams(250, 50));
-							editTxtLength.setInputType(InputType.TYPE_NUMBER_FLAG_DECIMAL);
+							editTxtLength
+									.setLayoutParams(new LinearLayout.LayoutParams(
+											250, 50));
+							editTxtLength
+									.setInputType(InputType.TYPE_NUMBER_FLAG_DECIMAL);
 							editTxtLength.setGravity(Gravity.CENTER);
 							LinearLayout layoutLength = new LinearLayout(
 									getActivity());
@@ -564,77 +657,96 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 							layoutLength.addView(txtLength);
 							layoutLength.addView(editTxtLength);
 
-							//width
+							// width
 							TextView txtWidth = new TextView(getActivity());
 							txtWidth.setText("Width(inch): ");
-							txtWidth.setLayoutParams(new LinearLayout.LayoutParams(150, 50));
+							txtWidth.setLayoutParams(new LinearLayout.LayoutParams(
+									150, 50));
 							txtWidth.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
 							txtWidth.setGravity(Gravity.CENTER);
 							EditText editTxtWidth = new EditText(getActivity());
-							editTxtWidth.setLayoutParams(new LinearLayout.LayoutParams(250, 50));
-							editTxtWidth.setInputType(InputType.TYPE_NUMBER_FLAG_DECIMAL);
+							editTxtWidth
+									.setLayoutParams(new LinearLayout.LayoutParams(
+											250, 50));
+							editTxtWidth
+									.setInputType(InputType.TYPE_NUMBER_FLAG_DECIMAL);
 							editTxtWidth.setGravity(Gravity.CENTER);
 							LinearLayout layoutWidth = new LinearLayout(
 									getActivity());
-							layoutWidth
-							.setOrientation(LinearLayout.HORIZONTAL);
+							layoutWidth.setOrientation(LinearLayout.HORIZONTAL);
 							layoutWidth.setPadding(1, 2, 1, 2);
 							layoutWidth.addView(txtWidth);
 							layoutWidth.addView(editTxtWidth);
-					
-							//height
+
+							// height
 							TextView txtHeight = new TextView(getActivity());
 							txtHeight.setText("Height(inch): ");
-							txtHeight.setLayoutParams(new LinearLayout.LayoutParams(150, 50));
-							txtHeight.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
+							txtHeight
+									.setLayoutParams(new LinearLayout.LayoutParams(
+											150, 50));
+							txtHeight.setTextSize(TypedValue.COMPLEX_UNIT_SP,
+									14);
 							txtHeight.setGravity(Gravity.CENTER);
 							EditText editTxtHeight = new EditText(getActivity());
-							editTxtHeight.setLayoutParams(new LinearLayout.LayoutParams(250, 50));
-							editTxtHeight.setInputType(InputType.TYPE_NUMBER_FLAG_DECIMAL);
+							editTxtHeight
+									.setLayoutParams(new LinearLayout.LayoutParams(
+											250, 50));
+							editTxtHeight
+									.setInputType(InputType.TYPE_NUMBER_FLAG_DECIMAL);
 							editTxtHeight.setGravity(Gravity.CENTER);
 							LinearLayout layoutHeight = new LinearLayout(
 									getActivity());
 							layoutHeight
-							.setOrientation(LinearLayout.HORIZONTAL);
+									.setOrientation(LinearLayout.HORIZONTAL);
 							layoutHeight.setPadding(1, 2, 1, 2);
 							layoutHeight.addView(txtHeight);
 							layoutHeight.addView(editTxtHeight);
-							
-							//weight
+
+							// weight
 							TextView txtWeight = new TextView(getActivity());
 							txtWeight.setText("Weight(kg): ");
-							txtWeight.setLayoutParams(new LinearLayout.LayoutParams(150, 50));
-							txtWeight.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
+							txtWeight
+									.setLayoutParams(new LinearLayout.LayoutParams(
+											150, 50));
+							txtWeight.setTextSize(TypedValue.COMPLEX_UNIT_SP,
+									14);
 							txtWeight.setGravity(Gravity.CENTER);
 							EditText editTxtWeight = new EditText(getActivity());
-							editTxtWeight.setLayoutParams(new LinearLayout.LayoutParams(250, 50));
-							editTxtWeight.setInputType(InputType.TYPE_NUMBER_FLAG_DECIMAL);
+							editTxtWeight
+									.setLayoutParams(new LinearLayout.LayoutParams(
+											250, 50));
+							editTxtWeight
+									.setInputType(InputType.TYPE_NUMBER_FLAG_DECIMAL);
 							editTxtWeight.setGravity(Gravity.CENTER);
 							LinearLayout layoutWeight = new LinearLayout(
 									getActivity());
 							layoutWeight
-							.setOrientation(LinearLayout.HORIZONTAL);
+									.setOrientation(LinearLayout.HORIZONTAL);
 							layoutWeight.setPadding(1, 2, 1, 2);
 							layoutWeight.addView(txtWeight);
 							layoutWeight.addView(editTxtWeight);
 
-							//size & weight layout
-							LinearLayout layoutSizeWeight = new LinearLayout(getActivity());
+							// size & weight layout
+							LinearLayout layoutSizeWeight = new LinearLayout(
+									getActivity());
 							layoutSizeWeight
-							.setOrientation(LinearLayout.VERTICAL);
+									.setOrientation(LinearLayout.VERTICAL);
 							layoutSizeWeight.setPadding(1, 2, 1, 2);
 							layoutSizeWeight.addView(layoutLength);
 							layoutSizeWeight.addView(layoutWidth);
 							layoutSizeWeight.addView(layoutHeight);
 							layoutSizeWeight.addView(layoutWeight);
-							
-							//preparation for validation of size & weight 
-							jsonObjSetSizeWeight.put("layoutObj", layoutSizeWeight);
-							jsonObjSetSizeWeight.put("strObj", jsonObjStringSizeWeight);
-							jsonObjTWCustomEntryPackageSizeWeight.put(p_result, jsonObjSetSizeWeight);
 
-							//end
-							
+							// preparation for validation of size & weight
+							jsonObjSetSizeWeight.put("layoutObj",
+									layoutSizeWeight);
+							jsonObjSetSizeWeight.put("strObj",
+									jsonObjStringSizeWeight);
+							jsonObjTWCustomEntryPackageSizeWeight.put(p_result,
+									jsonObjSetSizeWeight);
+
+							// end
+
 							// button
 							Button btnDeletePackageSet = new Button(
 									getActivity());
@@ -647,7 +759,8 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 							btnDeletePackageSet.setGravity(Gravity.CENTER);
 							btnDeletePackageSet.setPadding(3, 2, 1, 2);
 							btnDeletePackageSet.setText("Delete Package");
-							btnDeletePackageSet.setBackgroundResource(R.drawable.clicked_item);
+							btnDeletePackageSet
+									.setBackgroundResource(R.drawable.clicked_item);
 							btnDeletePackageSet
 									.setOnClickListener(deletePackagesSet);
 
@@ -662,7 +775,8 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 									.setBackgroundColor(Color.TRANSPARENT);
 							btnStartBarcodeReader.setGravity(Gravity.CENTER);
 							btnStartBarcodeReader.setText("Scan");
-							btnStartBarcodeReader.setBackgroundResource(R.drawable.clicked_item);
+							btnStartBarcodeReader
+									.setBackgroundResource(R.drawable.clicked_item);
 							btnStartBarcodeReader
 									.setOnClickListener(startBarcodeReader);
 
@@ -782,22 +896,23 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 			mProgressbar = null;
 			if (p_result != null) {
 				JSONObject jsonObj = null;
-				try{
+				try {
 					jsonObj = new JSONObject(p_result);
 					String key = jsonObj.getString("key");
 					String result = jsonObj.getString("result");
-					if("success".equals(key)){
+					if ("success".equals(key)) {
 						layoutPakcagesSetsList.removeAllViews();
 						jsonObjTWCustomEntryPackagesSets = null;
 						jsonObjTWCustomEntryPackageSizeWeight = null;
-						txtTWCustomEntryHandlingResult.setText("Successfully Submitted the Data");
-						txtSubmitResult.setText(result); //get response from server
+						txtTWCustomEntryHandlingResult
+								.setText("Successfully Submitted the Data");
+						txtSubmitResult.setText(result); // get response from
+															// server
+					} else {
+						txtSubmitResult.setText(result); // get response from
+															// server
 					}
-					else{
-						txtSubmitResult.setText(result); //get response from server
-					}
-				}
-				catch(Exception e){
+				} catch (Exception e) {
 					Log.e("error", e.getMessage());
 				}
 			}
@@ -833,7 +948,8 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 			nameValuePairs.add(new BasicNameValuePair("token",
 					"tw_custom_entry_handler_submit_packages_sets"));
 
-			if (jsonObjTWCustomEntryPackagesSets != null && jsonObjTWCustomEntryPackageSizeWeight != null) {
+			if (jsonObjTWCustomEntryPackagesSets != null
+					&& jsonObjTWCustomEntryPackageSizeWeight != null) {
 				nameValuePairs.add(new BasicNameValuePair(
 						"tw_custom_entry_packages_sets",
 						jsonObjTWCustomEntryPackagesSets.toString()));
@@ -871,12 +987,13 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 	private void initXMLViewComponents(View mView) {
 		txtIntroduction = (TextView) mView
 				.findViewById(R.id.txt_introduction_tw_custom_entry);
-		txtIntroduction.setText("TW Custom Entry Handler\n\n"
-				+ "1. Click 'Add New Package Set' button to get TW Custom Entry Barcode Number; (If you want to delete the barcode or the package set, please click the \'Delete\' key word)\n"
-				+ "2. Key in size and weight of package\n"
-				+ "3. Click 'Scan' button to scan package barcode\n"
-				+ "4. Click 'Submit Packages Information' button to submit information\n"
-				+ "5. Once you get response from server, you're done\n");
+		txtIntroduction
+				.setText("TW Custom Entry Handler\n\n"
+						+ "1. Click 'Add New Package Set' button to get TW Custom Entry Barcode Number; (If you want to delete the barcode or the package set, please click the \'Delete\' key word)\n"
+						+ "2. Key in size and weight of package\n"
+						+ "3. Click 'Scan' button to scan package barcode\n"
+						+ "4. Click 'Submit Packages Information' button to submit information\n"
+						+ "5. Once you get response from server, you're done\n");
 
 		btnAddNewPackagesSet = (Button) mView
 				.findViewById(R.id.btn_add_new_packages_set_tw_custom_entry);
