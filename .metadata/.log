@@ -9307,3 +9307,6 @@ org.eclipse.osgi.framework.internal.core.AbstractBundle$BundleStatusException
 	at org.eclipse.wst.server.core.ServerCore.getServers(ServerCore.java:316)
 	at org.eclipse.wst.server.ui.internal.InitializeJob.run(InitializeJob.java:34)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2014-04-17 10:21:21.227
+!MESSAGE Failed to load properties file for project 'prjExShipperCustomerApp'
