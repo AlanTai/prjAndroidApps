@@ -47,8 +47,10 @@ public class ExShipperBarcodeReaderActivity extends FragmentActivity {
 			break;
 		case R.id.tw_custom_entry_packages_handler:
 			mainFragment.gotoTWCustomEntryPackagesHandler();
+			break;
 		case R.id.app_exit:
 			Process.killProcess(Process.myPid()); //force to kill the app
+			break;
 		default:
 			break;
 		}

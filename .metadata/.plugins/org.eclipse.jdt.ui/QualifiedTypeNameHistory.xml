@@ -1,16 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="org.apache.http.HttpEntity"/>
 <fullyQualifiedTypeName name="java.io.InputStream"/>
 <fullyQualifiedTypeName name="java.io.ByteArrayOutputStream"/>
 <fullyQualifiedTypeName name="org.apache.http.client.entity.UrlEncodedFormEntity"/>
 <fullyQualifiedTypeName name="android.app.ActionBar.LayoutParams"/>
 <fullyQualifiedTypeName name="org.w3c.dom.Text"/>
 <fullyQualifiedTypeName name="android.R"/>
-<fullyQualifiedTypeName name="android.support.v4.app.Fragment"/>
 <fullyQualifiedTypeName name="fragments.MainTabFragment"/>
-<fullyQualifiedTypeName name="android.support.v4.app.FragmentManager"/>
-<fullyQualifiedTypeName name="android.support.v4.app.FragmentTransaction"/>
 <fullyQualifiedTypeName name="fragments.MainFragment"/>
 <fullyQualifiedTypeName name="fragments.LoginFragment"/>
 <fullyQualifiedTypeName name="fragments.FragmentTemplate"/>
@@ -36,7 +32,6 @@
 <fullyQualifiedTypeName name="android.support.v4.app.FragmentActivity"/>
 <fullyQualifiedTypeName name="java.lang.Boolean"/>
 <fullyQualifiedTypeName name="android.widget.Button"/>
-<fullyQualifiedTypeName name="com.exshipper.prjexshipperbarcodereader.R.id"/>
 <fullyQualifiedTypeName name="android.graphics.Color"/>
 <fullyQualifiedTypeName name="android.R.color"/>
 <fullyQualifiedTypeName name="android.util.Log"/>
@@ -60,4 +55,9 @@
 <fullyQualifiedTypeName name="android.content.DialogInterface"/>
 <fullyQualifiedTypeName name="android.content.DialogInterface.OnClickListener"/>
 <fullyQualifiedTypeName name="android.app.AlertDialog"/>
+<fullyQualifiedTypeName name="com.exshipper.prjexshipperbarcodereader.R.id"/>
+<fullyQualifiedTypeName name="android.os.Process"/>
+<fullyQualifiedTypeName name="android.support.v4.app.Fragment"/>
+<fullyQualifiedTypeName name="android.support.v4.app.FragmentManager"/>
+<fullyQualifiedTypeName name="android.support.v4.app.FragmentTransaction"/>
 </qualifiedTypeNameHistroy>

@@ -11,9 +11,6 @@ public class FragmentTemplate extends Fragment {
 	private static final int EXSHIPPER_CUSTOMER_LOGIN_HANDLER = 0x2;
 	private static final int EXSHIPPER_CUSTOMER_LOGISTICS_SERVICE_HANDLER = 0x3;
 	private static final int EXSHIPPER_CUSTOMER_SIGNATURE_HANDLER = 0x4;
-	
-	
-	//
 	public void gotoDefault(){
 		if(currentTabHandler != EXSHIPPER_CUSTOMER_DEFAULT_HANDLER){
 			currentTabHandler = EXSHIPPER_CUSTOMER_DEFAULT_HANDLER;
