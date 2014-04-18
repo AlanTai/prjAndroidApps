@@ -1,8 +1,6 @@
 package fragments;
 
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 
 public class FragmentTemplate extends Fragment {
 	//
@@ -20,11 +18,6 @@ public class FragmentTemplate extends Fragment {
 	public void gotoLoginHandler(){
 		if(currentTabHandler != EXSHIPPER_CUSTOMER_LOGIN_HANDLER){
 			currentTabHandler = EXSHIPPER_CUSTOMER_LOGIN_HANDLER;
-			
-			FragmentManager fm = getFragmentManager();
-			if(fm != null){
-				FragmentTransaction ft = fm.beginTransaction();
-			}
 		}
 	}
 	
