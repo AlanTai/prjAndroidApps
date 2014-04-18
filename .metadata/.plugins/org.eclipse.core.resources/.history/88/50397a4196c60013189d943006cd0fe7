@@ -1,0 +1,23 @@
+package fragments;
+
+import android.support.v4.app.Fragment;
+
+public class FragmentTemplate extends Fragment {
+	//
+	private static int currentTabHandler = 0x0;
+	private static final int EXSHIPPER_CUSTOMER_DEFAULT_HANDLER = 0x1;
+	private static final int EXSHIPPER_CUSTOMER_LOGIN_HANDLER = 0x2;
+	
+	public void gotoDefault(){
+		if(currentTabHandler != EXSHIPPER_CUSTOMER_DEFAULT_HANDLER){
+			currentTabHandler = EXSHIPPER_CUSTOMER_DEFAULT_HANDLER;
+		}
+	}
+	
+	public void gotoLogin(){
+		if(currentTabHandler != EXSHIPPER_CUSTOMER_DEFAULT_HANDLER){
+			currentTabHandler = EXSHIPPER_CUSTOMER_DEFAULT_HANDLER;
+		}
+	}
+
+}

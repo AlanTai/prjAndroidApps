@@ -21,15 +21,15 @@ public class FragmentTemplate extends Fragment {
 		}
 	}
 	
-	public void gotoLogisticsServiceHandler(){
-		if(currentTabHandler != EXSHIPPER_CUSTOMER_LOGISTICS_SERVICE_HANDLER){
-			currentTabHandler = EXSHIPPER_CUSTOMER_LOGISTICS_SERVICE_HANDLER;
-		}
-	}
-
 	public void gotoSignatureHandler(){
 		if(currentTabHandler != EXSHIPPER_CUSTOMER_SIGNATURE_HANDLER){
 			currentTabHandler = EXSHIPPER_CUSTOMER_SIGNATURE_HANDLER;
+		}
+	}
+	
+	public void gotoLogisticsServiceHandler(){
+		if(currentTabHandler != EXSHIPPER_CUSTOMER_LOGISTICS_SERVICE_HANDLER){
+			currentTabHandler = EXSHIPPER_CUSTOMER_LOGISTICS_SERVICE_HANDLER;
 		}
 	}
 
