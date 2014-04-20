@@ -5,5 +5,4 @@ INDEX VERSION 1.126+/Users/alantai/prjAndroidApps/.metadata/.plugins/org.eclipse
 3550142215.index
 3907900567.index
 1838637942.index
-1204401303.index
 1631472097.index

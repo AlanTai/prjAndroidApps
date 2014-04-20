@@ -363,7 +363,6 @@ public class SpearnetPakcagesPickupFragment extends FragmentTemplate {
 					String key = jsonObj.getString("key");
 					String result = jsonObj.getString("result");
 					if ("success".equals(key)) {
-						sudaTrackingNumberMap.clear();
 						jsonArySUDATrackingNumberList = null;
 						jsonObjSUDATrackingNumbers = null;
 						layoutSUDATrackingNumbersList.removeAllViews();
