@@ -224,10 +224,6 @@ public class SpearnetPakcagesPickupFragment extends FragmentTemplate {
 
 		@Override
 		public void onClick(View v) {
-			if(!"".equals(txtSubmitResult.getText())){
-				txtSubmitResult.setText("");
-			}
-			
 			Intent myIntent = new Intent("com.google.zxing.client.android.SCAN");
 			myIntent.putExtra("SCAN_MODE", "ONE_D_MODE");
 			startActivityForResult(myIntent, 0);
