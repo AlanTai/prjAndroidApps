@@ -32,6 +32,7 @@ import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -51,6 +52,7 @@ public class SpearnetPakcagesPickupFragment extends FragmentTemplate {
 	private View viewDeleteBtn = null;
 	private AlertDialog.Builder alertDialogBuilder = null;
 
+	private View viewForScrollTo = null;
 	// end of inner variables & init function
 
 	@Override
@@ -188,6 +190,15 @@ public class SpearnetPakcagesPickupFragment extends FragmentTemplate {
 													.setTag(layoutSUDATrackingNumberInfoRow);
 											layoutSUDATrackingNumbersList
 													.addView(layoutSUDATrackingNumberInfoRow);
+											viewForScrollTo = layoutSUDATrackingNumberInfoRow;
+											//programmatically scroll view to specific position
+											scrollViewSpearnetPickupList.post(new Runnable() {
+												@Override
+												public void run() {
+													// TODO Auto-generated method stub
+													scrollViewSpearnetPickupList.scrollTo(0, viewForScrollTo.getTop());
+												}
+											});
 										} else {
 											Toast.makeText(getActivity(),
 													"SUDA NO. Duplicated!",
@@ -409,7 +420,6 @@ public class SpearnetPakcagesPickupFragment extends FragmentTemplate {
 	// end of self-defined listeners
 
 	/* XML view components */
-	TextView txtAppIntroduction = null;
 	Button btnScan = null;
 	TextView txtScanResult = null;
 	TextView txtTotalAmount = null;
@@ -418,16 +428,10 @@ public class SpearnetPakcagesPickupFragment extends FragmentTemplate {
 
 	TextView txtSubmitResult = null;
 	Button btnSubmitSUDATrackingNumbers = null;
+	ScrollView scrollViewSpearnetPickupList = null;
 
 	// init function
 	private void initXMLViewComponents(View mView) {
-		txtAppIntroduction = (TextView) mView
-				.findViewById(R.id.txt_introduction);
-		txtAppIntroduction
-				.setText("Spearnet Packages Pickup Handler\n\n"
-						+ "1. Click button 'Scan SUDA Barcode' to scan the package barcode (If you want to delete the barcode, please click the \'Delete\' key word)\n"
-						+ "2. Click button 'Submit SUDA Numbers' to submit the SUDA numbers to the server\n"
-						+ "3. Once you get response from the server, you're done\n");
 		btnScan = (Button) mView.findViewById(R.id.btn_scan);
 		btnScan.setOnClickListener(startBarcodeReader);
 		txtScanResult = (TextView) mView.findViewById(R.id.txt_result);
@@ -442,6 +446,7 @@ public class SpearnetPakcagesPickupFragment extends FragmentTemplate {
 		layoutSUDATrackingNumbersList = (LinearLayout) mView
 				.findViewById(R.id.layout_suda_tracking_numbers_list);
 		txtSubmitResult = (TextView) mView.findViewById(R.id.txt_submit_result);
+		scrollViewSpearnetPickupList = (ScrollView) mView.findViewById(R.id.scroll_view_spearnet_pickup_list);
 	}
 	/* end of XML view components init function */
 

@@ -34,6 +34,7 @@ import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.FrameLayout.LayoutParams;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -51,6 +52,8 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 
 	private View viewDeleteBtn = null;
 	private AlertDialog.Builder alertDialogBuilder = null;
+	
+	private View viewForScrollTo = null;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -134,11 +137,6 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 												JSONObject jsonObjFromBtnScanBarcode = (JSONObject) currentBtnForScanBarcode
 														.getTag();
 
-												// String twCustomEntryNumber =
-												// (String)
-												// jsonObjFromBtnScanBarcode.get("p_result");
-												// //get tw custom entry package
-												// number
 												JSONObject jsonObjCurrentPackagesSet = (JSONObject) jsonObjFromBtnScanBarcode
 														.getJSONObject("jsonObjPackageSet");
 												LinearLayout layoutCurrentPackagesSet = (LinearLayout) jsonObjFromBtnScanBarcode
@@ -220,6 +218,16 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 
 												layoutCurrentPackagesSet
 														.addView(layoutSUDATrackingNumberInfoRow);
+												
+												
+												viewForScrollTo = layoutSUDATrackingNumberInfoRow;
+												scrollViewTWCustomEntryList.post(new Runnable() {
+													@Override
+													public void run() {
+														// TODO Auto-generated method stub
+														scrollViewTWCustomEntryList.scrollTo(0, viewForScrollTo.getTop());
+													}
+												});
 											} catch (Exception e) {
 												Log.e("error", e.getMessage());
 											}
@@ -841,6 +849,16 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 
 							btnStartBarcodeReader.setTag(jsonObj);
 							btnDeletePackageSet.setTag(jsonObj);
+							
+							//scroll view to specific position
+							viewForScrollTo = layoutPackagesSet;
+							scrollViewTWCustomEntryList.post(new Runnable() {
+								@Override
+								public void run() {
+									// TODO Auto-generated method stub
+									scrollViewTWCustomEntryList.scrollTo(0, viewForScrollTo.getTop());
+								}
+							});
 						}
 
 					} catch (JSONException e) {
@@ -983,7 +1001,6 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 	};
 
 	/* XML components */
-	TextView txtIntroduction = null;
 	Button btnAddNewPackagesSet = null;
 	TextView txtTWCustomEntryHandlingResult = null;
 	TextView txtTotalSets = null;
@@ -992,18 +1009,8 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 
 	TextView txtSubmitResult = null;
 	Button btnSubmitPakcagesSets = null;
-
+	ScrollView scrollViewTWCustomEntryList = null;
 	private void initXMLViewComponents(View mView) {
-		txtIntroduction = (TextView) mView
-				.findViewById(R.id.txt_introduction_tw_custom_entry);
-		txtIntroduction
-				.setText("TW Custom Entry Handler\n\n"
-						+ "1. Click 'Add New Package Set' button to get TW Custom Entry Barcode Number; (If you want to delete the barcode or the package set, please click the \'Delete\' key word)\n"
-						+ "2. Key in size and weight of package\n"
-						+ "3. Click 'Scan' button to scan package barcode\n"
-						+ "4. Click 'Submit Packages Information' button to submit information\n"
-						+ "5. Once you get response from server, you're done\n");
-
 		btnAddNewPackagesSet = (Button) mView
 				.findViewById(R.id.btn_add_new_packages_set_tw_custom_entry);
 		btnAddNewPackagesSet
@@ -1023,6 +1030,8 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 		btnSubmitPakcagesSets = (Button) mView
 				.findViewById(R.id.btn_submit_packages_sets_tw_custom_entry);
 		btnSubmitPakcagesSets.setOnClickListener(submitPackagesSets);
+		
+		scrollViewTWCustomEntryList = (ScrollView) mView.findViewById(R.id.scroll_view_tw_custom_entry_list);
 	}
 
 }

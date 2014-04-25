@@ -16,13 +16,31 @@
         <TextView
             android:id="@+id/txt_introduction_tw_custom_entry"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:text="@string/tw_custom_entry_app_introudction" />
+        <!-- Parting Line -->
 
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="20sp" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1sp"
+            android:background="#555" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="10sp" />
+        <!-- end -->
+        
+        
+        <!-- submit -->
         <Button
-            android:id="@+id/btn_add_new_packages_set_tw_custom_entry"
+            android:id="@+id/btn_submit_packages_sets_tw_custom_entry"
             android:layout_width="250sp"
             android:layout_height="50sp"
-            android:text="@string/btn_add_new_packages_set" />
+            android:text="@string/btn_submit_packages_sets" />
 
         <!-- Parting Line -->
 
@@ -41,20 +59,20 @@
         <!-- End -->
 
 
+        <!-- add new package set -->
+
         <Button
-            android:id="@+id/btn_submit_packages_sets_tw_custom_entry"
+            android:id="@+id/btn_add_new_packages_set_tw_custom_entry"
             android:layout_width="250sp"
             android:layout_height="50sp"
-            android:text="@string/btn_submit_packages_sets" />
+            android:text="@string/btn_add_new_packages_set" />
 
-        
         <TextView
             android:id="@+id/txt_download_tw_custom_entry_number_result"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="#00f" />
-        
-        
+
         <TextView
             android:id="@+id/txt_total_sets_tw_custom_entry"
             android:layout_width="wrap_content"
@@ -86,6 +104,7 @@
 
     <ScrollView
         xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/scroll_view_tw_custom_entry_list"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:fillViewport="true" >
@@ -100,11 +119,6 @@
             <View
                 android:layout_width="fill_parent"
                 android:layout_height="10sp" />
-
-            <View
-                android:layout_width="fill_parent"
-                android:layout_height="1sp"
-                android:background="#555" />
 
             <View
                 android:layout_width="fill_parent"
