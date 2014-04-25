@@ -24,64 +24,17 @@
             android:layout_height="50sp"
             android:text="@string/btn_add_new_packages_set" />
 
-        <!-- Parting Line -->
-
-        <View
-            android:layout_width="fill_parent"
-            android:layout_height="10sp" />
-
-        <View
-            android:layout_width="fill_parent"
-            android:layout_height="1sp"
-            android:background="#555" />
-
-        <View
-            android:layout_width="fill_parent"
-            android:layout_height="10sp" />
-        <!-- End -->
-
-
-        <Button
-            android:id="@+id/btn_submit_packages_sets_tw_custom_entry"
-            android:layout_width="250sp"
-            android:layout_height="50sp"
-            android:text="@string/btn_submit_packages_sets" />
-
-        
         <TextView
             android:id="@+id/txt_download_tw_custom_entry_number_result"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="#00f" />
-        
-        
+
         <TextView
             android:id="@+id/txt_total_sets_tw_custom_entry"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="#00f" />
-
-        <TextView
-            android:id="@+id/txt_submit_result_tw_custom_entry"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="#000" />
-
-        <!-- Parting Line -->
-
-        <View
-            android:layout_width="fill_parent"
-            android:layout_height="10sp" />
-
-        <View
-            android:layout_width="fill_parent"
-            android:layout_height="1sp"
-            android:background="#555" />
-
-        <View
-            android:layout_width="fill_parent"
-            android:layout_height="10sp" />
-        <!-- End -->
     </LinearLayout>
 
     <ScrollView
@@ -96,7 +49,6 @@
             android:orientation="vertical" >
 
             <!-- Parting Line -->
-
             <View
                 android:layout_width="fill_parent"
                 android:layout_height="10sp" />
@@ -117,6 +69,18 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical" >
             </LinearLayout>
+
+            <TextView
+                android:id="@+id/txt_submit_result_tw_custom_entry"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#000" />
+
+            <Button
+                android:id="@+id/btn_submit_packages_sets_tw_custom_entry"
+                android:layout_width="250sp"
+                android:layout_height="50sp"
+                android:text="@string/btn_submit_packages_sets" />
         </LinearLayout>
     </ScrollView>
 
