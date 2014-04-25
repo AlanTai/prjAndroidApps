@@ -51,8 +51,8 @@ public class SpearnetPakcagesPickupFragment extends FragmentTemplate {
 	
 	private View viewDeleteBtn = null;
 	private AlertDialog.Builder alertDialogBuilder = null;
-
 	private View viewForScrollTo = null;
+
 	// end of inner variables & init function
 
 	@Override
@@ -190,9 +190,13 @@ public class SpearnetPakcagesPickupFragment extends FragmentTemplate {
 													.setTag(layoutSUDATrackingNumberInfoRow);
 											layoutSUDATrackingNumbersList
 													.addView(layoutSUDATrackingNumberInfoRow);
+											
+											
+											//auto-scroll to specific view
 											viewForScrollTo = layoutSUDATrackingNumberInfoRow;
-											//programmatically scroll view to specific position
+											//auto-scroll to specific view
 											scrollViewSpearnetPickupList.post(new Runnable() {
+												
 												@Override
 												public void run() {
 													// TODO Auto-generated method stub
@@ -303,36 +307,64 @@ public class SpearnetPakcagesPickupFragment extends FragmentTemplate {
 		@Override
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
-
-			if (sudaTrackingNumberMap.size() != 0) {
-				jsonObjSUDATrackingNumbers = new JSONObject();
-				jsonArySUDATrackingNumberList = new JSONArray();
-
-				// take out all SUDA tracking numbers
-				for (Object suda_obj : sudaTrackingNumberMap.values()) {
-					jsonArySUDATrackingNumberList.put(suda_obj.toString());
-				}
-				try {
-					jsonObjSUDATrackingNumbers.put("suda_tracking_numbers",
-							jsonArySUDATrackingNumberList.toString());
-
-					// upload data
-					if (uploadPickedPackagesTrackingNumbersHandler != null
-							&& (uploadPickedPackagesTrackingNumbersHandler
-									.getStatus() != AsyncTask.Status.FINISHED)) {
-						uploadPickedPackagesTrackingNumbersHandler.cancel(true);
-					}
-					uploadPickedPackagesTrackingNumbersHandler = new WebContentDownloadHandler(
-							updateProgressBar);
-					uploadPickedPackagesTrackingNumbersHandler
-							.execute(new String[] { "https://exshipper-ca.appspot.com/exshipper_spearnet_packages_pickup_handler" });
-				} catch (JSONException e) {
-					Log.e("error", e.getMessage());
-				}
-			} else {
-				Toast.makeText(getActivity(), "No data for upload!",
-						Toast.LENGTH_LONG).show();
+			if (alertDialogBuilder == null) {
+				alertDialogBuilder = new AlertDialog.Builder(getActivity());
 			}
+			DialogInterface.OnClickListener currentDialogListener = new DialogInterface.OnClickListener() {
+				@Override
+				public void onClick(DialogInterface dialog,
+						int which) {
+					// TODO Auto-generated method stub
+
+					if (sudaTrackingNumberMap.size() != 0) {
+						jsonObjSUDATrackingNumbers = new JSONObject();
+						jsonArySUDATrackingNumberList = new JSONArray();
+
+						// take out all SUDA tracking numbers
+						for (Object suda_obj : sudaTrackingNumberMap.values()) {
+							jsonArySUDATrackingNumberList.put(suda_obj.toString());
+						}
+						try {
+							jsonObjSUDATrackingNumbers.put("suda_tracking_numbers",
+									jsonArySUDATrackingNumberList.toString());
+
+							// upload data
+							if (uploadPickedPackagesTrackingNumbersHandler != null
+									&& (uploadPickedPackagesTrackingNumbersHandler
+											.getStatus() != AsyncTask.Status.FINISHED)) {
+								uploadPickedPackagesTrackingNumbersHandler.cancel(true);
+							}
+							uploadPickedPackagesTrackingNumbersHandler = new WebContentDownloadHandler(
+									updateProgressBar);
+							uploadPickedPackagesTrackingNumbersHandler
+									.execute(new String[] { "https://exshipper-ca.appspot.com/exshipper_spearnet_packages_pickup_handler" });
+						} catch (JSONException e) {
+							Log.e("error", e.getMessage());
+						}
+					} else {
+						Toast.makeText(getActivity(), "No data for upload!",
+								Toast.LENGTH_LONG).show();
+					}
+				}
+			};
+			
+			alertDialogBuilder.setTitle("Submit Pickup Pakcages\' Information");
+			alertDialogBuilder
+					.setMessage(
+							"Do you want to submit the information?")
+					.setCancelable(false)
+					.setPositiveButton("Yes", currentDialogListener
+							).setNegativeButton("No", new DialogInterface.OnClickListener() {
+								
+								@Override
+								public void onClick(DialogInterface dialog, int which) {
+									// TODO Auto-generated method stub
+									dialog.cancel();
+								}
+							});
+			
+			AlertDialog currentAlertDialog = alertDialogBuilder.create();
+			currentAlertDialog.show();
 		}
 	};
 	// end of OnClickListener
@@ -420,6 +452,7 @@ public class SpearnetPakcagesPickupFragment extends FragmentTemplate {
 	// end of self-defined listeners
 
 	/* XML view components */
+	TextView txtAppIntroduction = null;
 	Button btnScan = null;
 	TextView txtScanResult = null;
 	TextView txtTotalAmount = null;
@@ -428,10 +461,18 @@ public class SpearnetPakcagesPickupFragment extends FragmentTemplate {
 
 	TextView txtSubmitResult = null;
 	Button btnSubmitSUDATrackingNumbers = null;
+	
 	ScrollView scrollViewSpearnetPickupList = null;
 
 	// init function
 	private void initXMLViewComponents(View mView) {
+		txtAppIntroduction = (TextView) mView
+				.findViewById(R.id.txt_introduction);
+		txtAppIntroduction
+				.setText("Instruction:\n"
+						+ "1. Click button 'Scan SUDA Barcode' to scan the package barcode (If you want to delete the barcode, please click the \'Delete\' key word)\n"
+						+ "2. Click button 'Submit SUDA Numbers' to submit the SUDA numbers to the server\n"
+						+ "3. Once you get response from the server, you're done\n");
 		btnScan = (Button) mView.findViewById(R.id.btn_scan);
 		btnScan.setOnClickListener(startBarcodeReader);
 		txtScanResult = (TextView) mView.findViewById(R.id.txt_result);
@@ -446,6 +487,7 @@ public class SpearnetPakcagesPickupFragment extends FragmentTemplate {
 		layoutSUDATrackingNumbersList = (LinearLayout) mView
 				.findViewById(R.id.layout_suda_tracking_numbers_list);
 		txtSubmitResult = (TextView) mView.findViewById(R.id.txt_submit_result);
+		
 		scrollViewSpearnetPickupList = (ScrollView) mView.findViewById(R.id.scroll_view_spearnet_pickup_list);
 	}
 	/* end of XML view components init function */

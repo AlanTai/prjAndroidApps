@@ -32,9 +32,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.ScrollView;
 import android.widget.FrameLayout.LayoutParams;
 import android.widget.LinearLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -52,7 +52,6 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 
 	private View viewDeleteBtn = null;
 	private AlertDialog.Builder alertDialogBuilder = null;
-	
 	private View viewForScrollTo = null;
 
 	@Override
@@ -137,6 +136,11 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 												JSONObject jsonObjFromBtnScanBarcode = (JSONObject) currentBtnForScanBarcode
 														.getTag();
 
+												// String twCustomEntryNumber =
+												// (String)
+												// jsonObjFromBtnScanBarcode.get("p_result");
+												// //get tw custom entry package
+												// number
 												JSONObject jsonObjCurrentPackagesSet = (JSONObject) jsonObjFromBtnScanBarcode
 														.getJSONObject("jsonObjPackageSet");
 												LinearLayout layoutCurrentPackagesSet = (LinearLayout) jsonObjFromBtnScanBarcode
@@ -220,14 +224,19 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 														.addView(layoutSUDATrackingNumberInfoRow);
 												
 												
+												//auto-scroll to specific view
 												viewForScrollTo = layoutSUDATrackingNumberInfoRow;
+												//auto-scroll to specific view
 												scrollViewTWCustomEntryList.post(new Runnable() {
+													
 													@Override
 													public void run() {
 														// TODO Auto-generated method stub
 														scrollViewTWCustomEntryList.scrollTo(0, viewForScrollTo.getTop());
 													}
 												});
+												
+												
 											} catch (Exception e) {
 												Log.e("error", e.getMessage());
 											}
@@ -272,28 +281,57 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 		@Override
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
-			if(!"".equals(txtSubmitResult.getText())){
-				txtSubmitResult.setText("");
+			if (alertDialogBuilder == null) {
+				alertDialogBuilder = new AlertDialog.Builder(getActivity());
 			}
-			
-			try {
-				if (getTWCustomEntryNumberHandler != null
-						&& getTWCustomEntryNumberHandler.getStatus() != AsyncTask.Status.FINISHED) {
-					getTWCustomEntryNumberHandler.cancel(true);
-				}
+			DialogInterface.OnClickListener currentDialogListener = new DialogInterface.OnClickListener() {
+				@Override
+				public void onClick(DialogInterface dialog,
+						int which) {
+					// TODO Auto-generated method stub
 
-				//
-				getTWCustomEntryNumberHandler = new WebContentDownloadHandler(
-						progressBarForGetTWCustomEntryNumber);
-				getTWCustomEntryNumberHandler
-						.execute(new String[] { "https://exshipper-ca.appspot.com/exshipper_tw_custom_entry_handler" });
-			} catch (Exception e) {
-				// TODO: handle exception
-				Toast.makeText(getActivity(),
-						"Fail to get response from server!", Toast.LENGTH_SHORT)
-						.show();
-				Log.e("error", e.getMessage());
-			}
+					if (!"".equals(txtSubmitResult.getText())) {
+						txtSubmitResult.setText("");
+					}
+
+					try {
+						if (getTWCustomEntryNumberHandler != null
+								&& getTWCustomEntryNumberHandler.getStatus() != AsyncTask.Status.FINISHED) {
+							getTWCustomEntryNumberHandler.cancel(true);
+						}
+
+						//
+						getTWCustomEntryNumberHandler = new WebContentDownloadHandler(
+								progressBarForGetTWCustomEntryNumber);
+						getTWCustomEntryNumberHandler
+								.execute(new String[] { "https://exshipper-ca.appspot.com/exshipper_tw_custom_entry_handler" });
+					} catch (Exception e) {
+						// TODO: handle exception
+						Toast.makeText(getActivity(),
+								"Fail to get response from server!", Toast.LENGTH_SHORT)
+								.show();
+						Log.e("error", e.getMessage());
+					}
+				}
+			};
+			
+			alertDialogBuilder.setTitle("Download TW Custom Entry Tracking Number");
+			alertDialogBuilder
+					.setMessage(
+							"Do you want to download TW Custom Entry tracking number?")
+					.setCancelable(false)
+					.setPositiveButton("Yes", currentDialogListener
+							).setNegativeButton("No", new DialogInterface.OnClickListener() {
+								
+								@Override
+								public void onClick(DialogInterface dialog, int which) {
+									// TODO Auto-generated method stub
+									dialog.cancel();
+								}
+							});
+			
+			AlertDialog currentAlertDialog = alertDialogBuilder.create();
+			currentAlertDialog.show();
 		}
 	};
 
@@ -368,7 +406,7 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 		@Override
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
-			
+
 			Intent myIntent = new Intent("com.google.zxing.client.android.SCAN");
 			myIntent.putExtra("SCAN_MODE", "ONE_D_MODE");
 			startActivityForResult(myIntent, 0);
@@ -449,135 +487,173 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 		@Override
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
-			try {
-				if (submitPackagesSetsHandler != null
-						&& submitPackagesSetsHandler.getStatus() != AsyncTask.Status.FINISHED) {
-					submitPackagesSetsHandler.cancel(true);
-				}
-
-				// set asynctask
-				if (jsonObjTWCustomEntryPackagesSets != null
-						&& jsonObjTWCustomEntryPackagesSets.length() > 0) {
-					// check if jsonObj empty
-					boolean isJSONObjEmpty = false;
-					JSONArray jsonAryTWCustomEntryPackagesSetsNames = jsonObjTWCustomEntryPackagesSets
-							.names();
-					String strTWCustomEntryNumber = null;
-
-					for (int ith = 0; ith < jsonAryTWCustomEntryPackagesSetsNames
-							.length(); ith++) {
-						JSONObject jsonObj = (JSONObject) jsonObjTWCustomEntryPackagesSets
-								.get(jsonAryTWCustomEntryPackagesSetsNames
-										.getString(ith));
-						if (jsonObj.length() == 0) {
-							isJSONObjEmpty = true;
-							strTWCustomEntryNumber = jsonAryTWCustomEntryPackagesSetsNames
-									.getString(ith);
-							break;
-						}
-					}
-					// end
-
-					// check if information of size & weight are empty
-					boolean isSizeWeightInfoValided = false;
-					JSONArray jsonArySizeWeightInfoNames = jsonObjTWCustomEntryPackageSizeWeight
-							.names();
-					for (int ith = 0; ith < jsonArySizeWeightInfoNames.length(); ith++) {
-						JSONObject jsonObj = (JSONObject) jsonObjTWCustomEntryPackageSizeWeight
-								.get(jsonArySizeWeightInfoNames.getString(ith));
-						LinearLayout layoutSizeWeight = (LinearLayout) jsonObj
-								.get("layoutObj");
-						JSONObject jsonObjSizeWeight = (JSONObject) jsonObj
-								.get("strObj");
-
-						LinearLayout layoutLength = (LinearLayout) layoutSizeWeight
-								.getChildAt(0);
-						EditText editLength = (EditText) layoutLength
-								.getChildAt(1);
-						LinearLayout layoutWidth = (LinearLayout) layoutSizeWeight
-								.getChildAt(1);
-						EditText editWidth = (EditText) layoutWidth
-								.getChildAt(1);
-						LinearLayout layoutHeight = (LinearLayout) layoutSizeWeight
-								.getChildAt(2);
-						EditText editHeight = (EditText) layoutHeight
-								.getChildAt(1);
-						LinearLayout layoutWeight = (LinearLayout) layoutSizeWeight
-								.getChildAt(3);
-						EditText editWeight = (EditText) layoutWeight
-								.getChildAt(1);
-						try {
-							float length = Float.parseFloat(editLength
-									.getText().toString());
-							jsonObjSizeWeight.put("length", length);
-							isSizeWeightInfoValided = true;
-						} catch (Exception e) {
-							isSizeWeightInfoValided = false;
-							editLength.requestFocus();
-							Toast.makeText(getActivity(), "Invalid Length",
-									Toast.LENGTH_LONG).show();
-							break;
-						}
-						try {
-							float width = Float.parseFloat(editWidth.getText()
-									.toString());
-							jsonObjSizeWeight.put("width", width);
-							isSizeWeightInfoValided = true;
-						} catch (Exception e) {
-							isSizeWeightInfoValided = false;
-							editWidth.requestFocus();
-							Toast.makeText(getActivity(), "Invalid Width",
-									Toast.LENGTH_LONG).show();
-							break;
-						}
-						try {
-							float height = Float.parseFloat(editHeight
-									.getText().toString());
-							jsonObjSizeWeight.put("height", height);
-							isSizeWeightInfoValided = true;
-						} catch (Exception e) {
-							isSizeWeightInfoValided = false;
-							editHeight.requestFocus();
-							Toast.makeText(getActivity(), "Invalid Height",
-									Toast.LENGTH_LONG).show();
-							break;
-						}
-						try {
-							float weight = Float.parseFloat(editWeight
-									.getText().toString());
-							jsonObjSizeWeight.put("weight", weight);
-							isSizeWeightInfoValided = true;
-						} catch (Exception e) {
-							isSizeWeightInfoValided = false;
-							editWeight.requestFocus();
-							Toast.makeText(getActivity(), "Invalid Weight",
-									Toast.LENGTH_LONG).show();
-							break;
-						}
-					}
-
-					// execute the submission
-					if (isJSONObjEmpty || !isSizeWeightInfoValided) {
-						Toast.makeText(
-								getActivity(),
-								"The Package Set, " + strTWCustomEntryNumber
-										+ ", doesn't has any package! Or, there are invalid information of package size or weight!",
-								Toast.LENGTH_LONG).show();
-					}else {
-						submitPackagesSetsHandler = new WebContentDownloadHandler(
-								progressBarForSubmitPackagesSets);
-						submitPackagesSetsHandler
-								.execute(new String[] { "https://exshipper-ca.appspot.com/exshipper_tw_custom_entry_handler" });
-					}
-				} else {
-					Toast.makeText(getActivity(), "No data for upload!",
-							Toast.LENGTH_LONG).show();
-				}
-
-			} catch (Exception e) {
-				// TODO: handle exception
-				Log.e("error", e.getMessage());
+			if (alertDialogBuilder == null) {
+				alertDialogBuilder = new AlertDialog.Builder(getActivity());
 			}
+			DialogInterface.OnClickListener currentDialogListener = new DialogInterface.OnClickListener() {
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					// TODO Auto-generated method stub
+
+					try {
+						if (submitPackagesSetsHandler != null
+								&& submitPackagesSetsHandler.getStatus() != AsyncTask.Status.FINISHED) {
+							submitPackagesSetsHandler.cancel(true);
+						}
+
+						// set asynctask
+						if (jsonObjTWCustomEntryPackagesSets != null
+								&& jsonObjTWCustomEntryPackagesSets.length() > 0) {
+							// check if jsonObj empty
+							boolean isJSONObjEmpty = false;
+							JSONArray jsonAryTWCustomEntryPackagesSetsNames = jsonObjTWCustomEntryPackagesSets
+									.names();
+							String strTWCustomEntryNumber = null;
+
+							for (int ith = 0; ith < jsonAryTWCustomEntryPackagesSetsNames
+									.length(); ith++) {
+								JSONObject jsonObj = (JSONObject) jsonObjTWCustomEntryPackagesSets
+										.get(jsonAryTWCustomEntryPackagesSetsNames
+												.getString(ith));
+								if (jsonObj.length() == 0) {
+									isJSONObjEmpty = true;
+									strTWCustomEntryNumber = jsonAryTWCustomEntryPackagesSetsNames
+											.getString(ith);
+									break;
+								}
+							}
+							// end
+
+							// check if information of size & weight are empty
+							boolean isSizeWeightInfoValided = false;
+							JSONArray jsonArySizeWeightInfoNames = jsonObjTWCustomEntryPackageSizeWeight
+									.names();
+							for (int ith = 0; ith < jsonArySizeWeightInfoNames
+									.length(); ith++) {
+								JSONObject jsonObj = (JSONObject) jsonObjTWCustomEntryPackageSizeWeight
+										.get(jsonArySizeWeightInfoNames
+												.getString(ith));
+								LinearLayout layoutSizeWeight = (LinearLayout) jsonObj
+										.get("layoutObj");
+								JSONObject jsonObjSizeWeight = (JSONObject) jsonObj
+										.get("strObj");
+
+								LinearLayout layoutLength = (LinearLayout) layoutSizeWeight
+										.getChildAt(0);
+								EditText editLength = (EditText) layoutLength
+										.getChildAt(1);
+								LinearLayout layoutWidth = (LinearLayout) layoutSizeWeight
+										.getChildAt(1);
+								EditText editWidth = (EditText) layoutWidth
+										.getChildAt(1);
+								LinearLayout layoutHeight = (LinearLayout) layoutSizeWeight
+										.getChildAt(2);
+								EditText editHeight = (EditText) layoutHeight
+										.getChildAt(1);
+								LinearLayout layoutWeight = (LinearLayout) layoutSizeWeight
+										.getChildAt(3);
+								EditText editWeight = (EditText) layoutWeight
+										.getChildAt(1);
+								try {
+									float length = Float.parseFloat(editLength
+											.getText().toString());
+									jsonObjSizeWeight.put("length", length);
+									isSizeWeightInfoValided = true;
+								} catch (Exception e) {
+									isSizeWeightInfoValided = false;
+									editLength.requestFocus();
+									Toast.makeText(getActivity(),
+											"Invalid Length", Toast.LENGTH_LONG)
+											.show();
+									break;
+								}
+								try {
+									float width = Float.parseFloat(editWidth
+											.getText().toString());
+									jsonObjSizeWeight.put("width", width);
+									isSizeWeightInfoValided = true;
+								} catch (Exception e) {
+									isSizeWeightInfoValided = false;
+									editWidth.requestFocus();
+									Toast.makeText(getActivity(),
+											"Invalid Width", Toast.LENGTH_LONG)
+											.show();
+									break;
+								}
+								try {
+									float height = Float.parseFloat(editHeight
+											.getText().toString());
+									jsonObjSizeWeight.put("height", height);
+									isSizeWeightInfoValided = true;
+								} catch (Exception e) {
+									isSizeWeightInfoValided = false;
+									editHeight.requestFocus();
+									Toast.makeText(getActivity(),
+											"Invalid Height", Toast.LENGTH_LONG)
+											.show();
+									break;
+								}
+								try {
+									float weight = Float.parseFloat(editWeight
+											.getText().toString());
+									jsonObjSizeWeight.put("weight", weight);
+									isSizeWeightInfoValided = true;
+								} catch (Exception e) {
+									isSizeWeightInfoValided = false;
+									editWeight.requestFocus();
+									Toast.makeText(getActivity(),
+											"Invalid Weight", Toast.LENGTH_LONG)
+											.show();
+									break;
+								}
+							}
+
+							// execute the submission
+							if (isJSONObjEmpty || !isSizeWeightInfoValided) {
+								Toast.makeText(
+										getActivity(),
+										"The Package Set, "
+												+ strTWCustomEntryNumber
+												+ ", doesn't has any package! Or, there are invalid information of package size or weight!",
+										Toast.LENGTH_LONG).show();
+							} else {
+								submitPackagesSetsHandler = new WebContentDownloadHandler(
+										progressBarForSubmitPackagesSets);
+								submitPackagesSetsHandler
+										.execute(new String[] { "https://exshipper-ca.appspot.com/exshipper_tw_custom_entry_handler" });
+							}
+						} else {
+							Toast.makeText(getActivity(),
+									"No data for upload!", Toast.LENGTH_LONG)
+									.show();
+						}
+
+					} catch (Exception e) {
+						// TODO: handle exception
+						Log.e("error", e.getMessage());
+					}
+
+				}
+			};
+
+			alertDialogBuilder.setTitle("Submit Pakcages\' Information");
+			alertDialogBuilder
+					.setMessage("Do you want to submit the information?")
+					.setCancelable(false)
+					.setPositiveButton("Yes", currentDialogListener)
+					.setNegativeButton("No",
+							new DialogInterface.OnClickListener() {
+
+								@Override
+								public void onClick(DialogInterface dialog,
+										int which) {
+									// TODO Auto-generated method stub
+									dialog.cancel();
+								}
+							});
+
+			AlertDialog currentAlertDialog = alertDialogBuilder.create();
+			currentAlertDialog.show();
 
 		}
 	};
@@ -850,9 +926,10 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 							btnStartBarcodeReader.setTag(jsonObj);
 							btnDeletePackageSet.setTag(jsonObj);
 							
-							//scroll view to specific position
 							viewForScrollTo = layoutPackagesSet;
+							//auto-scroll to specific view
 							scrollViewTWCustomEntryList.post(new Runnable() {
+								
 								@Override
 								public void run() {
 									// TODO Auto-generated method stub
@@ -1001,6 +1078,7 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 	};
 
 	/* XML components */
+	TextView txtIntroduction = null;
 	Button btnAddNewPackagesSet = null;
 	TextView txtTWCustomEntryHandlingResult = null;
 	TextView txtTotalSets = null;
@@ -1010,7 +1088,18 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 	TextView txtSubmitResult = null;
 	Button btnSubmitPakcagesSets = null;
 	ScrollView scrollViewTWCustomEntryList = null;
+
 	private void initXMLViewComponents(View mView) {
+		txtIntroduction = (TextView) mView
+				.findViewById(R.id.txt_introduction_tw_custom_entry);
+		txtIntroduction
+				.setText("Instruction:\n"
+						+ "1. Click 'Add New Package Set' button to get TW Custom Entry Barcode Number; (If you want to delete the barcode or the package set, please click the \'Delete\' key word)\n"
+						+ "2. Key in size and weight of package\n"
+						+ "3. Click 'Scan' button to scan package barcode\n"
+						+ "4. Click 'Submit Packages Information' button to submit information\n"
+						+ "5. Once you get response from server, you're done\n");
+
 		btnAddNewPackagesSet = (Button) mView
 				.findViewById(R.id.btn_add_new_packages_set_tw_custom_entry);
 		btnAddNewPackagesSet

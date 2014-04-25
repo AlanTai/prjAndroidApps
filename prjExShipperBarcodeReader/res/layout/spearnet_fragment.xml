@@ -9,6 +9,7 @@
     android:paddingTop="@dimen/activity_vertical_margin" >
 
     <LinearLayout
+        android:id="@+id/layout_spearnet_package_pick_title_area"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical" >
@@ -16,8 +17,7 @@
         <TextView
             android:id="@+id/txt_introduction"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/spearnet_app_introduction"/>
+            android:layout_height="wrap_content" />
         <!-- Parting Line -->
 
         <View
@@ -32,7 +32,8 @@
         <View
             android:layout_width="fill_parent"
             android:layout_height="10sp" />
-        <!-- end -->
+
+        <!-- submit -->
 
         <Button
             android:id="@+id/btn_submit_suda_tracking_number"
@@ -54,7 +55,8 @@
         <View
             android:layout_width="fill_parent"
             android:layout_height="10sp" />
-        <!-- end -->
+
+        <!-- scan -->
 
         <Button
             android:id="@+id/btn_scan"
@@ -76,7 +78,6 @@
         <View
             android:layout_width="fill_parent"
             android:layout_height="10sp" />
-        <!-- end -->
 
         <TextView
             android:id="@+id/txt_result"
@@ -103,19 +104,14 @@
         android:id="@+id/scroll_view_spearnet_pickup_list"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
+        android:layout_below="@+id/layout_spearnet_package_pick_title_area"
         android:fillViewport="true" >
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:id="@+id/layout_suda_tracking_numbers_list"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical" >
-
-            <LinearLayout
-                android:id="@+id/layout_suda_tracking_numbers_list"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical" >
-            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 
