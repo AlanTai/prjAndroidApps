@@ -48,7 +48,6 @@ public class SpearnetPakcagesPickupFragment extends FragmentTemplate {
 	private WebContentDownloadHandler uploadPickedPackagesTrackingNumbersHandler = null;
 	private ProgressDialog mProgressBar = null;
 
-	
 	private View viewDeleteBtn = null;
 	private AlertDialog.Builder alertDialogBuilder = null;
 	private View viewForScrollTo = null;
