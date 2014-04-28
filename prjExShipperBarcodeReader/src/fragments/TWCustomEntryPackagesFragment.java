@@ -93,187 +93,194 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 			getActivity();
 			if (resultCode == FragmentActivity.RESULT_OK) {
 				strScanedBarcode = p_intent.getStringExtra("SCAN_RESULT");
-
-				// alert dialog
-				AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
-						getActivity());
-				alertDialogBuilder.setTitle("SUDA Tracking Number");
-				alertDialogBuilder
-						.setMessage(
-								"Do you want to save the SUDA Tracking Number-"
-										+ strScanedBarcode + "?")
-						.setCancelable(false)
-						.setPositiveButton("Yes",
-								new DialogInterface.OnClickListener() {
-
-									@Override
-									public void onClick(DialogInterface dialog,
-											int which) {
-										JSONArray jsonAryNames = jsonObjTWCustomEntryPackagesSets
-												.names(); // get all names from
-															// jsonObj
-
-										boolean isTrackingNumberExist = false;
-										for (int ith = 0; ith < jsonAryNames
-												.length(); ith++) {
-											JSONObject jsonObj;
-											try {
-												jsonObj = jsonObjTWCustomEntryPackagesSets
-														.getJSONObject(jsonAryNames
-																.getString(ith));
-
-												// check if scanned barcode
-												// exists
-												if (jsonObj
-														.has(strScanedBarcode)) {
-													Toast.makeText(
-															getActivity(),
-															"SUDA Tracking Number Duplicated!",
-															Toast.LENGTH_LONG)
-															.show();
-													isTrackingNumberExist = true;
-													break;
-												}
-											} catch (JSONException e) {
-												// TODO Auto-generated catch
-												// block
-												Log.e("error", e.getMessage());
-											}
-										}
-
-										//
-										if (!isTrackingNumberExist) {
-											// add new barcode into
-											// corresponding package set
-											try {
-
-												JSONObject jsonObjFromBtnScanBarcode = (JSONObject) currentBtnForScanBarcode
-														.getTag();
-
-												// String twCustomEntryNumber =
-												// (String)
-												// jsonObjFromBtnScanBarcode.get("p_result");
-												// //get tw custom entry package
-												// number
-												JSONObject jsonObjCurrentPackagesSet = (JSONObject) jsonObjFromBtnScanBarcode
-														.getJSONObject("jsonObjPackageSet");
-												LinearLayout layoutCurrentPackagesSet = (LinearLayout) jsonObjFromBtnScanBarcode
-														.get("layoutTrackingNumberList");
-
-												// add to obj
-												jsonObjCurrentPackagesSet.put(
-														strScanedBarcode,
-														"exshipper");
-
-												// add layout-list
-												TextView txtAddedSUDATrackingNumber = new TextView(
-														getActivity());
-												txtAddedSUDATrackingNumber.setTextColor(Color
-														.parseColor("#04550E"));
-												txtAddedSUDATrackingNumber
-														.setTextSize(
-																TypedValue.COMPLEX_UNIT_SP,
-																16);
-												txtAddedSUDATrackingNumber
-														.setText("SUDA NO."
-																+ strScanedBarcode);
-												txtAddedSUDATrackingNumber
-														.setGravity(Gravity.CENTER);
-												txtAddedSUDATrackingNumber
-														.setPadding(3, 2, 1, 2);
-
-												Button btnDeleteInfoRow = new Button(
-														getActivity());
-												btnDeleteInfoRow
-														.setTextSize(
-																TypedValue.COMPLEX_UNIT_SP,
-																16);
-												btnDeleteInfoRow.setTextColor(Color
-														.parseColor("#ff0000"));
-												btnDeleteInfoRow
-														.setText("Delete NO.");
-												btnDeleteInfoRow
-														.setBackgroundColor(Color.TRANSPARENT);
-												btnDeleteInfoRow
-														.setGravity(Gravity.CENTER);
-												btnDeleteInfoRow
-														.setBackgroundResource(R.drawable.clicked_item);
-												btnDeleteInfoRow.setPadding(3,
-														2, 1, 2);
-												btnDeleteInfoRow
-														.setOnClickListener(deleteSUDATrackingNumberInfo);
-
-												LinearLayout layoutSUDATrackingNumberInfoRow = new LinearLayout(
-														getActivity());
-												layoutSUDATrackingNumberInfoRow
-														.setOrientation(LinearLayout.HORIZONTAL);
-												layoutSUDATrackingNumberInfoRow
-														.setPadding(1, 2, 1, 2);
-												layoutSUDATrackingNumberInfoRow
-														.addView(btnDeleteInfoRow);
-												layoutSUDATrackingNumberInfoRow
-														.addView(txtAddedSUDATrackingNumber);
-												layoutSUDATrackingNumberInfoRow
-														.setTag(strScanedBarcode
-																.hashCode());
-
-												//
-												JSONObject jsonObjCurrentInfoRow = new JSONObject();
-												jsonObjCurrentInfoRow
-														.put("layoutSUDATrackingNumberInfoRow",
-																layoutSUDATrackingNumberInfoRow);
-												jsonObjCurrentInfoRow
-														.put("layoutCurrentPackagesSet",
-																layoutCurrentPackagesSet);
-												jsonObjCurrentInfoRow
-														.put("jsonObjCurrentPackagesSet",
-																jsonObjCurrentPackagesSet);
-												jsonObjCurrentInfoRow.put(
-														"strScanedBarcode",
-														strScanedBarcode);
-												btnDeleteInfoRow
-														.setTag(jsonObjCurrentInfoRow);
-
-												layoutCurrentPackagesSet
-														.addView(layoutSUDATrackingNumberInfoRow);
-												
-												
-												//auto-scroll to specific view
-												viewForScrollTo = layoutSUDATrackingNumberInfoRow;
-												//auto-scroll to specific view
-												scrollViewTWCustomEntryList.post(new Runnable() {
-													
-													@Override
-													public void run() {
-														// TODO Auto-generated method stub
-														scrollViewTWCustomEntryList.scrollTo(0, viewForScrollTo.getTop());
-													}
-												});
-												
-												
-											} catch (Exception e) {
-												Log.e("error", e.getMessage());
-											}
-
-										}
-									}
-								})
-						.setNegativeButton("No",
-								new DialogInterface.OnClickListener() {
-
-									@Override
-									public void onClick(DialogInterface dialog,
-											int which) {
-										dialog.cancel();
-									}
-								});
-
-				// create alert dialog
-				AlertDialog alertDialog = alertDialogBuilder.create();
-				alertDialog.show();
+				addNewSUDATrackingNumber();
 			}
 		}
 	}
+	
+	//functions block
+	private void addNewSUDATrackingNumber(){
+
+		// alert dialog
+		AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+				getActivity());
+		alertDialogBuilder.setTitle("SUDA Tracking Number");
+		alertDialogBuilder
+				.setMessage(
+						"Do you want to save the SUDA Tracking Number-"
+								+ strScanedBarcode + "?")
+				.setCancelable(false)
+				.setPositiveButton("Yes",
+						new DialogInterface.OnClickListener() {
+
+							@Override
+							public void onClick(DialogInterface dialog,
+									int which) {
+								JSONArray jsonAryNames = jsonObjTWCustomEntryPackagesSets
+										.names(); // get all names from
+													// jsonObj
+
+								boolean isTrackingNumberExist = false;
+								for (int ith = 0; ith < jsonAryNames
+										.length(); ith++) {
+									JSONObject jsonObj;
+									try {
+										jsonObj = jsonObjTWCustomEntryPackagesSets
+												.getJSONObject(jsonAryNames
+														.getString(ith));
+
+										// check if scanned barcode
+										// exists
+										if (jsonObj
+												.has(strScanedBarcode)) {
+											Toast.makeText(
+													getActivity(),
+													"SUDA Tracking Number Duplicated!",
+													Toast.LENGTH_LONG)
+													.show();
+											isTrackingNumberExist = true;
+											break;
+										}
+									} catch (JSONException e) {
+										// TODO Auto-generated catch
+										// block
+										Log.e("error", e.getMessage());
+									}
+								}
+
+								//
+								if (!isTrackingNumberExist) {
+									// add new barcode into
+									// corresponding package set
+									try {
+
+										JSONObject jsonObjFromBtnScanBarcode = (JSONObject) currentBtnForScanBarcode
+												.getTag();
+
+										// String twCustomEntryNumber =
+										// (String)
+										// jsonObjFromBtnScanBarcode.get("p_result");
+										// //get tw custom entry package
+										// number
+										JSONObject jsonObjCurrentPackagesSet = (JSONObject) jsonObjFromBtnScanBarcode
+												.getJSONObject("jsonObjPackageSet");
+										LinearLayout layoutCurrentPackagesSet = (LinearLayout) jsonObjFromBtnScanBarcode
+												.get("layoutTrackingNumberList");
+
+										// add to obj
+										jsonObjCurrentPackagesSet.put(
+												strScanedBarcode,
+												"exshipper");
+
+										// add layout-list
+										TextView txtAddedSUDATrackingNumber = new TextView(
+												getActivity());
+										txtAddedSUDATrackingNumber.setTextColor(Color
+												.parseColor("#04550E"));
+										txtAddedSUDATrackingNumber
+												.setTextSize(
+														TypedValue.COMPLEX_UNIT_SP,
+														16);
+										txtAddedSUDATrackingNumber
+												.setText("SUDA NO."
+														+ strScanedBarcode);
+										txtAddedSUDATrackingNumber
+												.setGravity(Gravity.CENTER);
+										txtAddedSUDATrackingNumber
+												.setPadding(3, 2, 1, 2);
+
+										Button btnDeleteInfoRow = new Button(
+												getActivity());
+										btnDeleteInfoRow
+												.setTextSize(
+														TypedValue.COMPLEX_UNIT_SP,
+														16);
+										btnDeleteInfoRow.setTextColor(Color
+												.parseColor("#ff0000"));
+										btnDeleteInfoRow
+												.setText("Delete NO.");
+										btnDeleteInfoRow
+												.setBackgroundColor(Color.TRANSPARENT);
+										btnDeleteInfoRow
+												.setGravity(Gravity.CENTER);
+										btnDeleteInfoRow
+												.setBackgroundResource(R.drawable.clicked_item);
+										btnDeleteInfoRow.setPadding(3,
+												2, 1, 2);
+										btnDeleteInfoRow
+												.setOnClickListener(deleteSUDATrackingNumberInfo);
+
+										LinearLayout layoutSUDATrackingNumberInfoRow = new LinearLayout(
+												getActivity());
+										layoutSUDATrackingNumberInfoRow
+												.setOrientation(LinearLayout.HORIZONTAL);
+										layoutSUDATrackingNumberInfoRow
+												.setPadding(1, 2, 1, 2);
+										layoutSUDATrackingNumberInfoRow
+												.addView(btnDeleteInfoRow);
+										layoutSUDATrackingNumberInfoRow
+												.addView(txtAddedSUDATrackingNumber);
+										layoutSUDATrackingNumberInfoRow
+												.setTag(strScanedBarcode
+														.hashCode());
+
+										//
+										JSONObject jsonObjCurrentInfoRow = new JSONObject();
+										jsonObjCurrentInfoRow
+												.put("layoutSUDATrackingNumberInfoRow",
+														layoutSUDATrackingNumberInfoRow);
+										jsonObjCurrentInfoRow
+												.put("layoutCurrentPackagesSet",
+														layoutCurrentPackagesSet);
+										jsonObjCurrentInfoRow
+												.put("jsonObjCurrentPackagesSet",
+														jsonObjCurrentPackagesSet);
+										jsonObjCurrentInfoRow.put(
+												"strScanedBarcode",
+												strScanedBarcode);
+										btnDeleteInfoRow
+												.setTag(jsonObjCurrentInfoRow);
+
+										layoutCurrentPackagesSet
+												.addView(layoutSUDATrackingNumberInfoRow);
+										
+										
+										//auto-scroll to specific view
+										viewForScrollTo = layoutSUDATrackingNumberInfoRow;
+										//auto-scroll to specific view
+										scrollViewTWCustomEntryList.post(new Runnable() {
+											
+											@Override
+											public void run() {
+												// TODO Auto-generated method stub
+												scrollViewTWCustomEntryList.scrollTo(0, viewForScrollTo.getTop());
+											}
+										});
+										
+										
+									} catch (Exception e) {
+										Log.e("error", e.getMessage());
+									}
+
+								}
+							}
+						})
+				.setNegativeButton("No",
+						new DialogInterface.OnClickListener() {
+
+							@Override
+							public void onClick(DialogInterface dialog,
+									int which) {
+								dialog.cancel();
+							}
+						});
+
+		// create alert dialog
+		AlertDialog alertDialog = alertDialogBuilder.create();
+		alertDialog.show();
+	}
+	//end of functions block
+	
 	
 	// OnClickListeners
 	//get tw custom entry number & add new package set
@@ -405,7 +412,6 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 
 	//start barcode reader/scanner
 	OnClickListener startBarcodeReader = new OnClickListener() {
-
 		@Override
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
@@ -666,7 +672,7 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 	
 	
 	// progress bars block
-	// progress bar update listeners
+	// get tw custom entry number & add new package set
 	ProgressBarUpdateListener progressBarForGetTWCustomEntryNumber = new ProgressBarUpdateListener() {
 
 		@Override
@@ -999,7 +1005,7 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 		}
 	};
 
-	//
+	// submit packages information
 	ProgressBarUpdateListener progressBarForSubmitPackagesSets = new ProgressBarUpdateListener() {
 		@Override
 		public void updateResult(String p_result) {

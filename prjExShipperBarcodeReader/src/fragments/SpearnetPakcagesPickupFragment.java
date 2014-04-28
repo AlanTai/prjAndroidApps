@@ -39,7 +39,7 @@ import android.widget.Toast;
 
 public class SpearnetPakcagesPickupFragment extends FragmentTemplate {
 	// inner variables
-	private String suda_tracking_number = null;
+	private String strSUDATrackingNumber = null;
 	private String scanResult = "";
 	private Map<Integer, String> sudaTrackingNumberMap = new HashMap<Integer, String>();
 
@@ -93,8 +93,8 @@ public class SpearnetPakcagesPickupFragment extends FragmentTemplate {
 		if (requestCode == 0) {
 			getActivity();
 			if (resultCode == FragmentActivity.RESULT_OK) {
-				suda_tracking_number = p_intent.getStringExtra("SCAN_RESULT");
-				addNewSUDATrackingNumber(suda_tracking_number);
+				strSUDATrackingNumber = p_intent.getStringExtra("SCAN_RESULT");
+				addNewSUDATrackingNumber();
 			} else {
 				getActivity();
 				if (resultCode == FragmentActivity.RESULT_CANCELED) {
@@ -105,7 +105,7 @@ public class SpearnetPakcagesPickupFragment extends FragmentTemplate {
 	}
 	
 	//functions block
-	private void addNewSUDATrackingNumber(String sudaTrackingNumber){
+	private void addNewSUDATrackingNumber(){
 		//add new suda tracking number
 		// alert dialog
 		AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
@@ -114,7 +114,7 @@ public class SpearnetPakcagesPickupFragment extends FragmentTemplate {
 		alertDialogBuilder
 				.setMessage(
 						"Do you want to save the SUDA NO. "
-								+ suda_tracking_number + "?")
+								+ strSUDATrackingNumber + "?")
 				.setCancelable(false)
 				.setPositiveButton("Yes",
 						new DialogInterface.OnClickListener() {
@@ -123,15 +123,15 @@ public class SpearnetPakcagesPickupFragment extends FragmentTemplate {
 							public void onClick(DialogInterface dialog,
 									int which) {
 								if (!sudaTrackingNumberMap
-										.containsValue(suda_tracking_number)) {
+										.containsValue(strSUDATrackingNumber)) {
 									// add new suda tracking number into
 									// MapList
 									sudaTrackingNumberMap.put(
-											suda_tracking_number
+											strSUDATrackingNumber
 													.hashCode(),
-											suda_tracking_number);
+											strSUDATrackingNumber);
 									scanResult = "*Current Obtained SUDA NO. "
-											+ suda_tracking_number;
+											+ strSUDATrackingNumber;
 
 									txtScanResult.setText(scanResult);
 									txtTotalAmount
@@ -151,7 +151,7 @@ public class SpearnetPakcagesPickupFragment extends FragmentTemplate {
 													16);
 									txtAddedSUDATrackingNumber
 											.setText("SUDA NO."
-													+ suda_tracking_number);
+													+ strSUDATrackingNumber);
 									txtAddedSUDATrackingNumber
 											.setGravity(Gravity.CENTER);
 									txtAddedSUDATrackingNumber
@@ -189,7 +189,7 @@ public class SpearnetPakcagesPickupFragment extends FragmentTemplate {
 									layoutSUDATrackingNumberInfoRow
 											.addView(txtAddedSUDATrackingNumber);
 									layoutSUDATrackingNumberInfoRow
-											.setTag(suda_tracking_number
+											.setTag(strSUDATrackingNumber
 													.hashCode());
 
 									btnDeleteSUDATrackingNumber
@@ -306,15 +306,12 @@ public class SpearnetPakcagesPickupFragment extends FragmentTemplate {
 	
 	//manually add suda tracking number
 	OnClickListener addSUDATrackingNumber = new OnClickListener() {
-		
 		@Override
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
-			String strSUDATrackingNumber = editTxtSUDATrackingNumber.getText().toString();
+			strSUDATrackingNumber = editTxtSUDATrackingNumber.getText().toString();
 			if(!"".equals(strSUDATrackingNumber)){
-				//add new suda tracking number...
-				addNewSUDATrackingNumber(strSUDATrackingNumber);
-				//...
+				addNewSUDATrackingNumber();
 			}
 		}
 	};
