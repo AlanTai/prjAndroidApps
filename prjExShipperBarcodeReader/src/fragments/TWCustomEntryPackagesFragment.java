@@ -39,16 +39,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class TWCustomEntryPackagesFragment extends FragmentTemplate {
-	JSONObject jsonObjTWCustomEntryPackagesSets = null;
-	JSONObject jsonObjTWCustomEntryPackageSizeWeight = null;
+	private JSONObject jsonObjTWCustomEntryPackagesSets = null;
+	private JSONObject jsonObjTWCustomEntryPackageSizeWeight = null;
 
-	String strScanedBarcode = null;
+	private String strScanedBarcode = null;
 
-	WebContentDownloadHandler getTWCustomEntryNumberHandler = null;
-	WebContentDownloadHandler submitPackagesSetsHandler = null;
-	ProgressDialog mProgressbar = null;
+	private WebContentDownloadHandler getTWCustomEntryNumberHandler = null;
+	private WebContentDownloadHandler submitPackagesSetsHandler = null;
+	private ProgressDialog mProgressbar = null;
 
-	Button currentBtnForScanBarcode = null;
+	private Button currentBtnForScanBarcode = null;
 
 	private View viewDeleteBtn = null;
 	private AlertDialog.Builder alertDialogBuilder = null;
@@ -69,6 +69,20 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 				container, false);
 		initXMLViewComponents(mView);
 		return mView;
+	}
+
+	@Override
+	public void onDestroy() {
+		// TODO Auto-generated method stub
+		if (getTWCustomEntryNumberHandler != null
+				&& getTWCustomEntryNumberHandler.getStatus() != AsyncTask.Status.FINISHED) {
+			getTWCustomEntryNumberHandler.cancel(true);
+			getTWCustomEntryNumberHandler = null;
+		}
+		txtTotalSets = null;
+		txtTotalSets = null;
+		layoutPakcagesSetsList = null;
+		super.onDestroy();
 	}
 
 	@Override
@@ -260,22 +274,9 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 			}
 		}
 	}
-
-	@Override
-	public void onDestroy() {
-		// TODO Auto-generated method stub
-		if (getTWCustomEntryNumberHandler != null
-				&& getTWCustomEntryNumberHandler.getStatus() != AsyncTask.Status.FINISHED) {
-			getTWCustomEntryNumberHandler.cancel(true);
-			getTWCustomEntryNumberHandler = null;
-		}
-		txtTotalSets = null;
-		txtTotalSets = null;
-		layoutPakcagesSetsList = null;
-		super.onDestroy();
-	}
-
+	
 	// OnClickListeners
+	//get tw custom entry number & add new package set
 	OnClickListener getTWCustomEntryNumberAndAddNewSet = new OnClickListener() {
 
 		@Override
@@ -335,6 +336,7 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 		}
 	};
 
+	//delete package set
 	OnClickListener deletePackagesSet = new OnClickListener() {
 
 		@Override
@@ -401,6 +403,7 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 		}
 	};
 
+	//start barcode reader/scanner
 	OnClickListener startBarcodeReader = new OnClickListener() {
 
 		@Override
@@ -416,6 +419,7 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 		}
 	};
 
+	//delete suda tracking number
 	OnClickListener deleteSUDATrackingNumberInfo = new OnClickListener() {
 
 		@Override
@@ -482,6 +486,7 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 		}
 	};
 
+	//submit packages information
 	OnClickListener submitPackagesSets = new OnClickListener() {
 
 		@Override
@@ -657,7 +662,10 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 
 		}
 	};
-
+	//end of OnClickListeners
+	
+	
+	// progress bars block
 	// progress bar update listeners
 	ProgressBarUpdateListener progressBarForGetTWCustomEntryNumber = new ProgressBarUpdateListener() {
 
@@ -1076,7 +1084,8 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 			return true;
 		}
 	};
-
+	// end of progress bars block
+	
 	/* XML components */
 	TextView txtIntroduction = null;
 	Button btnAddNewPackagesSet = null;

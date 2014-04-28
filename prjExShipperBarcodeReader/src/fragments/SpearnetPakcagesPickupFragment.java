@@ -87,143 +87,14 @@ public class SpearnetPakcagesPickupFragment extends FragmentTemplate {
 		super.onDestroy();
 	}
 
-	/* alert dialog setup trigger parameter */
-	boolean isTriggerFunction = false;
-
-	/* end alert dialog setup */
-
 	@Override
 	public void onActivityResult(int requestCode, int resultCode,
 			Intent p_intent) {
-
 		if (requestCode == 0) {
 			getActivity();
 			if (resultCode == FragmentActivity.RESULT_OK) {
 				suda_tracking_number = p_intent.getStringExtra("SCAN_RESULT");
-
-				// alert dialog
-				AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
-						getActivity());
-				alertDialogBuilder.setTitle("SUDA Tracking Number");
-				alertDialogBuilder
-						.setMessage(
-								"Do you want to save the SUDA NO. "
-										+ suda_tracking_number + "?")
-						.setCancelable(false)
-						.setPositiveButton("Yes",
-								new DialogInterface.OnClickListener() {
-
-									@Override
-									public void onClick(DialogInterface dialog,
-											int which) {
-										if (!sudaTrackingNumberMap
-												.containsValue(suda_tracking_number)) {
-											// add new suda tracking number into
-											// MapList
-											sudaTrackingNumberMap.put(
-													suda_tracking_number
-															.hashCode(),
-													suda_tracking_number);
-											scanResult = "*Current Obtained SUDA NO. "
-													+ suda_tracking_number;
-
-											txtScanResult.setText(scanResult);
-											txtTotalAmount
-													.setText("*Total Amount of SUDA NO. = "
-															+ sudaTrackingNumberMap
-																	.size());
-
-											// append suda tracking number info
-											// onto layout-list
-											TextView txtAddedSUDATrackingNumber = new TextView(
-													getActivity());
-											txtAddedSUDATrackingNumber.setTextColor(Color
-													.parseColor("#04550E"));
-											txtAddedSUDATrackingNumber
-													.setTextSize(
-															TypedValue.COMPLEX_UNIT_SP,
-															16);
-											txtAddedSUDATrackingNumber
-													.setText("SUDA NO."
-															+ suda_tracking_number);
-											txtAddedSUDATrackingNumber
-													.setGravity(Gravity.CENTER);
-											txtAddedSUDATrackingNumber
-													.setPadding(3, 2, 1, 2);
-
-											Button btnDeleteSUDATrackingNumber = new Button(
-													getActivity());
-											btnDeleteSUDATrackingNumber
-													.setTextSize(
-															TypedValue.COMPLEX_UNIT_SP,
-															16);
-											btnDeleteSUDATrackingNumber.setTextColor(Color
-													.parseColor("#ff0000"));
-											btnDeleteSUDATrackingNumber
-													.setText("Delete NO.");
-											btnDeleteSUDATrackingNumber
-													.setBackgroundColor(Color.TRANSPARENT);
-											btnDeleteSUDATrackingNumber
-													.setGravity(Gravity.CENTER);
-											btnDeleteSUDATrackingNumber
-													.setBackgroundResource(R.drawable.clicked_item);
-											btnDeleteSUDATrackingNumber
-													.setPadding(3, 2, 1, 2);
-											btnDeleteSUDATrackingNumber
-													.setOnClickListener(deleteSUDATrackingNumberInfo);
-
-											LinearLayout layoutSUDATrackingNumberInfoRow = new LinearLayout(
-													getActivity());
-											layoutSUDATrackingNumberInfoRow
-													.setOrientation(LinearLayout.HORIZONTAL);
-											layoutSUDATrackingNumberInfoRow
-													.setPadding(1, 2, 1, 2);
-											layoutSUDATrackingNumberInfoRow
-													.addView(btnDeleteSUDATrackingNumber);
-											layoutSUDATrackingNumberInfoRow
-													.addView(txtAddedSUDATrackingNumber);
-											layoutSUDATrackingNumberInfoRow
-													.setTag(suda_tracking_number
-															.hashCode());
-
-											btnDeleteSUDATrackingNumber
-													.setTag(layoutSUDATrackingNumberInfoRow);
-											layoutSUDATrackingNumbersList
-													.addView(layoutSUDATrackingNumberInfoRow);
-											
-											
-											//auto-scroll to specific view
-											viewForScrollTo = layoutSUDATrackingNumberInfoRow;
-											//auto-scroll to specific view
-											scrollViewSpearnetPickupList.post(new Runnable() {
-												
-												@Override
-												public void run() {
-													// TODO Auto-generated method stub
-													scrollViewSpearnetPickupList.scrollTo(0, viewForScrollTo.getTop());
-												}
-											});
-										} else {
-											Toast.makeText(getActivity(),
-													"SUDA NO. Duplicated!",
-													Toast.LENGTH_LONG).show();
-										}
-									}
-								})
-						.setNegativeButton("No",
-								new DialogInterface.OnClickListener() {
-
-									@Override
-									public void onClick(DialogInterface dialog,
-											int which) {
-										dialog.cancel();
-									}
-								});
-
-				// create alert dialog
-				AlertDialog alertDialog = alertDialogBuilder.create();
-				alertDialog.show();
-
+				addNewSUDATrackingNumber(suda_tracking_number);
 			} else {
 				getActivity();
 				if (resultCode == FragmentActivity.RESULT_CANCELED) {
@@ -232,7 +103,136 @@ public class SpearnetPakcagesPickupFragment extends FragmentTemplate {
 			}
 		}
 	}
+	
+	//functions block
+	private void addNewSUDATrackingNumber(String sudaTrackingNumber){
+		//add new suda tracking number
+		// alert dialog
+		AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+				getActivity());
+		alertDialogBuilder.setTitle("SUDA Tracking Number");
+		alertDialogBuilder
+				.setMessage(
+						"Do you want to save the SUDA NO. "
+								+ suda_tracking_number + "?")
+				.setCancelable(false)
+				.setPositiveButton("Yes",
+						new DialogInterface.OnClickListener() {
 
+							@Override
+							public void onClick(DialogInterface dialog,
+									int which) {
+								if (!sudaTrackingNumberMap
+										.containsValue(suda_tracking_number)) {
+									// add new suda tracking number into
+									// MapList
+									sudaTrackingNumberMap.put(
+											suda_tracking_number
+													.hashCode(),
+											suda_tracking_number);
+									scanResult = "*Current Obtained SUDA NO. "
+											+ suda_tracking_number;
+
+									txtScanResult.setText(scanResult);
+									txtTotalAmount
+											.setText("*Total Amount of SUDA NO. = "
+													+ sudaTrackingNumberMap
+															.size());
+
+									// append suda tracking number info
+									// onto layout-list
+									TextView txtAddedSUDATrackingNumber = new TextView(
+											getActivity());
+									txtAddedSUDATrackingNumber.setTextColor(Color
+											.parseColor("#04550E"));
+									txtAddedSUDATrackingNumber
+											.setTextSize(
+													TypedValue.COMPLEX_UNIT_SP,
+													16);
+									txtAddedSUDATrackingNumber
+											.setText("SUDA NO."
+													+ suda_tracking_number);
+									txtAddedSUDATrackingNumber
+											.setGravity(Gravity.CENTER);
+									txtAddedSUDATrackingNumber
+											.setPadding(3, 2, 1, 2);
+
+									Button btnDeleteSUDATrackingNumber = new Button(
+											getActivity());
+									btnDeleteSUDATrackingNumber
+											.setTextSize(
+													TypedValue.COMPLEX_UNIT_SP,
+													16);
+									btnDeleteSUDATrackingNumber.setTextColor(Color
+											.parseColor("#ff0000"));
+									btnDeleteSUDATrackingNumber
+											.setText("Delete NO.");
+									btnDeleteSUDATrackingNumber
+											.setBackgroundColor(Color.TRANSPARENT);
+									btnDeleteSUDATrackingNumber
+											.setGravity(Gravity.CENTER);
+									btnDeleteSUDATrackingNumber
+											.setBackgroundResource(R.drawable.clicked_item);
+									btnDeleteSUDATrackingNumber
+											.setPadding(3, 2, 1, 2);
+									btnDeleteSUDATrackingNumber
+											.setOnClickListener(deleteSUDATrackingNumberInfo);
+
+									LinearLayout layoutSUDATrackingNumberInfoRow = new LinearLayout(
+											getActivity());
+									layoutSUDATrackingNumberInfoRow
+											.setOrientation(LinearLayout.HORIZONTAL);
+									layoutSUDATrackingNumberInfoRow
+											.setPadding(1, 2, 1, 2);
+									layoutSUDATrackingNumberInfoRow
+											.addView(btnDeleteSUDATrackingNumber);
+									layoutSUDATrackingNumberInfoRow
+											.addView(txtAddedSUDATrackingNumber);
+									layoutSUDATrackingNumberInfoRow
+											.setTag(suda_tracking_number
+													.hashCode());
+
+									btnDeleteSUDATrackingNumber
+											.setTag(layoutSUDATrackingNumberInfoRow);
+									layoutSUDATrackingNumbersList
+											.addView(layoutSUDATrackingNumberInfoRow);
+									
+									
+									//auto-scroll to specific view
+									viewForScrollTo = layoutSUDATrackingNumberInfoRow;
+									//auto-scroll to specific view
+									scrollViewSpearnetPickupList.post(new Runnable() {
+										
+										@Override
+										public void run() {
+											// TODO Auto-generated method stub
+											scrollViewSpearnetPickupList.scrollTo(0, viewForScrollTo.getTop());
+										}
+									});
+								} else {
+									Toast.makeText(getActivity(),
+											"SUDA NO. Duplicated!",
+											Toast.LENGTH_LONG).show();
+								}
+							}
+						})
+				.setNegativeButton("No",
+						new DialogInterface.OnClickListener() {
+
+							@Override
+							public void onClick(DialogInterface dialog,
+									int which) {
+								dialog.cancel();
+							}
+						});
+
+		// create alert dialog
+		AlertDialog alertDialog = alertDialogBuilder.create();
+		alertDialog.show();
+
+	}
+	//end of functions block
+	
 	// OnClickListeners
 	// start barcode scan action
 	OnClickListener startBarcodeReader = new OnClickListener() {
@@ -250,6 +250,7 @@ public class SpearnetPakcagesPickupFragment extends FragmentTemplate {
 		}
 	};
 
+	// delete suda tracking number
 	OnClickListener deleteSUDATrackingNumberInfo = new OnClickListener() {
 		@Override
 		public void onClick(View v) {
@@ -302,7 +303,23 @@ public class SpearnetPakcagesPickupFragment extends FragmentTemplate {
 			currentAlertDialog.show();
 		}
 	};
-
+	
+	//manually add suda tracking number
+	OnClickListener addSUDATrackingNumber = new OnClickListener() {
+		
+		@Override
+		public void onClick(View v) {
+			// TODO Auto-generated method stub
+			String strSUDATrackingNumber = editTxtSUDATrackingNumber.getText().toString();
+			if(!"".equals(strSUDATrackingNumber)){
+				//add new suda tracking number...
+				addNewSUDATrackingNumber(strSUDATrackingNumber);
+				//...
+			}
+		}
+	};
+	
+	//submit package information
 	OnClickListener submitSUDATrackingNumbers = new OnClickListener() {
 		@Override
 		public void onClick(View v) {
@@ -367,7 +384,7 @@ public class SpearnetPakcagesPickupFragment extends FragmentTemplate {
 			currentAlertDialog.show();
 		}
 	};
-	// end of OnClickListener
+	// end of OnClickListeners
 
 	// self-defined listeners
 	ProgressBarUpdateListener updateProgressBar = new ProgressBarUpdateListener() {
