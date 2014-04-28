@@ -17,7 +17,8 @@
         <TextView
             android:id="@+id/txt_introduction"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:textSize="15sp" />
         <!-- Parting Line -->
 
         <View
@@ -56,8 +57,26 @@
             android:layout_width="fill_parent"
             android:layout_height="10sp" />
 
-        <!-- scan -->
+        <!-- manually add -->
+        <LinearLayout 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            
+            <Button
+                android:id="@+id/btn_add_suda_tracking_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/spearnet_add_suda_tracking_number"/>
+        
+            <EditText
+                android:id="@+id/edit_txt_suda_tracking_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="SUDA Tracking Number"/>
+        </LinearLayout>
 
+        <!-- scan -->
         <Button
             android:id="@+id/btn_scan"
             android:layout_width="250sp"

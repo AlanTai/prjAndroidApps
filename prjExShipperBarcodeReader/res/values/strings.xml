@@ -22,14 +22,15 @@
     <string name="login_password">Password</string>
 
     <!-- Spearnet -->
-    <string name="spearnet_app_introduction">test</string>
+    <string name="spearnet_app_instruction"></string>
     <string name="spearnet_fragment_title">Spearnet</string>
+    <string name="spearnet_add_suda_tracking_number">Add SUDA Tracking NO.</string>
     <string name="btn_scan">Scan SUDA Barcode</string>
     <string name="btn_get_custom_number">Get Custom Entry Number</string>
     <string name="btn_submit_suda_tracking_number">Submit SUDA Numbers</string>
 
     <!-- TW Custom Entry -->
-    <string name="tw_custom_entry_app_introudction">test</string>
+    <string name="tw_custom_entry_app_instruction"></string>
     <string name="btn_add_new_packages_set">Add New Package Set</string>
     <string name="btn_submit_packages_sets">Submit Packages Info</string>
 

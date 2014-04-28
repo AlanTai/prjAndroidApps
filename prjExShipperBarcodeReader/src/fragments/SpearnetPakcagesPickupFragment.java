@@ -31,6 +31,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -462,6 +463,8 @@ public class SpearnetPakcagesPickupFragment extends FragmentTemplate {
 	Button btnSubmitSUDATrackingNumbers = null;
 	
 	ScrollView scrollViewSpearnetPickupList = null;
+	Button btnAddSUDATrackingNumber = null;
+	EditText editTxtSUDATrackingNumber = null;
 
 	// init function
 	private void initXMLViewComponents(View mView) {
@@ -488,6 +491,8 @@ public class SpearnetPakcagesPickupFragment extends FragmentTemplate {
 		txtSubmitResult = (TextView) mView.findViewById(R.id.txt_submit_result);
 		
 		scrollViewSpearnetPickupList = (ScrollView) mView.findViewById(R.id.scroll_view_spearnet_pickup_list);
+		btnAddSUDATrackingNumber = (Button) mView.findViewById(R.id.btn_add_suda_tracking_number);
+		editTxtSUDATrackingNumber = (EditText) mView.findViewById(R.id.edit_txt_suda_tracking_number);
 	}
 	/* end of XML view components init function */
 
