@@ -100,7 +100,6 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 	
 	//functions block
 	private void addNewSUDATrackingNumber(){
-
 		// alert dialog
 		AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
 				getActivity());
@@ -415,7 +414,6 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 		@Override
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
-
 			Intent myIntent = new Intent("com.google.zxing.client.android.SCAN");
 			myIntent.putExtra("SCAN_MODE", "ONE_D_MODE");
 			startActivityForResult(myIntent, 0);

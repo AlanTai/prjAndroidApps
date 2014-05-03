@@ -55,7 +55,7 @@ public final class R {
         public static final int shopper_icon=0x7f020005;
     }
     public static final class id {
-        public static final int app_exit=0x7f09004c;
+        public static final int app_exit=0x7f09004d;
         public static final int app_picker_list_item_icon=0x7f090009;
         public static final int app_picker_list_item_label=0x7f09000a;
         public static final int back_button=0x7f09001d;
@@ -80,6 +80,7 @@ public final class R {
         public static final int format_text_view=0x7f090011;
         public static final int fragment_content=0x7f090007;
         public static final int fragment_title=0x7f090008;
+        public static final int general_clients_packages_pickup_handler=0x7f09004b;
         public static final int help_contents=0x7f09001c;
         public static final int history_detail=0x7f090020;
         public static final int history_title=0x7f09001f;
@@ -93,8 +94,8 @@ public final class R {
         public static final int menu_encode=0x7f090049;
         public static final int menu_help=0x7f090048;
         public static final int menu_history=0x7f090046;
-        public static final int menu_history_clear_text=0x7f09004e;
-        public static final int menu_history_send=0x7f09004d;
+        public static final int menu_history_clear_text=0x7f09004f;
+        public static final int menu_history_send=0x7f09004e;
         public static final int menu_settings=0x7f090047;
         public static final int menu_share=0x7f090045;
         public static final int meta_text_view=0x7f090015;
@@ -123,7 +124,7 @@ public final class R {
         public static final int spearnet_packages_pickup_handler=0x7f09004a;
         public static final int status_view=0x7f09001a;
         public static final int time_text_view=0x7f090013;
-        public static final int tw_custom_entry_packages_handler=0x7f09004b;
+        public static final int tw_custom_entry_packages_handler=0x7f09004c;
         public static final int txt_download_tw_custom_entry_number_result=0x7f09003f;
         public static final int txt_introduction=0x7f090030;
         public static final int txt_introduction_tw_custom_entry=0x7f09003c;
@@ -169,11 +170,11 @@ public final class R {
         public static final int app_name=0x7f0a0000;
         public static final int app_picker_name=0x7f0a0001;
         public static final int bookmark_picker_name=0x7f0a0002;
-        public static final int btn_add_new_packages_set=0x7f0a0091;
-        public static final int btn_get_custom_number=0x7f0a008e;
-        public static final int btn_scan=0x7f0a008d;
-        public static final int btn_submit_packages_sets=0x7f0a0092;
-        public static final int btn_submit_suda_tracking_number=0x7f0a008f;
+        public static final int btn_add_new_packages_set=0x7f0a0092;
+        public static final int btn_get_custom_number=0x7f0a008f;
+        public static final int btn_scan=0x7f0a008e;
+        public static final int btn_submit_packages_sets=0x7f0a0093;
+        public static final int btn_submit_suda_tracking_number=0x7f0a0090;
         public static final int button_add_calendar=0x7f0a0003;
         public static final int button_add_contact=0x7f0a0004;
         public static final int button_back=0x7f0a0005;
@@ -214,22 +215,23 @@ public final class R {
         public static final int history_empty_detail=0x7f0a0027;
         public static final int history_send=0x7f0a0028;
         public static final int history_title=0x7f0a0029;
-        public static final int login_account=0x7f0a0088;
+        public static final int login_account=0x7f0a0089;
         /**  Login 
          */
-        public static final int login_fragment_title=0x7f0a0085;
-        public static final int login_introduction=0x7f0a0086;
-        public static final int login_password=0x7f0a0089;
+        public static final int login_fragment_title=0x7f0a0086;
+        public static final int login_introduction=0x7f0a0087;
+        public static final int login_password=0x7f0a008a;
         public static final int menu_encode_mecard=0x7f0a002a;
         public static final int menu_encode_vcard=0x7f0a002b;
+        public static final int menu_general_clients_packages_pickup_handler=0x7f0a0084;
         public static final int menu_help=0x7f0a002c;
         public static final int menu_history=0x7f0a002d;
         public static final int menu_settings=0x7f0a002e;
         public static final int menu_share=0x7f0a002f;
         /**  items selector 
          */
-        public static final int menu_spearnet_packages_pickup=0x7f0a0083;
-        public static final int menu_tw_custom_entry_packages_handler=0x7f0a0084;
+        public static final int menu_spearnet_packages_pickup_handler=0x7f0a0083;
+        public static final int menu_tw_custom_entry_packages_handler=0x7f0a0085;
         public static final int msg_bulk_mode_scanned=0x7f0a0030;
         public static final int msg_camera_framework_bug=0x7f0a0031;
         public static final int msg_default_format=0x7f0a0032;
@@ -304,18 +306,18 @@ public final class R {
         public static final int result_uri=0x7f0a0077;
         public static final int result_wifi=0x7f0a0078;
         public static final int sbc_name=0x7f0a0079;
-        public static final int spearnet_add_suda_tracking_number=0x7f0a008c;
+        public static final int spearnet_add_suda_tracking_number=0x7f0a008d;
         /**  Spearnet 
          */
-        public static final int spearnet_app_instruction=0x7f0a008a;
-        public static final int spearnet_fragment_title=0x7f0a008b;
-        public static final int submit=0x7f0a0087;
+        public static final int spearnet_app_instruction=0x7f0a008b;
+        public static final int spearnet_fragment_title=0x7f0a008c;
+        public static final int submit=0x7f0a0088;
         public static final int technical_support_email=0x7f0a0082;
         public static final int technical_support_phone=0x7f0a0081;
         public static final int title=0x7f0a007e;
         /**  TW Custom Entry 
          */
-        public static final int tw_custom_entry_app_instruction=0x7f0a0090;
+        public static final int tw_custom_entry_app_instruction=0x7f0a0091;
         public static final int wifi_changing_network=0x7f0a007a;
         public static final int wifi_ssid_label=0x7f0a007b;
         public static final int wifi_type_label=0x7f0a007c;

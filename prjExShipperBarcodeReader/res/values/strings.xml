@@ -11,7 +11,8 @@
     <string name="technical_support_email">Email: winever.tw@gmail.com</string>
 
     <!-- items selector -->
-    <string name="menu_spearnet_packages_pickup">Spearnet</string>
+    <string name="menu_spearnet_packages_pickup_handler">Spearnet</string>
+    <string name="menu_general_clients_packages_pickup_handler">General Clients</string>
     <string name="menu_tw_custom_entry_packages_handler">TW Custom Entry</string>
 
     <!-- Login -->

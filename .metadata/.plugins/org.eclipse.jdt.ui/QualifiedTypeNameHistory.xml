@@ -16,7 +16,6 @@
 <fullyQualifiedTypeName name="com.exshipper.prjexshipperbarcodereader.R"/>
 <fullyQualifiedTypeName name="com.exshipper.prjexshipperbarcodereader.R.layout"/>
 <fullyQualifiedTypeName name="android.accounts.OnAccountsUpdateListener"/>
-<fullyQualifiedTypeName name="android.view.View.OnClickListener"/>
 <fullyQualifiedTypeName name="android.os.AsyncTask"/>
 <fullyQualifiedTypeName name="android.os.AsyncTask.Status"/>
 <fullyQualifiedTypeName name="android.app.ProgressDialog"/>
@@ -29,7 +28,6 @@
 <fullyQualifiedTypeName name="com.exshipper.listeners.ProgressBarUpdateListener"/>
 <fullyQualifiedTypeName name="android.support.v4.app.FragmentActivity"/>
 <fullyQualifiedTypeName name="java.lang.Boolean"/>
-<fullyQualifiedTypeName name="android.widget.Button"/>
 <fullyQualifiedTypeName name="android.graphics.Color"/>
 <fullyQualifiedTypeName name="android.R.color"/>
 <fullyQualifiedTypeName name="android.util.Log"/>
@@ -42,7 +40,6 @@
 <fullyQualifiedTypeName name="org.json.JSONArray"/>
 <fullyQualifiedTypeName name="android.text.InputType"/>
 <fullyQualifiedTypeName name="android.widget.LinearLayout"/>
-<fullyQualifiedTypeName name="android.widget.EditText"/>
 <fullyQualifiedTypeName name="android.widget.Toast"/>
 <fullyQualifiedTypeName name="com.exshipper.prjexshipperbarcodereader.R.drawable"/>
 <fullyQualifiedTypeName name="android.view.Gravity"/>
@@ -51,13 +48,16 @@
 <fullyQualifiedTypeName name="java.util.Currency"/>
 <fullyQualifiedTypeName name="android.app.AlertDialog.Builder"/>
 <fullyQualifiedTypeName name="android.content.DialogInterface"/>
-<fullyQualifiedTypeName name="android.content.DialogInterface.OnClickListener"/>
 <fullyQualifiedTypeName name="android.app.AlertDialog"/>
 <fullyQualifiedTypeName name="android.os.Process"/>
 <fullyQualifiedTypeName name="android.support.v4.app.Fragment"/>
 <fullyQualifiedTypeName name="android.support.v4.app.FragmentManager"/>
 <fullyQualifiedTypeName name="android.support.v4.app.FragmentTransaction"/>
-<fullyQualifiedTypeName name="com.exshipper.prjexshipperbarcodereader.R.id"/>
 <fullyQualifiedTypeName name="java.lang.Runnable"/>
 <fullyQualifiedTypeName name="android.widget.ScrollView"/>
+<fullyQualifiedTypeName name="android.widget.Button"/>
+<fullyQualifiedTypeName name="android.widget.EditText"/>
+<fullyQualifiedTypeName name="com.exshipper.prjexshipperbarcodereader.R.id"/>
+<fullyQualifiedTypeName name="android.content.DialogInterface.OnClickListener"/>
+<fullyQualifiedTypeName name="android.view.View.OnClickListener"/>
 </qualifiedTypeNameHistroy>

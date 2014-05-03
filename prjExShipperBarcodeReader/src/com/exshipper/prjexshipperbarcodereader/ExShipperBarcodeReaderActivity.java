@@ -45,6 +45,10 @@ public class ExShipperBarcodeReaderActivity extends FragmentActivity {
 		case R.id.spearnet_packages_pickup_handler:
 			mainFragment.gotoSpearnetPackagesPickupHandler();
 			break;
+		case R.id.general_clients_packages_pickup_handler:
+			String working_on = "";
+			//mainFragment.gotoSpearnetPackagesPickupHandler();
+			break;
 		case R.id.tw_custom_entry_packages_handler:
 			mainFragment.gotoTWCustomEntryPackagesHandler();
 			break;
