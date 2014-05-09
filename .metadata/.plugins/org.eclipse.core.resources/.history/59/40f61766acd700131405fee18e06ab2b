@@ -9,7 +9,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.exshipper.generalhandlers.WebContentDownloadHandler;
+import com.exshipper.handlers.WebContentDownloadHandler;
 import com.exshipper.listeners.ProgressBarUpdateListener;
 import com.exshipper.prjexshipperbarcodereader.R;
 
