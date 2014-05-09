@@ -12,8 +12,9 @@ public class SQLiteHandler extends SQLiteOpenHelper{
 	private static final String DATABASE_NAME = "exshipperDB";
 	private static final int DATABASE_VERSION = 1;
 
-	public SQLiteHandler(Context context) {
-		super(context, DATABASE_NAME, null, DATABASE_VERSION);
+	public SQLiteHandler(Context context, String name, CursorFactory factory,
+			int version) {
+		super(context, name, factory, version);
 		// TODO Auto-generated constructor stub
 	}
 
@@ -53,28 +54,22 @@ public class SQLiteHandler extends SQLiteOpenHelper{
 		try{
 			cursor = db.rawQuery(strQueryCmd, null);
 			if(cursor != null && cursor.moveToFirst()){
-				jsonObjQueryResult = new JSONObject();
 				do{
 					for(int i = 0; i<cursor.getColumnCount(); i++){
-						jsonObjQueryResult.put(cursor.getColumnName(i), cursor.getString(i));
+						
 					}
 				}
 				while(cursor.moveToNext());
 			}
 		}
 		catch(Exception ex){
-			throw new Exception("Fail to get all data from DB; Error Message: "+ex.getMessage());
+			
 		}
 		finally{
-			if(cursor != null){
-				cursor.close();
-			}
-			if(db != null){
-				db.close();
-			}
+			
 		}
 		
-		return jsonObjQueryResult;
+		return null;
 		
 	}
 
