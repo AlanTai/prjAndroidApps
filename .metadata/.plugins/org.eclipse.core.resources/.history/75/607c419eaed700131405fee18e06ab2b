@@ -7,8 +7,8 @@ public abstract class SQLiteTableTemplate {
 	public String getTableName(){
 		return tableName;
 	}
-	public String getCommandOfCreatingTable(){
-		return commandOfCreatingTable;
+	ublic String getCommandOfCreatingTable(){
+		
 	}
 
 }

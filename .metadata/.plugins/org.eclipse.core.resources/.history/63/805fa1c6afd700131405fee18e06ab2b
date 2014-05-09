@@ -26,10 +26,5 @@ public class SQLiteHandler extends SQLiteOpenHelper{
 		// TODO Auto-generated method stub
 		
 	}
-	
-	public long insertDataToDB(SQLiteTableTemplate argTable) throws Exception{
-		return 0;
-		
-	}
 
 }
