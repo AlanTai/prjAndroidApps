@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename local variable &apos;alertDialog&apos; in &apos;com.exshipper.prjexshipperbarcodereader.ExShipperBarcodeReaderActivity.onKeyDown(...)&apos; to &apos;alertDialogBuilder&apos;&#x0A;- Original project: &apos;prjExShipperBarcodeReader&apos;&#x0A;- Original element: &apos;com.exshipper.prjexshipperbarcodereader.ExShipperBarcodeReaderActivity.onKeyDown(int, KeyEvent).alertDialog&apos;&#x0A;- Renamed element: &apos;alertDialog&apos;&#x0A;- Update references to refactored element" description="Rename local variable &apos;alertDialog&apos;" id="org.eclipse.jdt.ui.rename.local.variable" input="/src&lt;com.exshipper.prjexshipperbarcodereader{ExShipperBarcodeReaderActivity.java[ExShipperBarcodeReaderActivity~onKeyDown~I~QKeyEvent;@alertDialog!2236!2872!2244!2254!QBuilder;!0!false" name="alertDialogBuilder" references="true" stamp="1399612155336" version="1.0"/>
+</session>

@@ -313,6 +313,9 @@ public class SpearnetPakcagesPickupFragment extends FragmentTemplate {
 			if(!"".equals(strSUDATrackingNumber)){
 				addNewSUDATrackingNumber();
 			}
+			else{
+				Toast.makeText(getActivity(), "Please key in a SUDA tracking number!", Toast.LENGTH_LONG).show();
+			}
 		}
 	};
 	
@@ -506,6 +509,7 @@ public class SpearnetPakcagesPickupFragment extends FragmentTemplate {
 		
 		scrollViewSpearnetPickupList = (ScrollView) mView.findViewById(R.id.scroll_view_spearnet_pickup_list);
 		btnAddSUDATrackingNumber = (Button) mView.findViewById(R.id.btn_add_suda_tracking_number);
+		btnAddSUDATrackingNumber.setOnClickListener(addSUDATrackingNumber);
 		editTxtSUDATrackingNumber = (EditText) mView.findViewById(R.id.edit_txt_suda_tracking_number);
 	}
 	/* end of XML view components init function */
