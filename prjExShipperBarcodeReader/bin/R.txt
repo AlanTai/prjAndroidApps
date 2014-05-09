@@ -80,7 +80,7 @@ int id result_list_view 0x7f090026
 int id result_view 0x7f09000f
 int id return_scan_result 0x7f090006
 int id scroll_view_spearnet_pickup_list 0x7f090038
-int id scroll_view_tw_custom_entry_list 0x7f090042
+int id scroll_view_tw_custom_entry_list 0x7f090041
 int id share_app_button 0x7f090029
 int id share_bookmark_button 0x7f09002a
 int id share_clipboard_button 0x7f09002c
@@ -97,7 +97,7 @@ int id txt_introduction 0x7f090030
 int id txt_introduction_tw_custom_entry 0x7f09003c
 int id txt_result 0x7f090035
 int id txt_submit_result 0x7f090037
-int id txt_submit_result_tw_custom_entry 0x7f090041
+int id txt_submit_result_tw_custom_entry 0x7f090042
 int id txt_total_amount 0x7f090036
 int id txt_total_sets_tw_custom_entry 0x7f090040
 int id type_text_view 0x7f090012

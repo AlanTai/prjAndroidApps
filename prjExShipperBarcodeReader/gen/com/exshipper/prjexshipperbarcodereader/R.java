@@ -113,7 +113,7 @@ public final class R {
         public static final int result_view=0x7f09000f;
         public static final int return_scan_result=0x7f090006;
         public static final int scroll_view_spearnet_pickup_list=0x7f090038;
-        public static final int scroll_view_tw_custom_entry_list=0x7f090042;
+        public static final int scroll_view_tw_custom_entry_list=0x7f090041;
         public static final int share_app_button=0x7f090029;
         public static final int share_bookmark_button=0x7f09002a;
         public static final int share_clipboard_button=0x7f09002c;
@@ -130,7 +130,7 @@ public final class R {
         public static final int txt_introduction_tw_custom_entry=0x7f09003c;
         public static final int txt_result=0x7f090035;
         public static final int txt_submit_result=0x7f090037;
-        public static final int txt_submit_result_tw_custom_entry=0x7f090041;
+        public static final int txt_submit_result_tw_custom_entry=0x7f090042;
         public static final int txt_total_amount=0x7f090036;
         public static final int txt_total_sets_tw_custom_entry=0x7f090040;
         public static final int type_text_view=0x7f090012;
