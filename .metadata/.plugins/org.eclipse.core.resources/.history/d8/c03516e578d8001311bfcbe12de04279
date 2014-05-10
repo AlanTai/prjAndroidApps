@@ -48,15 +48,8 @@ public class FragmentTemplate extends Fragment {
 	}
 	
 	public void gotoGeneralClientsPickupHandler(){
-		if(currentTabHandler != EXSHIPPER_GENERAL_CLIENTS_PACKAGES_PICKUP_HANDLER){
-			currentTabHandler = EXSHIPPER_GENERAL_CLIENTS_PACKAGES_PICKUP_HANDLER;
-		}
-		
-		FragmentManager fm = getFragmentManager();
-		if(fm != null){
-			FragmentTransaction ft = fm.beginTransaction();
-			ft.replace(R.id.fragment_content, new GeneralClientsPackagesPickupHandler());
-			ft.commit();
+		if(currentTabHandler != ){
+			
 		}
 	}
 

@@ -55,8 +55,7 @@ public class FragmentTemplate extends Fragment {
 		FragmentManager fm = getFragmentManager();
 		if(fm != null){
 			FragmentTransaction ft = fm.beginTransaction();
-			ft.replace(R.id.fragment_content, new GeneralClientsPackagesPickupHandler());
-			ft.commit();
+			//ft.replace(R.id.fragment_content, new );
 		}
 	}
 
