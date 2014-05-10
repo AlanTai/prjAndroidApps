@@ -1,10 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="android.app.ActionBar.LayoutParams"/>
-<fullyQualifiedTypeName name="org.w3c.dom.Text"/>
-<fullyQualifiedTypeName name="android.R"/>
-<fullyQualifiedTypeName name="fragments.MainTabFragment"/>
-<fullyQualifiedTypeName name="fragments.MainFragment"/>
 <fullyQualifiedTypeName name="fragments.LoginFragment"/>
 <fullyQualifiedTypeName name="fragments.FragmentTemplate"/>
 <fullyQualifiedTypeName name="fragments.TWCustomEntryPackagesFragment"/>
@@ -42,8 +37,6 @@
 <fullyQualifiedTypeName name="android.widget.Toast"/>
 <fullyQualifiedTypeName name="com.exshipper.prjexshipperbarcodereader.R.drawable"/>
 <fullyQualifiedTypeName name="android.view.Gravity"/>
-<fullyQualifiedTypeName name="java.lang.Exception"/>
-<fullyQualifiedTypeName name="org.json.JSONObject"/>
 <fullyQualifiedTypeName name="java.util.Currency"/>
 <fullyQualifiedTypeName name="android.os.Process"/>
 <fullyQualifiedTypeName name="android.support.v4.app.Fragment"/>
@@ -60,4 +53,11 @@
 <fullyQualifiedTypeName name="android.content.DialogInterface"/>
 <fullyQualifiedTypeName name="android.content.DialogInterface.OnClickListener"/>
 <fullyQualifiedTypeName name="android.app.AlertDialog"/>
+<fullyQualifiedTypeName name="android.database.sqlite.SQLiteOpenHelper"/>
+<fullyQualifiedTypeName name="com.exshipper.databasehandlers.SQLiteTableTemplate"/>
+<fullyQualifiedTypeName name="android.database.sqlite.SQLiteDatabase"/>
+<fullyQualifiedTypeName name="android.database.Cursor"/>
+<fullyQualifiedTypeName name="java.lang.Exception"/>
+<fullyQualifiedTypeName name="org.json.JSONObject"/>
+<fullyQualifiedTypeName name="android.content.Context"/>
 </qualifiedTypeNameHistroy>

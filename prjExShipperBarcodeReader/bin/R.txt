@@ -57,7 +57,7 @@ int id layout_main 0x7f09002e
 int id layout_spearnet_package_pick_title_area 0x7f09002f
 int id layout_suda_tracking_numbers_list 0x7f090039
 int id layout_tw_custom_entry_title_area 0x7f09003b
-int id layout_tw_custom_entry_tracking_numbers_list 0x7f090043
+int id layout_tw_custom_entry_tracking_numbers_list 0x7f090042
 int id menu_encode 0x7f090049
 int id menu_help 0x7f090048
 int id menu_history 0x7f090046
@@ -97,7 +97,7 @@ int id txt_introduction 0x7f090030
 int id txt_introduction_tw_custom_entry 0x7f09003c
 int id txt_result 0x7f090035
 int id txt_submit_result 0x7f090037
-int id txt_submit_result_tw_custom_entry 0x7f090042
+int id txt_submit_result_tw_custom_entry 0x7f090043
 int id txt_total_amount 0x7f090036
 int id txt_total_sets_tw_custom_entry 0x7f090040
 int id type_text_view 0x7f090012

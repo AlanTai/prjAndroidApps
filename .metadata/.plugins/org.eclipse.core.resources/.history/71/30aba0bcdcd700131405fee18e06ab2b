@@ -9,15 +9,38 @@
     android:paddingTop="@dimen/activity_vertical_margin" >
 
     <LinearLayout
-        android:id="@+id/layout_tw_custom_entry_title_area"
+        android:id="@+id/layout_spearnet_package_pick_title_area"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical" >
 
         <TextView
-            android:id="@+id/txt_introduction_tw_custom_entry"
+            android:id="@+id/txt_introduction"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:textSize="15sp" />
+        <!-- Parting Line -->
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="10sp" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1sp"
+            android:background="#555" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="10sp" />
+
+        <!-- submit -->
+
+        <Button
+            android:id="@+id/btn_submit_suda_tracking_number"
+            android:layout_width="250sp"
+            android:layout_height="50sp"
+            android:text="@string/btn_submit_suda_tracking_number" />
 
         <!-- Parting Line -->
 
@@ -33,54 +56,34 @@
         <View
             android:layout_width="fill_parent"
             android:layout_height="10sp" />
-        <!-- End -->
 
-        <Button
-            android:id="@+id/btn_submit_packages_sets_tw_custom_entry"
-            android:layout_width="250sp"
-            android:layout_height="50sp"
-            android:text="@string/btn_submit_packages_sets" />
-
-        <!-- Parting Line -->
-
-        <View
-            android:layout_width="fill_parent"
-            android:layout_height="10sp" />
-
-        <View
-            android:layout_width="fill_parent"
-            android:layout_height="1sp"
-            android:background="#555" />
-
-        <View
-            android:layout_width="fill_parent"
-            android:layout_height="10sp" />
-        <!-- End -->
-
-        <Button
-            android:id="@+id/btn_add_new_packages_set_tw_custom_entry"
-            android:layout_width="250sp"
-            android:layout_height="50sp"
-            android:text="@string/btn_add_new_packages_set" />
-
-        <TextView
-            android:id="@+id/txt_download_tw_custom_entry_number_result"
+        <!-- manually add -->
+        <LinearLayout 
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="#00f" />
-
-        <TextView
-            android:id="@+id/txt_total_sets_tw_custom_entry"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="#00f" />
-
-        <TextView
-            android:id="@+id/txt_submit_result_tw_custom_entry"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="#000" />
+            android:orientation="horizontal">
+            
+            <Button
+                android:id="@+id/btn_add_suda_tracking_number"
+                android:layout_width="250sp"
+                android:layout_height="50sp"
+                android:layout_height="wrap_content"
+                android:text="@string/spearnet_add_suda_tracking_number"/>
         
+            <EditText
+                android:id="@+id/edit_txt_suda_tracking_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="SUDA Tracking Number"/>
+        </LinearLayout>
+
+        <!-- scan -->
+        <Button
+            android:id="@+id/btn_scan"
+            android:layout_width="250sp"
+            android:layout_height="50sp"
+            android:text="@string/btn_scan" />
+
         <!-- Parting Line -->
 
         <View
@@ -95,19 +98,37 @@
         <View
             android:layout_width="fill_parent"
             android:layout_height="10sp" />
-        <!-- End -->
+
+        <TextView
+            android:id="@+id/txt_result"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#00f" />
+
+        <TextView
+            android:id="@+id/txt_total_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#00f" />
+
+        <TextView
+            android:id="@+id/txt_submit_result"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5sp"
+            android:textColor="#f00" />
     </LinearLayout>
 
     <ScrollView
         xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/scroll_view_tw_custom_entry_list"
+        android:id="@+id/scroll_view_spearnet_pickup_list"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_below="@+id/layout_tw_custom_entry_title_area"
+        android:layout_below="@+id/layout_spearnet_package_pick_title_area"
         android:fillViewport="true" >
 
         <LinearLayout
-            android:id="@+id/layout_tw_custom_entry_tracking_numbers_list"
+            android:id="@+id/layout_suda_tracking_numbers_list"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical" >
@@ -115,8 +136,8 @@
     </ScrollView>
 
     <ProgressBar
-        android:id="@+id/progress_bar_tw_custom_entry"
-        style="@android:style/Widget.ProgressBar"
+        android:id="@+id/progress_bar_spearnet"
+        style="@android:style/Widget.ProgressBar.Large.Inverse"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"

@@ -90,7 +90,7 @@ public final class R {
         public static final int layout_spearnet_package_pick_title_area=0x7f09002f;
         public static final int layout_suda_tracking_numbers_list=0x7f090039;
         public static final int layout_tw_custom_entry_title_area=0x7f09003b;
-        public static final int layout_tw_custom_entry_tracking_numbers_list=0x7f090043;
+        public static final int layout_tw_custom_entry_tracking_numbers_list=0x7f090042;
         public static final int menu_encode=0x7f090049;
         public static final int menu_help=0x7f090048;
         public static final int menu_history=0x7f090046;
@@ -130,7 +130,7 @@ public final class R {
         public static final int txt_introduction_tw_custom_entry=0x7f09003c;
         public static final int txt_result=0x7f090035;
         public static final int txt_submit_result=0x7f090037;
-        public static final int txt_submit_result_tw_custom_entry=0x7f090042;
+        public static final int txt_submit_result_tw_custom_entry=0x7f090043;
         public static final int txt_total_amount=0x7f090036;
         public static final int txt_total_sets_tw_custom_entry=0x7f090040;
         public static final int type_text_view=0x7f090012;

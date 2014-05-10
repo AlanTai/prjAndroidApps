@@ -65,8 +65,8 @@
             
             <Button
                 android:id="@+id/btn_add_suda_tracking_number"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="250sp"
+                android:layout_height="50sp"
                 android:text="@string/spearnet_add_suda_tracking_number"/>
         
             <EditText
