@@ -1,5 +1,7 @@
 package fragments;
 
+import com.exshipper.prjexshipperbarcodereader.R;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -17,6 +19,7 @@ public class GeneralClientsPackagesPickupHandler extends FragmentTemplate{
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
+		setHasOptionsMenu(true);
 		super.onCreate(savedInstanceState);
 	}
 
@@ -24,7 +27,8 @@ public class GeneralClientsPackagesPickupHandler extends FragmentTemplate{
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
-		return super.onCreateView(inflater, container, savedInstanceState);
+		View mView = inflater.inflate(R.layout.general_clients_fragment, container, false);
+		return mView;
 	}
 
 	@Override

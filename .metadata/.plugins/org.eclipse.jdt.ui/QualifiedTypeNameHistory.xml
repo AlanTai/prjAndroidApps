@@ -1,14 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="fragments.LoginFragment"/>
-<fullyQualifiedTypeName name="fragments.FragmentTemplate"/>
 <fullyQualifiedTypeName name="fragments.TWCustomEntryPackagesFragment"/>
 <fullyQualifiedTypeName name="android.view.MenuInflater"/>
 <fullyQualifiedTypeName name="com.exshipper.prjexshipperbarcodereader.ExShipperBarcodeReaderActivity"/>
 <fullyQualifiedTypeName name="java.security.InvalidAlgorithmParameterException"/>
 <fullyQualifiedTypeName name="fragments.SpearnetPakcagesPickupFragment"/>
-<fullyQualifiedTypeName name="com.exshipper.prjexshipperbarcodereader.R"/>
-<fullyQualifiedTypeName name="com.exshipper.prjexshipperbarcodereader.R.layout"/>
 <fullyQualifiedTypeName name="android.accounts.OnAccountsUpdateListener"/>
 <fullyQualifiedTypeName name="android.os.AsyncTask"/>
 <fullyQualifiedTypeName name="android.os.AsyncTask.Status"/>
@@ -40,8 +36,6 @@
 <fullyQualifiedTypeName name="java.util.Currency"/>
 <fullyQualifiedTypeName name="android.os.Process"/>
 <fullyQualifiedTypeName name="android.support.v4.app.Fragment"/>
-<fullyQualifiedTypeName name="android.support.v4.app.FragmentManager"/>
-<fullyQualifiedTypeName name="android.support.v4.app.FragmentTransaction"/>
 <fullyQualifiedTypeName name="java.lang.Runnable"/>
 <fullyQualifiedTypeName name="android.widget.ScrollView"/>
 <fullyQualifiedTypeName name="android.widget.Button"/>
@@ -60,4 +54,10 @@
 <fullyQualifiedTypeName name="java.lang.Exception"/>
 <fullyQualifiedTypeName name="org.json.JSONObject"/>
 <fullyQualifiedTypeName name="android.content.Context"/>
+<fullyQualifiedTypeName name="android.support.v4.app.FragmentManager"/>
+<fullyQualifiedTypeName name="android.support.v4.app.FragmentTransaction"/>
+<fullyQualifiedTypeName name="fragments.FragmentTemplate"/>
+<fullyQualifiedTypeName name="fragments.GeneralClientsPackagesPickupHandler"/>
+<fullyQualifiedTypeName name="com.exshipper.prjexshipperbarcodereader.R"/>
+<fullyQualifiedTypeName name="com.exshipper.prjexshipperbarcodereader.R.layout"/>
 </qualifiedTypeNameHistroy>

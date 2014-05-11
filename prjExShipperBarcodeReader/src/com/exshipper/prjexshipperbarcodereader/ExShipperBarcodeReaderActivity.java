@@ -51,9 +51,7 @@ public class ExShipperBarcodeReaderActivity extends FragmentActivity {
 			mainFragment.gotoSpearnetPackagesPickupHandler();
 			break;
 		case R.id.general_clients_packages_pickup_handler:
-			
-			Toast.makeText(this, "Under Construction!", Toast.LENGTH_SHORT).show();
-			// mainFragment.gotoGeneralClientsPickupHandler();
+			mainFragment.gotoGeneralClientsPickupHandler();
 			break;
 		case R.id.tw_custom_entry_packages_handler:
 			mainFragment.gotoTWCustomEntryPackagesHandler();

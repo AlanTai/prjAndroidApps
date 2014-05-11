@@ -22,21 +22,19 @@
     <string name="login_account">Account</string>
     <string name="login_password">Password</string>
 
+    <!-- General Use Terms -->
+    <string name="add_suda_tracking_number">Add SUDA Tracking NO.</string>
+    <string name="btn_scan">Scan SUDA Barcode</string>
+    <string name="btn_submit_suda_tracking_numbers">Submit SUDA Numbers</string>
+    
     <!-- Spearnet -->
     <string name="spearnet_fragment_title">Pickup Service for Spearnet</string>
-    <string name="spearnet_app_instruction"></string>
-    <string name="spearnet_fragment_title">Spearnet</string>
-    <string name="spearnet_add_suda_tracking_number">Add SUDA Tracking NO.</string>
-    <string name="btn_scan">Scan SUDA Barcode</string>
-    <string name="btn_get_custom_number">Get Custom Entry Number</string>
-    <string name="btn_submit_suda_tracking_number">Submit SUDA Numbers</string>
     
     <!-- General Clients -->
     <string name="general_clients_title">Pickup Service for General Clients</string>
-    <string name="general_clients_add_suda_tracking_number">Add SUDA Tracking NO.</string>
 
     <!-- TW Custom Entry -->
-    <string name="tw_custom_entry_app_instruction"></string>
+    <string name="tw_custom_entry_fragment_title">Packages Handling Service for TW Custom Entry</string>
     <string name="btn_add_new_packages_set">Add New Package Set</string>
     <string name="btn_submit_packages_sets">Submit Packages Info</string>
 

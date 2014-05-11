@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+    
+    <LinearLayout 
+        android:id="@+id/layout_general_clients_packages_pickup_title_area"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        
+        <TextView 
+            android:id="@+id/txt_general_clients_fragment_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:text="@string/general_clients_title"/>
+        
+        <TextView
+            android:id="@+id/txt_general_clients_packages_pickup_handler"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"/>
+        
+        <!-- Parting Line -->
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="10sp" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1sp"
+            android:background="#555" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="10sp" />
+        
+        <!-- Submit -->
+        <Button 
+            android:id="@+id/btn_general_clients_packages_pickup_handler_submit_suda_tracking_number"
+            android:layout_width="250sp"
+            android:layout_height="50sp"
+            android:text="@string/btn_submit_suda_tracking_number"/>
+        
+        <!-- Parting Line -->
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="10sp" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1sp"
+            android:background="#555" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="10sp" />
+        
+        <!-- manually add suda tracking number -->
+        <LinearLayout 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            
+            <Button 
+                android:id="@+id/btn_general_clients_add_suda_tracking_number"
+                android:layout_width="250sp"
+                android:layout_height="50sp"
+                android:text="@string/general_clients_add_suda_tracking_number"/>
+            <EditText 
+                android:id="@+id/edit_txt_suda_tracking_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="SUDA Tracking Number"/>
+            
+        </LinearLayout>
+        
+        <!-- scan -->
+        <Button 
+            android:id="@+id/btn_general_clients_scan"
+            android:layout_width="250sp"
+            android:layout_height="50sp"
+            android:text="@string/btn_scan"/>
+        
+        <!-- Parting Line -->
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="10sp" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1sp"
+            android:background="#555" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="10sp" />
+        
+        <TextView
+            android:id="@+id/txt_general_clients_packages_pickup_handler_scan_result"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#00f"/>
+        
+        <TextView 
+            android:id="@+id/txt_general_clients_packages_pickup_handler_submit_result"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5sp"
+            android:textColor="#00f"/>
+        
+    </LinearLayout>
+    
+    <ScrollView 
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/scroll_view_general_clients_packages_pickup_handler_list"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@+id/layout_spearnet_package_pick_title_area"
+        android:fillViewport="true">
+        
+        <LinearLayout 
+            android:id="@+id/layout_general_clients_suda_tracking_numbers_list"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"></LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>
