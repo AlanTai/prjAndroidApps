@@ -42,7 +42,6 @@
             android:layout_height="10sp" />
 
         <!-- submit -->
-
         <Button
             android:id="@+id/btn_submit_suda_tracking_number"
             android:layout_width="250sp"
@@ -50,7 +49,6 @@
             android:text="@string/btn_submit_suda_tracking_number" />
 
         <!-- Parting Line -->
-
         <View
             android:layout_width="fill_parent"
             android:layout_height="10sp" />
@@ -64,7 +62,7 @@
             android:layout_width="fill_parent"
             android:layout_height="10sp" />
 
-        <!-- manually add -->
+        <!-- manually add suda tracking number -->
         <LinearLayout 
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -140,14 +138,5 @@
             android:orientation="vertical" >
         </LinearLayout>
     </ScrollView>
-
-    <ProgressBar
-        android:id="@+id/progress_bar_spearnet"
-        style="@android:style/Widget.ProgressBar.Large.Inverse"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:visibility="invisible" />
 
 </RelativeLayout>

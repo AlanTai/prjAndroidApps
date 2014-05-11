@@ -33,6 +33,7 @@
     
     <!-- General Clients -->
     <string name="general_clients_title">Pickup Service for General Clients</string>
+    <string name="general_clients_add_suda_tracking_number">Add SUDA Tracking NO.</string>
 
     <!-- TW Custom Entry -->
     <string name="tw_custom_entry_app_instruction"></string>
