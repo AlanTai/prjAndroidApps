@@ -16,25 +16,6 @@
             android:textSize="20sp"
             android:text="@string/general_clients_title"/>
         
-        <View
-            android:layout_width="fill_parent"
-            android:layout_height="10sp" />
-
-        <View
-            android:layout_width="fill_parent"
-            android:layout_height="1sp"
-            android:background="#555" />
-
-        <View
-            android:layout_width="fill_parent"
-            android:layout_height="10sp" />
-        
-        <Button 
-            android:id="@+id/btn_general_clients_packages_pickup_handler_submit_suda_tracking_number"
-            android:layout_width="250sp"
-            android:layout_height="50sp"
-            android:text="@string/btn_submit_suda_tracking_number"/>
-        
     </LinearLayout>
 
 </RelativeLayout>
