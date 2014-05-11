@@ -27,10 +27,4 @@ public class GeneralClientsPackagesPickupHandler extends FragmentTemplate{
 		return super.onCreateView(inflater, container, savedInstanceState);
 	}
 
-	@Override
-	public void onDestroy() {
-		// TODO Auto-generated method stub
-		super.onDestroy();
-	}
-
 }

@@ -53,13 +53,13 @@ public final class R {
 		public static final int history_title = 0x7f09001f;
 		public static final int image_view = 0x7f09001b;
 		public static final int launch_product_query = 0x7f090003;
-		public static final int menu_encode = 0x7f090049;
-		public static final int menu_help = 0x7f090048;
-		public static final int menu_history = 0x7f090046;
-		public static final int menu_history_clear_text = 0x7f09004f;
-		public static final int menu_history_send = 0x7f09004e;
-		public static final int menu_settings = 0x7f090047;
-		public static final int menu_share = 0x7f090045;
+		public static final int menu_encode = 0x7f09004a;
+		public static final int menu_help = 0x7f090049;
+		public static final int menu_history = 0x7f090047;
+		public static final int menu_history_clear_text = 0x7f090050;
+		public static final int menu_history_send = 0x7f09004f;
+		public static final int menu_settings = 0x7f090048;
+		public static final int menu_share = 0x7f090046;
 		public static final int meta_text_view = 0x7f090015;
 		public static final int meta_text_view_label = 0x7f090014;
 		public static final int page_number_view = 0x7f090027;
@@ -89,12 +89,12 @@ public final class R {
 		public static final int bookmark_picker_list_item = 0x7f030002;
 		public static final int capture = 0x7f030003;
 		public static final int encode = 0x7f030004;
-		public static final int help = 0x7f030005;
-		public static final int history_list_item = 0x7f030006;
-		public static final int search_book_contents = 0x7f030009;
-		public static final int search_book_contents_header = 0x7f03000a;
-		public static final int search_book_contents_list_item = 0x7f03000b;
-		public static final int share = 0x7f03000c;
+		public static final int help = 0x7f030006;
+		public static final int history_list_item = 0x7f030007;
+		public static final int search_book_contents = 0x7f03000a;
+		public static final int search_book_contents_header = 0x7f03000b;
+		public static final int search_book_contents_list_item = 0x7f03000c;
+		public static final int share = 0x7f03000d;
 	}
 	public static final class menu {
 		public static final int capture = 0x7f0c0000;
