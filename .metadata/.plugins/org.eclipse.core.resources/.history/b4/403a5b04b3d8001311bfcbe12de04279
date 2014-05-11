@@ -30,9 +30,6 @@
     <string name="btn_scan">Scan SUDA Barcode</string>
     <string name="btn_get_custom_number">Get Custom Entry Number</string>
     <string name="btn_submit_suda_tracking_number">Submit SUDA Numbers</string>
-    
-    <!-- General Clients -->
-    <string name="general_clients_title">Pickup Service for General Clients</string>
 
     <!-- TW Custom Entry -->
     <string name="tw_custom_entry_app_instruction"></string>
