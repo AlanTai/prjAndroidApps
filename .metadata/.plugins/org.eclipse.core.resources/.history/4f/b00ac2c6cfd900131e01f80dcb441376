@@ -9,7 +9,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.exshipper.generalhandlers.DataExchangeHandler;
+import com.exshipper.generalhandlers.WebContentDownloadHandler;
 import com.exshipper.listeners.ProgressBarUpdateListener;
 import com.exshipper.prjexshipperbarcodereader.R;
 
@@ -44,8 +44,8 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 
 	private String strScanedBarcode = null;
 
-	private DataExchangeHandler getTWCustomEntryNumberHandler = null;
-	private DataExchangeHandler submitPackagesSetsHandler = null;
+	private WebContentDownloadHandler getTWCustomEntryNumberHandler = null;
+	private WebContentDownloadHandler submitPackagesSetsHandler = null;
 	private ProgressDialog mProgressbar = null;
 
 	private Button currentBtnForScanBarcode = null;
@@ -308,7 +308,7 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 						}
 
 						//
-						getTWCustomEntryNumberHandler = new DataExchangeHandler(
+						getTWCustomEntryNumberHandler = new WebContentDownloadHandler(
 								progressBarForGetTWCustomEntryNumber);
 						getTWCustomEntryNumberHandler
 								.execute(new String[] { "https://exshipper-ca.appspot.com/exshipper_tw_custom_entry_handler" });
@@ -626,7 +626,7 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 												+ ", doesn't has any package! Or, there are invalid information of package size or weight!",
 										Toast.LENGTH_LONG).show();
 							} else {
-								submitPackagesSetsHandler = new DataExchangeHandler(
+								submitPackagesSetsHandler = new WebContentDownloadHandler(
 										progressBarForSubmitPackagesSets);
 								submitPackagesSetsHandler
 										.execute(new String[] { "https://exshipper-ca.appspot.com/exshipper_tw_custom_entry_handler" });

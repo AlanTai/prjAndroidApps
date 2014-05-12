@@ -11,7 +11,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.exshipper.generalhandlers.DataExchangeHandler;
+import com.exshipper.generalhandlers.WebContentDownloadHandler;
 import com.exshipper.listeners.ProgressBarUpdateListener;
 import com.exshipper.prjexshipperbarcodereader.R;
 
@@ -46,7 +46,7 @@ public class SpearnetPakcagesPickupFragment extends FragmentTemplate {
 	private JSONObject jsonObjSUDATrackingNumbers = null;
 	private JSONArray jsonArySUDATrackingNumberList = null;
 
-	private DataExchangeHandler uploadPickedPackagesTrackingNumbersHandler = null;
+	private WebContentDownloadHandler uploadPickedPackagesTrackingNumbersHandler = null;
 	private ProgressDialog mProgressBar = null;
 
 	private View viewDeleteBtn = null;
@@ -351,7 +351,7 @@ public class SpearnetPakcagesPickupFragment extends FragmentTemplate {
 											.getStatus() != AsyncTask.Status.FINISHED)) {
 								uploadPickedPackagesTrackingNumbersHandler.cancel(true);
 							}
-							uploadPickedPackagesTrackingNumbersHandler = new DataExchangeHandler(
+							uploadPickedPackagesTrackingNumbersHandler = new WebContentDownloadHandler(
 									updateProgressBar);
 							uploadPickedPackagesTrackingNumbersHandler
 									.execute(new String[] { "https://exshipper-ca.appspot.com/exshipper_spearnet_packages_pickup_handler" });
