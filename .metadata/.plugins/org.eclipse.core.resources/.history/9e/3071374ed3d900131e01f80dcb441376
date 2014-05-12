@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 
 public class GeneralClientsPackagesPickupHandler extends FragmentTemplate{
 	private DataExchangeHandler uploadSUDATrackingNumbersHandler = null;
-	private ProgressDialog mProgressBar = null;
+	ProgressDialog mProgressBar = null;
 
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {

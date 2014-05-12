@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="fragments.TWCustomEntryPackagesFragment"/>
-<fullyQualifiedTypeName name="android.view.MenuInflater"/>
 <fullyQualifiedTypeName name="com.exshipper.prjexshipperbarcodereader.ExShipperBarcodeReaderActivity"/>
 <fullyQualifiedTypeName name="java.security.InvalidAlgorithmParameterException"/>
 <fullyQualifiedTypeName name="fragments.SpearnetPakcagesPickupFragment"/>
 <fullyQualifiedTypeName name="android.accounts.OnAccountsUpdateListener"/>
 <fullyQualifiedTypeName name="android.os.AsyncTask"/>
 <fullyQualifiedTypeName name="android.os.AsyncTask.Status"/>
-<fullyQualifiedTypeName name="android.app.ProgressDialog"/>
 <fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="org.apache.http.NameValuePair"/>
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
@@ -60,4 +57,7 @@
 <fullyQualifiedTypeName name="fragments.GeneralClientsPackagesPickupHandler"/>
 <fullyQualifiedTypeName name="com.exshipper.prjexshipperbarcodereader.R"/>
 <fullyQualifiedTypeName name="com.exshipper.prjexshipperbarcodereader.R.layout"/>
+<fullyQualifiedTypeName name="com.exshipper.generalhandlers.WebContentDownloadHandler"/>
+<fullyQualifiedTypeName name="com.exshipper.generalhandlers.DataExchangeHandler"/>
+<fullyQualifiedTypeName name="android.app.ProgressDialog"/>
 </qualifiedTypeNameHistroy>
