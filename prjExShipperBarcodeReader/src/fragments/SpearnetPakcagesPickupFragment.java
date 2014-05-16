@@ -491,33 +491,33 @@ public class SpearnetPakcagesPickupFragment extends FragmentTemplate {
 	EditText editTxtSUDATrackingNumber = null;
 
 	// init function
-	private void initXMLViewComponents(View mView) {
-		txtAppIntroduction = (TextView) mView
+	private void initXMLViewComponents(View argView) {
+		txtAppIntroduction = (TextView) argView
 				.findViewById(R.id.txt_introduction);
 		txtAppIntroduction
 				.setText("Instruction:\n"
 						+ "1. Click button 'Scan SUDA Barcode' to scan the package barcode (If you want to delete the barcode, please click the \'Delete\' key word)\n"
 						+ "2. Click button 'Submit SUDA Numbers' to submit the SUDA numbers to the server\n"
 						+ "3. Once you get response from the server, you're done\n");
-		btnScan = (Button) mView.findViewById(R.id.btn_scan);
+		btnScan = (Button) argView.findViewById(R.id.btn_scan);
 		btnScan.setOnClickListener(startBarcodeReader);
-		txtScanResult = (TextView) mView.findViewById(R.id.txt_result);
+		txtScanResult = (TextView) argView.findViewById(R.id.txt_result);
 
-		txtTotalAmount = (TextView) mView.findViewById(R.id.txt_total_amount);
+		txtTotalAmount = (TextView) argView.findViewById(R.id.txt_total_amount);
 
-		btnSubmitSUDATrackingNumbers = (Button) mView
+		btnSubmitSUDATrackingNumbers = (Button) argView
 				.findViewById(R.id.btn_submit_suda_tracking_number);
 		btnSubmitSUDATrackingNumbers
 				.setOnClickListener(submitSUDATrackingNumbers);
 
-		layoutSUDATrackingNumbersList = (LinearLayout) mView
+		layoutSUDATrackingNumbersList = (LinearLayout) argView
 				.findViewById(R.id.layout_suda_tracking_numbers_list);
-		txtSubmitResult = (TextView) mView.findViewById(R.id.txt_submit_result);
+		txtSubmitResult = (TextView) argView.findViewById(R.id.txt_submit_result);
 		
-		scrollViewSpearnetPickupList = (ScrollView) mView.findViewById(R.id.scroll_view_spearnet_pickup_list);
-		btnAddSUDATrackingNumber = (Button) mView.findViewById(R.id.btn_add_suda_tracking_number);
+		scrollViewSpearnetPickupList = (ScrollView) argView.findViewById(R.id.scroll_view_spearnet_pickup_list);
+		btnAddSUDATrackingNumber = (Button) argView.findViewById(R.id.btn_add_suda_tracking_number);
 		btnAddSUDATrackingNumber.setOnClickListener(addSUDATrackingNumber);
-		editTxtSUDATrackingNumber = (EditText) mView.findViewById(R.id.edit_txt_suda_tracking_number);
+		editTxtSUDATrackingNumber = (EditText) argView.findViewById(R.id.edit_txt_suda_tracking_number);
 	}
 	/* end of XML view components init function */
 

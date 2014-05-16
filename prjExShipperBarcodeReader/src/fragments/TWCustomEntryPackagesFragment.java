@@ -1011,9 +1011,11 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 	ProgressBarUpdateListener progressBarForSubmitPackagesSets = new ProgressBarUpdateListener() {
 		@Override
 		public void updateResult(String p_result) {
-			// TODO Auto-generated method stub
+			//dismiss progress dialog
 			mProgressbar.dismiss();
 			mProgressbar = null;
+			
+			//obtain response from server and show message on the screen
 			if (p_result != null) {
 				JSONObject jsonObj = null;
 				try {
@@ -1037,7 +1039,6 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 				}
 			}
 			
-			//
 			//enable button of submitting packages info
 			btnSubmitPakcagesSets.setEnabled(true);
 		}

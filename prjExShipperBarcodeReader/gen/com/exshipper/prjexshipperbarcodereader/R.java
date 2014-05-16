@@ -67,7 +67,7 @@ public final class R {
         public static final int btn_add_suda_tracking_number=0x7f09003e;
         public static final int btn_general_clients_packages_pickup_handler_add_suda_tracking_number=0x7f090020;
         public static final int btn_general_clients_packages_pickup_handler_scan=0x7f090022;
-        public static final int btn_general_clients_packages_pickup_handler_submit_suda_tracking_number=0x7f09001f;
+        public static final int btn_general_clients_packages_pickup_handler_submit_suda_tracking_numbers=0x7f09001f;
         public static final int btn_scan=0x7f090040;
         public static final int btn_submit_packages_sets_tw_custom_entry=0x7f090049;
         public static final int btn_submit_suda_tracking_number=0x7f09003d;

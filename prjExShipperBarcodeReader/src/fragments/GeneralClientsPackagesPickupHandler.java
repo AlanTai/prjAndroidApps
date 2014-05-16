@@ -10,6 +10,10 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 public class GeneralClientsPackagesPickupHandler extends FragmentTemplate{
 	//inner variables
@@ -35,6 +39,7 @@ public class GeneralClientsPackagesPickupHandler extends FragmentTemplate{
 			Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		View mView = inflater.inflate(R.layout.general_clients_fragment, container, false);
+		initXMLViewComponents(mView);
 		return mView;
 	}
 
@@ -44,4 +49,27 @@ public class GeneralClientsPackagesPickupHandler extends FragmentTemplate{
 		super.onDestroy();
 	}
 
+	
+	/**/
+	TextView txtAppIntroduction = null;
+	Button btnSubmitSUDATrackingNumbers = null;
+	
+	Button btnAddSUDATrackingNumbers = null;
+	EditText editTxtSUDATrackingNumber = null;
+	
+	Button btnScan = null;
+	
+	LinearLayout layoutSUDATrackingNumbersList = null;
+	
+	private void initXMLViewComponents(View argView){
+		txtAppIntroduction = (TextView) argView.findViewById(R.id.txt_general_clients_packages_pickup_handler_introduction);
+		btnSubmitSUDATrackingNumbers = (Button) argView.findViewById(R.id.btn_general_clients_packages_pickup_handler_submit_suda_tracking_numbers);
+		
+		btnAddSUDATrackingNumbers = (Button) argView.findViewById(R.id.btn_general_clients_packages_pickup_handler_add_suda_tracking_number);
+		editTxtSUDATrackingNumber = (EditText) argView.findViewById(R.id.edit_txt_general_clients_suda_tracking_number);
+		
+		btnScan = (Button) argView.findViewById(R.id.btn_general_clients_packages_pickup_handler_scan);
+		
+		layoutSUDATrackingNumbersList = (LinearLayout) argView.findViewById(R.id.layout_general_clients_packages_pickup_handler_suda_tracking_numbers_list);
+	}
 }
