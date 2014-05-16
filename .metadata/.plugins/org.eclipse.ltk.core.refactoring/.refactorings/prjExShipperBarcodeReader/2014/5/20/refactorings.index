@@ -1,3 +1,5 @@
 1399897217432	Rename type 'WebContentDownloadHandler'
 1400209832736	Rename local variable 'isSizeWeightInfoValided'
 1400210891441	Rename local variable 'mView'
+1400219320736	Rename field 'mProgressBar'
+1400219334465	Rename field 'mProgressBar'

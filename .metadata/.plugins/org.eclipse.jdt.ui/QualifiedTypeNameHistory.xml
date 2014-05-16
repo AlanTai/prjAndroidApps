@@ -12,7 +12,6 @@
 <fullyQualifiedTypeName name="com.exshipper.handlers.WebContentDownloadHandler"/>
 <fullyQualifiedTypeName name="android.util.TypedValue"/>
 <fullyQualifiedTypeName name="android.graphics.drawable.GradientDrawable.Orientation"/>
-<fullyQualifiedTypeName name="com.exshipper.listeners.ProgressBarUpdateListener"/>
 <fullyQualifiedTypeName name="android.support.v4.app.FragmentActivity"/>
 <fullyQualifiedTypeName name="java.lang.Boolean"/>
 <fullyQualifiedTypeName name="android.graphics.Color"/>
@@ -32,7 +31,6 @@
 <fullyQualifiedTypeName name="android.os.Process"/>
 <fullyQualifiedTypeName name="android.support.v4.app.Fragment"/>
 <fullyQualifiedTypeName name="java.lang.Runnable"/>
-<fullyQualifiedTypeName name="com.exshipper.prjexshipperbarcodereader.R.id"/>
 <fullyQualifiedTypeName name="android.view.View.OnClickListener"/>
 <fullyQualifiedTypeName name="android.view.KeyEvent"/>
 <fullyQualifiedTypeName name="android.app.AlertDialog.Builder"/>
@@ -43,7 +41,6 @@
 <fullyQualifiedTypeName name="com.exshipper.databasehandlers.SQLiteTableTemplate"/>
 <fullyQualifiedTypeName name="android.database.sqlite.SQLiteDatabase"/>
 <fullyQualifiedTypeName name="android.database.Cursor"/>
-<fullyQualifiedTypeName name="java.lang.Exception"/>
 <fullyQualifiedTypeName name="org.json.JSONObject"/>
 <fullyQualifiedTypeName name="android.content.Context"/>
 <fullyQualifiedTypeName name="android.support.v4.app.FragmentManager"/>
@@ -54,10 +51,13 @@
 <fullyQualifiedTypeName name="com.exshipper.prjexshipperbarcodereader.R.layout"/>
 <fullyQualifiedTypeName name="com.exshipper.generalhandlers.WebContentDownloadHandler"/>
 <fullyQualifiedTypeName name="com.exshipper.generalhandlers.DataExchangeHandler"/>
-<fullyQualifiedTypeName name="android.app.ProgressDialog"/>
 <fullyQualifiedTypeName name="android.widget.Button"/>
 <fullyQualifiedTypeName name="android.widget.EditText"/>
 <fullyQualifiedTypeName name="android.widget.LinearLayout"/>
 <fullyQualifiedTypeName name="android.widget.ScrollView"/>
+<fullyQualifiedTypeName name="java.lang.Exception"/>
 <fullyQualifiedTypeName name="android.widget.TextView"/>
+<fullyQualifiedTypeName name="com.exshipper.prjexshipperbarcodereader.R.id"/>
+<fullyQualifiedTypeName name="com.exshipper.listeners.ProgressBarUpdateListener"/>
+<fullyQualifiedTypeName name="android.app.ProgressDialog"/>
 </qualifiedTypeNameHistroy>

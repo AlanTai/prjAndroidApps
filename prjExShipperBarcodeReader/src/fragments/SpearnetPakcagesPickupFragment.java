@@ -47,7 +47,7 @@ public class SpearnetPakcagesPickupFragment extends FragmentTemplate {
 	private JSONArray jsonArySUDATrackingNumberList = null;
 
 	private DataExchangeHandler uploadPickedPackagesTrackingNumbersHandler = null;
-	private ProgressDialog mProgressBar = null;
+	private ProgressDialog mProgressBarDialog = null;
 
 	private View viewDeleteBtn = null;
 	private AlertDialog.Builder alertDialogBuilder = null;
@@ -82,7 +82,7 @@ public class SpearnetPakcagesPickupFragment extends FragmentTemplate {
 		txtSubmitResult = null;
 		txtScanResult = null;
 		txtTotalAmount = null;
-		mProgressBar = null;
+		mProgressBarDialog = null;
 		layoutSUDATrackingNumbersList = null;
 		super.onDestroy();
 	}
@@ -397,12 +397,12 @@ public class SpearnetPakcagesPickupFragment extends FragmentTemplate {
 		@Override
 		public void setupProgressBar() {
 			// progress bar dialog
-			if (mProgressBar == null) {
-				mProgressBar = new ProgressDialog(getActivity());
-				mProgressBar.setCancelable(false);
-				mProgressBar.setMessage("Uploading Data...");
-				mProgressBar.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-				mProgressBar.show();
+			if (mProgressBarDialog == null) {
+				mProgressBarDialog = new ProgressDialog(getActivity());
+				mProgressBarDialog.setCancelable(false);
+				mProgressBarDialog.setMessage("Uploading Data...");
+				mProgressBarDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+				mProgressBarDialog.show();
 			}
 		}
 
@@ -415,14 +415,14 @@ public class SpearnetPakcagesPickupFragment extends FragmentTemplate {
 		@Override
 		public void updateProgressBar(int p_progress) {
 			// progress dialog
-			mProgressBar.setProgress(p_progress);
+			mProgressBarDialog.setProgress(p_progress);
 		}
 
 		@Override
 		public void updateResult(String p_result) {
 			// progress dialog...
-			mProgressBar.dismiss();
-			mProgressBar = null;
+			mProgressBarDialog.dismiss();
+			mProgressBarDialog = null;
 
 			// get result from server
 			if (p_result != null) {
@@ -478,18 +478,17 @@ public class SpearnetPakcagesPickupFragment extends FragmentTemplate {
 
 	/* XML view components */
 	TextView txtAppIntroduction = null;
-	Button btnScan = null;
-	TextView txtScanResult = null;
-	TextView txtTotalAmount = null;
-
-	LinearLayout layoutSUDATrackingNumbersList = null;
-
-	TextView txtSubmitResult = null;
 	Button btnSubmitSUDATrackingNumbers = null;
-	
-	ScrollView scrollViewSpearnetPickupList = null;
 	Button btnAddSUDATrackingNumber = null;
 	EditText editTxtSUDATrackingNumber = null;
+	Button btnScan = null;
+
+	TextView txtScanResult = null;
+	TextView txtTotalAmount = null;
+	TextView txtSubmitResult = null;
+	
+	ScrollView scrollViewSpearnetPickupList = null;
+	LinearLayout layoutSUDATrackingNumbersList = null;
 
 	// init function
 	private void initXMLViewComponents(View argView) {
