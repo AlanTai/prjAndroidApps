@@ -51,7 +51,7 @@ public class GeneralClientsPackagesPickupHandler extends FragmentTemplate{
 	}
 
 	
-	/* XML components*/
+	/**/
 	TextView txtAppIntroduction = null;
 	Button btnSubmitSUDATrackingNumbers = null;
 	
@@ -67,7 +67,6 @@ public class GeneralClientsPackagesPickupHandler extends FragmentTemplate{
 	ScrollView scrollViewGeneralclientsPickupList = null;
 	LinearLayout layoutSUDATrackingNumbersList = null;
 	
-	//initiate XML components
 	private void initXMLViewComponents(View argView){
 		txtAppIntroduction = (TextView) argView.findViewById(R.id.txt_general_clients_packages_pickup_handler_introduction);
 		btnSubmitSUDATrackingNumbers = (Button) argView.findViewById(R.id.btn_general_clients_packages_pickup_handler_submit_suda_tracking_numbers);
