@@ -534,7 +534,7 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 							// end
 
 							// check if information of size & weight are empty
-							boolean isSizeWeightInfoValid = false;
+							boolean isSizeWeightInfoValided = false;
 							JSONArray jsonArySizeWeightInfoNames = jsonObjTWCustomEntryPackageSizeWeight
 									.names();
 							for (int ith = 0; ith < jsonArySizeWeightInfoNames
@@ -567,9 +567,9 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 									float length = Float.parseFloat(editLength
 											.getText().toString());
 									jsonObjSizeWeight.put("length", length);
-									isSizeWeightInfoValid = true;
+									isSizeWeightInfoValided = true;
 								} catch (Exception e) {
-									isSizeWeightInfoValid = false;
+									isSizeWeightInfoValided = false;
 									editLength.requestFocus();
 									Toast.makeText(getActivity(),
 											"Invalid Length", Toast.LENGTH_LONG)
@@ -580,9 +580,9 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 									float width = Float.parseFloat(editWidth
 											.getText().toString());
 									jsonObjSizeWeight.put("width", width);
-									isSizeWeightInfoValid = true;
+									isSizeWeightInfoValided = true;
 								} catch (Exception e) {
-									isSizeWeightInfoValid = false;
+									isSizeWeightInfoValided = false;
 									editWidth.requestFocus();
 									Toast.makeText(getActivity(),
 											"Invalid Width", Toast.LENGTH_LONG)
@@ -593,9 +593,9 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 									float height = Float.parseFloat(editHeight
 											.getText().toString());
 									jsonObjSizeWeight.put("height", height);
-									isSizeWeightInfoValid = true;
+									isSizeWeightInfoValided = true;
 								} catch (Exception e) {
-									isSizeWeightInfoValid = false;
+									isSizeWeightInfoValided = false;
 									editHeight.requestFocus();
 									Toast.makeText(getActivity(),
 											"Invalid Height", Toast.LENGTH_LONG)
@@ -606,9 +606,9 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 									float weight = Float.parseFloat(editWeight
 											.getText().toString());
 									jsonObjSizeWeight.put("weight", weight);
-									isSizeWeightInfoValid = true;
+									isSizeWeightInfoValided = true;
 								} catch (Exception e) {
-									isSizeWeightInfoValid = false;
+									isSizeWeightInfoValided = false;
 									editWeight.requestFocus();
 									Toast.makeText(getActivity(),
 											"Invalid Weight", Toast.LENGTH_LONG)
@@ -618,7 +618,7 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 							}
 
 							// execute the submission
-							if (isJSONObjEmpty || !isSizeWeightInfoValid) {
+							if (isJSONObjEmpty || !isSizeWeightInfoValided) {
 								Toast.makeText(
 										getActivity(),
 										"The Package Set, "
@@ -626,10 +626,6 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 												+ ", doesn't has any package! Or, there are invalid information of package size or weight!",
 										Toast.LENGTH_LONG).show();
 							} else {
-								//disable button of submitting packages info
-								btnSubmitPakcagesSets.setEnabled(false);
-								
-								//execute submit event
 								submitPackagesSetsHandler = new DataExchangeHandler(
 										progressBarForSubmitPackagesSets);
 								submitPackagesSetsHandler
@@ -1036,10 +1032,6 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 					Log.e("error", e.getMessage());
 				}
 			}
-			
-			//
-			//enable button of submitting packages info
-			btnSubmitPakcagesSets.setEnabled(true);
 		}
 
 		@Override

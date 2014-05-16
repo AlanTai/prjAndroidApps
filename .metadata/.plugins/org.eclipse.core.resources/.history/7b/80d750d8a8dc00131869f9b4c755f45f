@@ -1038,7 +1038,7 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 			}
 			
 			//
-			//enable button of submitting packages info
+			//disable button of submitting packages info
 			btnSubmitPakcagesSets.setEnabled(true);
 		}
 

@@ -626,10 +626,6 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 												+ ", doesn't has any package! Or, there are invalid information of package size or weight!",
 										Toast.LENGTH_LONG).show();
 							} else {
-								//disable button of submitting packages info
-								btnSubmitPakcagesSets.setEnabled(false);
-								
-								//execute submit event
 								submitPackagesSetsHandler = new DataExchangeHandler(
 										progressBarForSubmitPackagesSets);
 								submitPackagesSetsHandler
@@ -1036,10 +1032,6 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 					Log.e("error", e.getMessage());
 				}
 			}
-			
-			//
-			//enable button of submitting packages info
-			btnSubmitPakcagesSets.setEnabled(true);
 		}
 
 		@Override

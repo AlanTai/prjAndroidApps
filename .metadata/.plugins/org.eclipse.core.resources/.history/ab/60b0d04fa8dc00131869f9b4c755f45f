@@ -1036,10 +1036,6 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 					Log.e("error", e.getMessage());
 				}
 			}
-			
-			//
-			//enable button of submitting packages info
-			btnSubmitPakcagesSets.setEnabled(true);
 		}
 
 		@Override
