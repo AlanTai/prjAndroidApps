@@ -334,8 +334,7 @@ public class SpearnetPakcagesPickupFragment extends FragmentTemplate {
 					// TODO Auto-generated method stub
 
 					if (sudaTrackingNumberMap.size() != 0) {
-						//disable button
-						btnSubmitSUDATrackingNumbers.setEnabled(false);
+						//
 						
 						//build data object & array
 						jsonObjSUDATrackingNumbers = new JSONObject();
@@ -446,9 +445,6 @@ public class SpearnetPakcagesPickupFragment extends FragmentTemplate {
 				}
 
 			}
-			
-			//enable submit button
-			btnSubmitSUDATrackingNumbers.setEnabled(true);
 		}
 
 		@Override

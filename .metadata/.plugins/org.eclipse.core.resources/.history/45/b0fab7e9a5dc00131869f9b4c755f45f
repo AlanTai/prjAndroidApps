@@ -447,7 +447,7 @@ public class SpearnetPakcagesPickupFragment extends FragmentTemplate {
 
 			}
 			
-			//enable submit button
+			//enable button
 			btnSubmitSUDATrackingNumbers.setEnabled(true);
 		}
 
