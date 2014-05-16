@@ -627,15 +627,21 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 										Toast.LENGTH_LONG).show();
 							} else {
 								//disable button of submitting packages info
-								btnSubmitPakcagesSets.setEnabled(false);
 								
-								//execute submit event
-								submitPackagesSetsHandler = new DataExchangeHandler(
-										progressBarForSubmitPackagesSets);
-								submitPackagesSetsHandler
-										.execute(new String[] { "https://exshipper-ca.appspot.com/exshipper_tw_custom_entry_handler" });
+								try{
+									btnSubmitPakcagesSets.setEnabled(false);
+									
+									//execute submit event
+									submitPackagesSetsHandler = new DataExchangeHandler(
+											progressBarForSubmitPackagesSets);
+									submitPackagesSetsHandler
+											.execute(new String[] { "https://exshipper-ca.appspot.com/exshipper_tw_custom_entry_handler" });
+								}
+								catch(Exception ex){
+									Log.e("Error", "Fail to upload data; Error Message: " + ex.getMessage());
+									btnSubmitPakcagesSets.setEnabled(true);
+								}
 							}
-							
 						} else {
 							Toast.makeText(getActivity(),
 									"No data for upload!", Toast.LENGTH_LONG)
@@ -645,7 +651,6 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 					} catch (Exception e) {
 						// TODO: handle exception
 						Log.e("error", e.getMessage());
-						btnSubmitPakcagesSets.setEnabled(true);
 					}
 
 				}
