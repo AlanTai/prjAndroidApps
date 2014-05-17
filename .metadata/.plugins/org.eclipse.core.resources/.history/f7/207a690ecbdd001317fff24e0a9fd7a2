@@ -96,7 +96,7 @@ public class GeneralClientsPackagesPickupHandler extends FragmentTemplate{
 		@Override
 		public boolean isAuthorizationNecessary() {
 			// TODO Auto-generated method stub
-			return true;
+			return false;
 		}
 	};
 
