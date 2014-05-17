@@ -1,7 +1,0 @@
-package com.exshipper.databasehandlers;
-
-public abstract class SQLiteTableTemplate {
-	protected String tableName = null;
-	protected String commandOfCreatingTable = null;
-
-}

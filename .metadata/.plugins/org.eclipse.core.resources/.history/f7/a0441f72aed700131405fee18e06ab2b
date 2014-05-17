@@ -1,5 +1,0 @@
-package com.exshipper.databasehandlers;
-
-public abstract class SQLiteTableTemplate {
-
-}
