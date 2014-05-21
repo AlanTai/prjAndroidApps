@@ -55,7 +55,6 @@ public class GeneralClientsPackagesPickupHandler extends FragmentTemplate{
 		super.onDestroy();
 	}
 	
-	//progress bar dialog listener
 	ProgressBarUpdateListener updateProgresBar = new ProgressBarUpdateListener() {
 		
 		@Override
