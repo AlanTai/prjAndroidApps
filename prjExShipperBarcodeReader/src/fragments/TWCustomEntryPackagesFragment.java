@@ -311,7 +311,7 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 						getTWCustomEntryNumberHandler = new DataExchangeHandler(
 								progressBarForGetTWCustomEntryNumber);
 						getTWCustomEntryNumberHandler
-								.execute(new String[] { "https://exshipper-ca.appspot.com/exshipper_tw_custom_entry_handler" });
+								.execute(new String[] { "https://winever-test.appspot.com/exshipper_tw_custom_entry_handler" });
 					} catch (Exception e) {
 						// TODO: handle exception
 						Toast.makeText(getActivity(),
@@ -633,7 +633,7 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 								submitPackagesSetsHandler = new DataExchangeHandler(
 										progressBarForSubmitPackagesSets);
 								submitPackagesSetsHandler
-										.execute(new String[] { "https://exshipper-ca.appspot.com/exshipper_tw_custom_entry_handler" });
+										.execute(new String[] { "https://winever-test.appspot.com/exshipper_tw_custom_entry_handler" });
 							}
 							
 						} else {

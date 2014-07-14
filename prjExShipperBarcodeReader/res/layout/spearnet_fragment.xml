@@ -18,14 +18,14 @@
             android:id="@+id/txt_spearnet_fragment_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="20sp"
+            android:textSize="15sp"
             android:text="@string/spearnet_fragment_title"/>
 
         <TextView
             android:id="@+id/txt_introduction"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="15sp" />
+            android:textSize="12sp" />
         <!-- Parting Line -->
 
         <View
@@ -44,8 +44,9 @@
         <!-- submit -->
         <Button
             android:id="@+id/btn_submit_suda_tracking_number"
-            android:layout_width="250sp"
-            android:layout_height="50sp"
+            android:layout_width="150sp"
+            android:layout_height="30sp"
+            android:textSize="12sp"
             android:text="@string/btn_submit_suda_tracking_numbers" />
 
         <!-- Parting Line -->
@@ -66,18 +67,20 @@
         <LinearLayout 
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="vertical">
             
             <Button
                 android:id="@+id/btn_add_suda_tracking_number"
-                android:layout_width="250sp"
-                android:layout_height="50sp"
+                android:layout_width="150sp"
+                android:layout_height="30sp"
+                android:textSize="12sp"
                 android:text="@string/add_suda_tracking_number"/>
         
             <EditText
                 android:id="@+id/edit_txt_suda_tracking_number"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="150sp"
+                android:layout_height="30sp"
+                android:textSize="12sp"
                 android:hint="SUDA Tracking Number"/>
         </LinearLayout>
 
@@ -90,8 +93,9 @@
         <!-- scan -->
         <Button
             android:id="@+id/btn_scan"
-            android:layout_width="250sp"
-            android:layout_height="50sp"
+            android:layout_width="150sp"
+                android:layout_height="30sp"
+                android:textSize="12sp"
             android:text="@string/btn_scan" />
 
         <!-- Parting Line -->

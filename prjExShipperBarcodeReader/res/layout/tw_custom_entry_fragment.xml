@@ -19,12 +19,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/tw_custom_entry_fragment_title"
-            android:textSize="20sp"/>
+            android:textSize="13sp"/>
 
         <TextView
             android:id="@+id/txt_introduction_tw_custom_entry"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:textSize="12sp"/>
 
         <!-- Parting Line -->
         <View
@@ -43,8 +44,9 @@
 
         <Button
             android:id="@+id/btn_submit_packages_sets_tw_custom_entry"
-            android:layout_width="250sp"
-            android:layout_height="50sp"
+            android:layout_width="200sp"
+            android:layout_height="40sp"
+            android:textSize="13sp"
             android:text="@string/btn_submit_packages_sets" />
 
         <!-- Parting Line -->
@@ -65,20 +67,23 @@
 
         <Button
             android:id="@+id/btn_add_new_packages_set_tw_custom_entry"
-            android:layout_width="250sp"
-            android:layout_height="50sp"
+            android:layout_width="200sp"
+            android:layout_height="40sp"
+            android:textSize="13sp"
             android:text="@string/btn_add_new_packages_set" />
 
         <TextView
             android:id="@+id/txt_download_tw_custom_entry_number_result"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="12sp"
             android:textColor="#00f" />
 
         <TextView
             android:id="@+id/txt_total_sets_tw_custom_entry"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="12sp"
             android:textColor="#00f" />
 
         
