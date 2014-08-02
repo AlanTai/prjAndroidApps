@@ -6,9 +6,9 @@
     <string name="action_settings">Settings</string>
     <string name="title">ExShipper Logistics Application</string>
     <string name="app_exit">Exit</string>
-    <string name="exshipper_fragment_title">Technical Support by WINEver</string>
+    <string name="exshipper_fragment_title">Technical Support by Gogistics</string>
     <string name="technical_support_phone">Phone: 1-407-565-5133</string>
-    <string name="technical_support_email">Email: winever.tw@gmail.com</string>
+    <string name="technical_support_email">Email: gogistics@gogistics-tw.com</string>
 
     <!-- items selector -->
     <string name="menu_spearnet_packages_pickup_handler">Spearnet</string>

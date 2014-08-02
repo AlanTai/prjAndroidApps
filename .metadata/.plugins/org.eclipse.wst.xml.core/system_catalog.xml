@@ -111,4 +111,11 @@
   <uri name="http://www.w3.org/TR/html4/strict.dtd" uri="jar:file:/Users/alantai/Downloads/eclipse 2/plugins/org.eclipse.wst.standard.schemas_1.0.501.v201301091615.jar!/dtds/strict.dtd"/>
   <uri name="urn:ui:com.google.gwt.uibinder" uri="http://dl.google.com/gwt/dtd/uibinder.xsd"/>
   <uri name="urn:import:com.google.gwt.user.client.ui" uri="http://dl.google.com/gwt/dtd/com.google.gwt.user.client.ui.xsd"/>
+  <system systemId="http://maven.apache.org/maven-v4_0_0.xsd" uri="jar:file:/Users/alantai/Downloads/eclipse 2/plugins/org.eclipse.m2e.model.edit_1.4.1.20140328-1905.jar!/xsd/maven-v4_0_0.xsd"/>
+  <system systemId="http://maven.apache.org/xsd/maven-4.0.0.xsd" uri="jar:file:/Users/alantai/Downloads/eclipse 2/plugins/org.eclipse.m2e.model.edit_1.4.1.20140328-1905.jar!/xsd/maven-v4_0_0.xsd"/>
+  <system systemId="http://maven.apache.org/xsd/settings-1.0.0.xsd" uri="jar:file:/Users/alantai/Downloads/eclipse 2/plugins/org.eclipse.m2e.model.edit_1.4.1.20140328-1905.jar!/xsd/settings-v1_0_0.xsd"/>
+  <system systemId="http://maven.apache.org/xsd/profiles-1.0.0.xsd" uri="jar:file:/Users/alantai/Downloads/eclipse 2/plugins/org.eclipse.m2e.model.edit_1.4.1.20140328-1905.jar!/xsd/profiles-v1_0_0.xsd"/>
+  <system systemId="http://maven.apache.org/xsd/archetype-1.0.0.xsd" uri="jar:file:/Users/alantai/Downloads/eclipse 2/plugins/org.eclipse.m2e.model.edit_1.4.1.20140328-1905.jar!/xsd/archetype-1.0.0.xsd"/>
+  <system systemId="http://maven.apache.org/xsd/archetype-catalog-1.0.0.xsd" uri="jar:file:/Users/alantai/Downloads/eclipse 2/plugins/org.eclipse.m2e.model.edit_1.4.1.20140328-1905.jar!/xsd/archetype-catalog-1.0.0.xsd"/>
+  <system systemId="http://maven.apache.org/xsd/archetype-descriptor-1.0.0.xsd" uri="jar:file:/Users/alantai/Downloads/eclipse 2/plugins/org.eclipse.m2e.model.edit_1.4.1.20140328-1905.jar!/xsd/archetype-descriptor-1.0.0.xsd"/>
 </catalog>

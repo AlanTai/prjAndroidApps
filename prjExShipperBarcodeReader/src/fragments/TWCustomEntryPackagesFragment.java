@@ -1117,12 +1117,7 @@ public class TWCustomEntryPackagesFragment extends FragmentTemplate {
 		txtIntroduction = (TextView) mView
 				.findViewById(R.id.txt_introduction_tw_custom_entry);
 		txtIntroduction
-				.setText("Instruction:\n"
-						+ "1. Click 'Add New Package Set' button to get TW Custom Entry Barcode Number; (If you want to delete the barcode or the package set, please click the \'Delete\' key word)\n"
-						+ "2. Key in size and weight of package\n"
-						+ "3. Click 'Scan' button to scan package barcode\n"
-						+ "4. Click 'Submit Packages Information' button to submit information\n"
-						+ "5. Once you get response from server, you're done\n");
+				.setText("Demo Version");
 
 		btnAddNewPackagesSet = (Button) mView
 				.findViewById(R.id.btn_add_new_packages_set_tw_custom_entry);
