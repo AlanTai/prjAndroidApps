@@ -1,5 +1,4 @@
 INDEX VERSION 1.126+/Users/alantai/prjAndroidApps/.metadata/.plugins/org.eclipse.jdt.core
-3896152951.index
 3550142215.index
 1270315800.index
 1631472097.index

@@ -24,10 +24,4 @@ public class MainFragment extends FragmentTemplate{
 		View mView = inflater.inflate(R.layout.main_fragment, container, false);
 		return mView;
 	}
-
-	@Override
-	public void onDestroy() {
-		// TODO Auto-generated method stub
-		super.onDestroy();
-	}
 }
